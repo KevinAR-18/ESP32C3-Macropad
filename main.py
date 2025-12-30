@@ -1,5 +1,8 @@
 import serial
 import keyboard
+import json
+import os
+import time
 from pycaw.pycaw import AudioUtilities, ISimpleAudioVolume
 
 # ================= SERIAL =================
@@ -7,7 +10,27 @@ SERIAL_PORT = "COM7"
 BAUDRATE = 115200
 ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
 
-# ================= SPOTIFY SESSION =================
+# ================= PATH =================
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+KEYMAP_PATH = os.path.join(BASE_DIR, "keymap.json")
+
+# ================= LOAD KEYMAP =================
+button_map = {}
+keymap_mtime = 0
+
+def load_keymap():
+    global button_map, keymap_mtime
+    try:
+        mtime = os.path.getmtime(KEYMAP_PATH)
+        if mtime != keymap_mtime:
+            with open(KEYMAP_PATH, "r") as f:
+                button_map = json.load(f)
+            keymap_mtime = mtime
+            print("[KEYMAP] Reloaded")
+    except Exception as e:
+        print("[KEYMAP] Error:", e)
+
+# ================= SPOTIFY =================
 def get_spotify_volume():
     sessions = AudioUtilities.GetAllSessions()
     for session in sessions:
@@ -18,50 +41,43 @@ def get_spotify_volume():
 spotify_volume = get_spotify_volume()
 
 print("Listening from ESP32...")
+load_keymap()
 
 # ================= MAIN LOOP =================
 while True:
-    if ser.in_waiting:
-        line = ser.readline().decode(errors="ignore").strip()
-        print("RX:", line)
+    load_keymap()  # HOT RELOAD CHECK
 
-        # ---------- BUTTONS ----------
-        if line == "BUTTON 1 PRESSED":
-            keyboard.press_and_release("v")
+    if not ser.in_waiting:
+        time.sleep(0.01)
+        continue
 
-        elif line == "BUTTON 2 PRESSED":
-            keyboard.press_and_release("a")
+    line = ser.readline().decode(errors="ignore").strip()
+    print("RX:", line)
 
-        elif line == "BUTTON 3 PRESSED":
-            keyboard.press_and_release("n")
+    # ---------- BUTTONS (JSON) ----------
+    if line in button_map:
+        keyboard.press_and_release(button_map[line])
+        continue
 
-        elif line == "BUTTON 4 PRESSED":
-            keyboard.press_and_release("y")
+    # ---------- ENCODER 1 : SPOTIFY ----------
+    if line == "ENC1 RIGHT" and spotify_volume:
+        vol = spotify_volume.GetMasterVolume()
+        spotify_volume.SetMasterVolume(min(vol + 0.01, 1.0), None)
 
-        elif line == "BUTTON 5 PRESSED":
-            keyboard.press_and_release("a")  # contoh
+    elif line == "ENC1 LEFT" and spotify_volume:
+        vol = spotify_volume.GetMasterVolume()
+        spotify_volume.SetMasterVolume(max(vol - 0.01, 0.0), None)
 
-        # ---------- ENCODER 1 (SPOTIFY) ----------
-        elif line == "ENC1 RIGHT":
-            if spotify_volume:
-                vol = spotify_volume.GetMasterVolume()
-                spotify_volume.SetMasterVolume(min(vol + 0.01, 1.0), None)
+    elif line == "ENC1 BUTTON PRESSED":
+        keyboard.send("play/pause media")
 
-        elif line == "ENC1 LEFT":
-            if spotify_volume:
-                vol = spotify_volume.GetMasterVolume()
-                spotify_volume.SetMasterVolume(max(vol - 0.01, 0.0), None)
+    # ---------- ENCODER 2 : WINDOWS ----------
+    elif line == "ENC2 RIGHT":
+        keyboard.send("volume up")
 
-        elif line == "ENC1 BUTTON PRESSED":
-            keyboard.send("play/pause media") # play / pause Spotify
+    elif line == "ENC2 LEFT":
+        keyboard.send("volume down")
 
-        # ---------- ENCODER 2 (WINDOWS GLOBAL) ----------
-        elif line == "ENC2 RIGHT":
-            keyboard.send("volume up")
-
-        elif line == "ENC2 LEFT":
-            keyboard.send("volume down")
-
-        elif line == "ENC2 BUTTON PRESSED":
-            keyboard.send("volume mute")
-   
+    elif line == "ENC2 BUTTON PRESSED":
+        keyboard.send("volume mute")
+vany
