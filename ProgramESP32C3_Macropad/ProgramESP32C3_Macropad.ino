@@ -1,10 +1,15 @@
 // ================= CONFIG =================
-const int buttonPins[4] = {3, 21, 5, 6};
+const int buttonPins[5] = {0, 1, 2, 3, 4};
 
-// Rotary Encoder pins
-#define ENC_A 10
-#define ENC_B 20
-#define ENC_SW 0
+// Rotary Encoder 1
+#define ENC1_A 6
+#define ENC1_B 7
+#define ENC1_SW 5
+
+// Rotary Encoder 2
+#define ENC2_SW 8
+#define ENC2_A  9
+#define ENC2_B  10
 
 // Timing (ms)
 #define DEBOUNCE_TIME 50
@@ -12,33 +17,45 @@ const int buttonPins[4] = {3, 21, 5, 6};
 #define REPEAT_RATE   80
 
 // ================= STATE =================
-int lastEncA = HIGH;
 
-// Button states
-bool lastButtonState[4] = {HIGH, HIGH, HIGH, HIGH};
-unsigned long pressTime[4] = {0, 0, 0, 0};
-unsigned long lastRepeat[4] = {0, 0, 0, 0};
-unsigned long lastEventTime[4] = {0, 0, 0, 0};
-bool isRepeating[4] = {false, false, false, false};
+// ---------- BUTTON ----------
+bool lastButtonState[5] = {HIGH, HIGH, HIGH, HIGH, HIGH};
+unsigned long pressTime[5] = {0};
+unsigned long lastRepeat[5] = {0};
+unsigned long lastEventTime[5] = {0};
+bool isRepeating[5] = {false};
 
-// Encoder button states
-bool lastEncBtn = HIGH;
-unsigned long encPressTime = 0;
-unsigned long encLastRepeat = 0;
-unsigned long encLastEvent = 0;
-bool encRepeating = false;
+// ---------- ENCODER 1 ----------
+int lastEnc1A = HIGH;
+bool lastEnc1Btn = HIGH;
+unsigned long enc1PressTime = 0;
+unsigned long enc1LastRepeat = 0;
+unsigned long enc1LastEvent = 0;
+bool enc1Repeating = false;
+
+// ---------- ENCODER 2 ----------
+int lastEnc2A = HIGH;
+bool lastEnc2Btn = HIGH;
+unsigned long enc2PressTime = 0;
+unsigned long enc2LastRepeat = 0;
+unsigned long enc2LastEvent = 0;
+bool enc2Repeating = false;
 
 // ================= SETUP =================
 void setup() {
   Serial.begin(115200);
 
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < 5; i++) {
     pinMode(buttonPins[i], INPUT_PULLUP);
   }
 
-  pinMode(ENC_A, INPUT_PULLUP);
-  pinMode(ENC_B, INPUT_PULLUP);
-  pinMode(ENC_SW, INPUT_PULLUP);
+  pinMode(ENC1_A, INPUT_PULLUP);
+  pinMode(ENC1_B, INPUT_PULLUP);
+  pinMode(ENC1_SW, INPUT_PULLUP);
+
+  pinMode(ENC2_A, INPUT_PULLUP);
+  pinMode(ENC2_B, INPUT_PULLUP);
+  pinMode(ENC2_SW, INPUT_PULLUP);
 
   Serial.println("START");
 }
@@ -46,17 +63,18 @@ void setup() {
 // ================= LOOP =================
 void loop() {
   handleButtons();
-  handleEncoder();
+  handleEncoder1();
+  handleEncoder2();
 }
 
 // ================= BUTTON HANDLER =================
 void handleButtons() {
   unsigned long now = millis();
 
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < 5; i++) {
     bool current = digitalRead(buttonPins[i]);
 
-    // ----- FIRST PRESS (EDGE + DEBOUNCE) -----
+    // FIRST PRESS
     if (current == LOW && lastButtonState[i] == HIGH) {
       if (now - lastEventTime[i] > DEBOUNCE_TIME) {
         Serial.print("BUTTON ");
@@ -70,7 +88,7 @@ void handleButtons() {
       }
     }
 
-    // ----- HOLD → AUTO REPEAT -----
+    // HOLD → REPEAT
     if (current == LOW && lastButtonState[i] == LOW) {
       if (!isRepeating[i] && (now - pressTime[i] >= REPEAT_DELAY)) {
         isRepeating[i] = true;
@@ -85,7 +103,7 @@ void handleButtons() {
       }
     }
 
-    // ----- RELEASE -----
+    // RELEASE
     if (current == HIGH && lastButtonState[i] == LOW) {
       isRepeating[i] = false;
     }
@@ -94,53 +112,96 @@ void handleButtons() {
   }
 }
 
-// ================= ENCODER HANDLER =================
-void handleEncoder() {
+// ================= ENCODER 1 =================
+void handleEncoder1() {
   unsigned long now = millis();
 
-  // ----- ROTATION -----
-  int encA = digitalRead(ENC_A);
-  if (encA != lastEncA) {
-    if (digitalRead(ENC_B) != encA) {
-      Serial.println("ENCODER RIGHT");
+  // ROTATION
+  int encA = digitalRead(ENC1_A);
+  if (encA != lastEnc1A) {
+    if (digitalRead(ENC1_B) != encA) {
+      Serial.println("ENC1 LEFT");
     } else {
-      Serial.println("ENCODER LEFT");
+      Serial.println("ENC1 RIGHT");
     }
   }
-  lastEncA = encA;
+  lastEnc1A = encA;
 
-  // ----- ENCODER BUTTON -----
-  bool encBtn = digitalRead(ENC_SW);
+  // BUTTON
+  bool btn = digitalRead(ENC1_SW);
 
-  // FIRST PRESS
-  if (encBtn == LOW && lastEncBtn == HIGH) {
-    if (now - encLastEvent > DEBOUNCE_TIME) {
-      Serial.println("ENCODER BUTTON PRESSED");
-
-      encLastEvent = now;
-      encPressTime = now;
-      encLastRepeat = now;
-      encRepeating = false;
-    }
-  }
-
-  // HOLD → REPEAT
-  if (encBtn == LOW && lastEncBtn == LOW) {
-    if (!encRepeating && (now - encPressTime >= REPEAT_DELAY)) {
-      encRepeating = true;
-      encLastRepeat = now;
-    }
-
-    if (encRepeating && (now - encLastRepeat >= REPEAT_RATE)) {
-      Serial.println("ENCODER BUTTON PRESSED");
-      encLastRepeat = now;
+  if (btn == LOW && lastEnc1Btn == HIGH) {
+    if (now - enc1LastEvent > DEBOUNCE_TIME) {
+      Serial.println("ENC1 BUTTON PRESSED");
+      enc1LastEvent = now;
+      enc1PressTime = now;
+      enc1LastRepeat = now;
+      enc1Repeating = false;
     }
   }
 
-  // RELEASE
-  if (encBtn == HIGH && lastEncBtn == LOW) {
-    encRepeating = false;
+  if (btn == LOW && lastEnc1Btn == LOW) {
+    if (!enc1Repeating && (now - enc1PressTime >= REPEAT_DELAY)) {
+      enc1Repeating = true;
+      enc1LastRepeat = now;
+    }
+
+    if (enc1Repeating && (now - enc1LastRepeat >= REPEAT_RATE)) {
+      Serial.println("ENC1 BUTTON PRESSED");
+      enc1LastRepeat = now;
+    }
   }
 
-  lastEncBtn = encBtn;
-} 
+  if (btn == HIGH && lastEnc1Btn == LOW) {
+    enc1Repeating = false;
+  }
+
+  lastEnc1Btn = btn;
+}
+
+// ================= ENCODER 2 =================
+void handleEncoder2() {
+  unsigned long now = millis();
+
+  // ROTATION
+  int encA = digitalRead(ENC2_A);
+  if (encA != lastEnc2A) {
+    if (digitalRead(ENC2_B) != encA) {
+      Serial.println("ENC2 LEFT");
+    } else {
+      Serial.println("ENC2 RIGHT");
+    }
+  }
+  lastEnc2A = encA;
+
+  // BUTTON
+  bool btn = digitalRead(ENC2_SW);
+
+  if (btn == LOW && lastEnc2Btn == HIGH) {
+    if (now - enc2LastEvent > DEBOUNCE_TIME) {
+      Serial.println("ENC2 BUTTON PRESSED");
+      enc2LastEvent = now;
+      enc2PressTime = now;
+      enc2LastRepeat = now;
+      enc2Repeating = false;
+    }
+  }
+
+  if (btn == LOW && lastEnc2Btn == LOW) {
+    if (!enc2Repeating && (now - enc2PressTime >= REPEAT_DELAY)) {
+      enc2Repeating = true;
+      enc2LastRepeat = now;
+    }
+
+    if (enc2Repeating && (now - enc2LastRepeat >= REPEAT_RATE)) {
+      Serial.println("ENC2 BUTTON PRESSED");
+      enc2LastRepeat = now;
+    }
+  }
+
+  if (btn == HIGH && lastEnc2Btn == LOW) {
+    enc2Repeating = false;
+  }
+
+  lastEnc2Btn = btn;
+}
