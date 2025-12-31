@@ -6,7 +6,7 @@ import time
 from pycaw.pycaw import AudioUtilities, ISimpleAudioVolume
 
 # ================= SERIAL =================
-SERIAL_PORT = "COM7"
+SERIAL_PORT = "COM6"
 BAUDRATE = 115200
 ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
 
@@ -80,4 +80,3 @@ while True:
 
     elif line == "ENC2 BUTTON PRESSED":
         keyboard.send("volume mute")
-vany
