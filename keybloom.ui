@@ -487,6 +487,13 @@ QPushButton#closeAppBtn QToolTip {
      </item>
      <item>
       <widget class="QFrame" name="contentFrame">
+       <property name="styleSheet">
+        <string notr="true">#contentFrame {
+border-image: url(:/icon/images/bg2.png) 0 0 0 0 stretch stretch;
+}
+
+</string>
+       </property>
        <property name="frameShape">
         <enum>QFrame::Shape::NoFrame</enum>
        </property>
@@ -797,7 +804,7 @@ QPushButton:pressed {
         <item>
          <widget class="QStackedWidget" name="stackedWidget">
           <property name="currentIndex">
-           <number>0</number>
+           <number>5</number>
           </property>
           <widget class="QWidget" name="pageProfile1">
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -814,7 +821,7 @@ QPushButton:pressed {
              <number>0</number>
             </property>
             <property name="bottomMargin">
-             <number>8</number>
+             <number>10</number>
             </property>
             <item>
              <layout class="QHBoxLayout" name="layoutTitleprofile1">
@@ -986,12 +993,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -1090,12 +1091,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -1198,12 +1193,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -1302,12 +1291,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -1410,12 +1393,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -1514,12 +1491,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -1646,7 +1617,7 @@ QPushButton:disabled {
              <number>0</number>
             </property>
             <property name="bottomMargin">
-             <number>8</number>
+             <number>10</number>
             </property>
             <item>
              <layout class="QHBoxLayout" name="layoutTitleprofile2">
@@ -1818,12 +1789,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -1922,12 +1887,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -2030,12 +1989,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -2134,12 +2087,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -2242,12 +2189,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -2346,12 +2287,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -2478,7 +2413,7 @@ QPushButton:disabled {
              <number>0</number>
             </property>
             <property name="bottomMargin">
-             <number>8</number>
+             <number>10</number>
             </property>
             <item>
              <layout class="QHBoxLayout" name="layoutTitleprofile3">
@@ -2650,12 +2585,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -2754,12 +2683,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -2862,12 +2785,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -2966,12 +2883,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -3074,12 +2985,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -3178,12 +3083,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -3310,7 +3209,7 @@ QPushButton:disabled {
              <number>0</number>
             </property>
             <property name="bottomMargin">
-             <number>8</number>
+             <number>10</number>
             </property>
             <item>
              <layout class="QHBoxLayout" name="layoutTitleprofile4">
@@ -3482,12 +3381,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -3586,12 +3479,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -3694,12 +3581,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -3798,12 +3679,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -3906,12 +3781,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -4010,12 +3879,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -4131,6 +3994,9 @@ QPushButton:disabled {
            </layout>
           </widget>
           <widget class="QWidget" name="pageProfile5">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <layout class="QVBoxLayout" name="verticalLayout_37">
             <property name="leftMargin">
              <number>0</number>
@@ -4142,7 +4008,7 @@ QPushButton:disabled {
              <number>0</number>
             </property>
             <property name="bottomMargin">
-             <number>8</number>
+             <number>10</number>
             </property>
             <item>
              <layout class="QHBoxLayout" name="layoutTitleprofile5">
@@ -4314,12 +4180,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -4418,12 +4278,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -4526,12 +4380,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -4630,12 +4478,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -4738,12 +4580,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -4842,12 +4678,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -4972,6 +4802,21 @@ QCheckBox#cbAutoStartup {
 </string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_40">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>10</number>
+            </property>
             <item>
              <layout class="QHBoxLayout" name="layoutTitleprofile1_2">
               <item>
@@ -5178,12 +5023,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -5304,12 +5143,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -5433,12 +5266,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -5560,12 +5387,6 @@ QLineEdit{
 	padding: 2px 4px;
 }
 
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
-}
-
 /* ================= DISABLED ================= */
 QLineEdit:disabled {
     background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
@@ -5685,12 +5506,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -5824,12 +5639,6 @@ QLineEdit{
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
 	padding: 2px 4px;
-}
-
-/* ================= FOCUS ================= */
-QLineEdit:focus {
-    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
-    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
 }
 
 /* ================= DISABLED ================= */
@@ -5976,11 +5785,11 @@ QCheckBox:disabled {
                       <property name="styleSheet">
                        <string notr="true">
 /* App Title (KeyBloom) */
-#titleinputCOM{
-    color: white;      
+#titleAutostartup{
+    color: #4e049b;      
     font-size: 11pt;
     font-weight: bold;
-    background-color: #435663; /* ungu menyala lembut */
+    background-color: #dfd7f4; /* ungu menyala lembut */
     border-radius: 6px;
 }
 
@@ -6109,7 +5918,7 @@ QCheckBox:disabled {
                       </property>
                       <property name="minimumSize">
                        <size>
-                        <width>160</width>
+                        <width>295</width>
                         <height>30</height>
                        </size>
                       </property>
@@ -6130,11 +5939,11 @@ QCheckBox:disabled {
                       <property name="styleSheet">
                        <string notr="true">
 /* App Title (KeyBloom) */
-#titleinputCOM{
-    color: white;      
+#titleAutodetect{
+    color: #4e049b;      
     font-size: 11pt;
     font-weight: bold;
-    background-color: #435663; /* ungu menyala lembut */
+    background-color: #dfd7f4; /* ungu menyala lembut */
     border-radius: 6px;
 }
 
