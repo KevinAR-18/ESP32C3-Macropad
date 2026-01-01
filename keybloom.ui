@@ -106,6 +106,12 @@ QMainWindow {
       <height>400</height>
      </size>
     </property>
+    <property name="maximumSize">
+     <size>
+      <width>800</width>
+      <height>400</height>
+     </size>
+    </property>
     <property name="frameShape">
      <enum>QFrame::Shape::NoFrame</enum>
     </property>
@@ -289,7 +295,7 @@ QMainWindow {
               </size>
              </property>
              <property name="frameShape">
-              <enum>QFrame::Shape::StyledPanel</enum>
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
              <property name="frameShadow">
               <enum>QFrame::Shadow::Raised</enum>
@@ -808,7 +814,7 @@ QPushButton:pressed {
              <number>0</number>
             </property>
             <property name="bottomMargin">
-             <number>5</number>
+             <number>8</number>
             </property>
             <item>
              <layout class="QHBoxLayout" name="layoutTitleprofile1">
@@ -887,7 +893,7 @@ QPushButton:pressed {
             <item>
              <widget class="QFrame" name="frameAllbutton1">
               <property name="frameShape">
-               <enum>QFrame::Shape::StyledPanel</enum>
+               <enum>QFrame::Shape::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Shadow::Raised</enum>
@@ -930,7 +936,7 @@ QPushButton:pressed {
                    <number>9</number>
                   </property>
                   <item>
-                   <widget class="QFrame" name="page1_buttonFrame1">
+                   <widget class="QFrame" name="buttonFrame1">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -952,7 +958,7 @@ QPushButton:pressed {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineedit1_p1">
+                   <widget class="QLineEdit" name="prof1_line1">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -971,9 +977,13 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
-    padding: 6px 8px;
+	padding: 2px 4px;
 }
 
 /* ================= FOCUS ================= */
@@ -996,7 +1006,7 @@ QLineEdit:disabled {
                 </widget>
                </item>
                <item>
-                <widget class="QFrame" name="frameout1_2">
+                <widget class="QFrame" name="frameout2">
                  <property name="minimumSize">
                   <size>
                    <width>135</width>
@@ -1032,7 +1042,7 @@ QLineEdit:disabled {
                    <number>9</number>
                   </property>
                   <item>
-                   <widget class="QFrame" name="page1_buttonFrame1_3">
+                   <widget class="QFrame" name="buttonFrame2">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -1054,7 +1064,7 @@ QLineEdit:disabled {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineedit2_p1">
+                   <widget class="QLineEdit" name="prof1_line2">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -1073,9 +1083,13 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
-    padding: 6px 8px;
+	padding: 2px 4px;
 }
 
 /* ================= FOCUS ================= */
@@ -1098,7 +1112,7 @@ QLineEdit:disabled {
                 </widget>
                </item>
                <item>
-                <widget class="QFrame" name="frameout1_3">
+                <widget class="QFrame" name="frameout3">
                  <property name="minimumSize">
                   <size>
                    <width>135</width>
@@ -1134,7 +1148,7 @@ QLineEdit:disabled {
                    <number>9</number>
                   </property>
                   <item>
-                   <widget class="QFrame" name="page1_buttonFrame1_4">
+                   <widget class="QFrame" name="buttonFrame3">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -1156,7 +1170,7 @@ QLineEdit:disabled {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineedit3_p1">
+                   <widget class="QLineEdit" name="prof1_line3">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -1175,9 +1189,13 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
-    padding: 6px 8px;
+	padding: 2px 4px;
 }
 
 /* ================= FOCUS ================= */
@@ -1200,7 +1218,7 @@ QLineEdit:disabled {
                 </widget>
                </item>
                <item>
-                <widget class="QFrame" name="frameout1_4">
+                <widget class="QFrame" name="frameout4">
                  <property name="minimumSize">
                   <size>
                    <width>135</width>
@@ -1236,7 +1254,7 @@ QLineEdit:disabled {
                    <number>9</number>
                   </property>
                   <item>
-                   <widget class="QFrame" name="page1_buttonFrame1_5">
+                   <widget class="QFrame" name="buttonFrame4">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -1258,7 +1276,7 @@ QLineEdit:disabled {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineedit5_p1">
+                   <widget class="QLineEdit" name="prof1_line4">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -1277,9 +1295,13 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
-    padding: 6px 8px;
+	padding: 2px 4px;
 }
 
 /* ================= FOCUS ================= */
@@ -1302,7 +1324,7 @@ QLineEdit:disabled {
                 </widget>
                </item>
                <item>
-                <widget class="QFrame" name="frameout1_5">
+                <widget class="QFrame" name="frameout5">
                  <property name="minimumSize">
                   <size>
                    <width>135</width>
@@ -1338,7 +1360,7 @@ QLineEdit:disabled {
                    <number>9</number>
                   </property>
                   <item>
-                   <widget class="QFrame" name="page1_buttonFrame1_6">
+                   <widget class="QFrame" name="buttonFrame5">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -1360,7 +1382,7 @@ QLineEdit:disabled {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineedit6_p1">
+                   <widget class="QLineEdit" name="prof1_line5">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -1379,9 +1401,13 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
-    padding: 6px 8px;
+	padding: 2px 4px;
 }
 
 /* ================= FOCUS ================= */
@@ -1404,7 +1430,7 @@ QLineEdit:disabled {
                 </widget>
                </item>
                <item>
-                <widget class="QFrame" name="frameout1_6">
+                <widget class="QFrame" name="frameout6">
                  <property name="minimumSize">
                   <size>
                    <width>135</width>
@@ -1440,7 +1466,7 @@ QLineEdit:disabled {
                    <number>9</number>
                   </property>
                   <item>
-                   <widget class="QFrame" name="page1_buttonFrame1_7">
+                   <widget class="QFrame" name="buttonFrame6">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -1462,7 +1488,7 @@ QLineEdit:disabled {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineedit6_p1_2">
+                   <widget class="QLineEdit" name="prof1_line6">
                     <property name="minimumSize">
                      <size>
                       <width>115</width>
@@ -1481,9 +1507,13 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
     border: 2px solid #9b8acb;                    /* ungu medium */
     border-radius: 8px;
-    padding: 6px 8px;
+	padding: 2px 4px;
 }
 
 /* ================= FOCUS ================= */
@@ -1511,7 +1541,7 @@ QLineEdit:disabled {
             <item>
              <widget class="QFrame" name="frameSavep1">
               <property name="frameShape">
-               <enum>QFrame::Shape::StyledPanel</enum>
+               <enum>QFrame::Shape::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Shadow::Raised</enum>
@@ -1533,9 +1563,9 @@ QLineEdit:disabled {
                 <number>0</number>
                </property>
                <item>
-                <widget class="QFrame" name="frame_5">
+                <widget class="QFrame" name="btn_saveload_p1">
                  <property name="frameShape">
-                  <enum>QFrame::Shape::StyledPanel</enum>
+                  <enum>QFrame::Shape::NoFrame</enum>
                  </property>
                  <property name="frameShadow">
                   <enum>QFrame::Shadow::Raised</enum>
@@ -1592,7 +1622,7 @@ QPushButton:disabled {
                <item>
                 <widget class="QFrame" name="frame_6">
                  <property name="frameShape">
-                  <enum>QFrame::Shape::StyledPanel</enum>
+                  <enum>QFrame::Shape::NoFrame</enum>
                  </property>
                  <property name="frameShadow">
                   <enum>QFrame::Shadow::Raised</enum>
@@ -1605,7 +1635,7 @@ QPushButton:disabled {
            </layout>
           </widget>
           <widget class="QWidget" name="pageProfile2">
-           <layout class="QVBoxLayout" name="verticalLayout_15">
+           <layout class="QVBoxLayout" name="verticalLayout_16">
             <property name="leftMargin">
              <number>0</number>
             </property>
@@ -1616,12 +1646,828 @@ QPushButton:disabled {
              <number>0</number>
             </property>
             <property name="bottomMargin">
-             <number>5</number>
+             <number>8</number>
             </property>
+            <item>
+             <layout class="QHBoxLayout" name="layoutTitleprofile2">
+              <item>
+               <widget class="QFrame" name="frame_3">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="titlepage2">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>400</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>11</pointsize>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">
+/* App Title (KeyBloom) */
+#titlepage2 {
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #435663; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+
+</string>
+                </property>
+                <property name="text">
+                 <string>Custom Title #2</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_4">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QFrame" name="frameAllbutton2">
+              <property name="frameShape">
+               <enum>QFrame::Shape::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <item>
+                <widget class="QFrame" name="frameout7">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_4">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame7">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof2_line1">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout8">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame8">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof2_line2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout9">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_12">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame9">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof2_line3">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout10">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_13">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame10">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof2_line4">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout11">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_14">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame11">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof2_line5">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout12">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_15">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame12">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof2_line6">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frameSavep2">
+              <property name="frameShape">
+               <enum>QFrame::Shape::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_10">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="frame_7">
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btn_saveload_p2">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {
+    background-color: #58B368;       /* hijau lembut tapi hidup */
+    border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
+    border-radius: 8px;
+    color: white;
+    font: 10pt &quot;Segoe UI&quot;;
+    font-weight: bold;
+    padding: 4px 10px;               /* lebih ramping, teks tetap lega */
+}
+
+QPushButton:hover {
+    background-color: #68C179;
+    border: 1.5px solid #3E874D;
+}
+
+QPushButton:pressed {
+    background-color: #4C9957;
+    border: 1.5px solid #3A7A44;
+}
+
+QPushButton:disabled {
+    background-color: #A7D9B0;
+    color: #EAF6EC;
+    border: 1.5px solid #8BC59A;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Save and Load</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_8">
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="pageProfile3">
-           <layout class="QVBoxLayout" name="verticalLayout_21">
+           <layout class="QVBoxLayout" name="verticalLayout_23">
             <property name="leftMargin">
              <number>0</number>
             </property>
@@ -1632,12 +2478,828 @@ QPushButton:disabled {
              <number>0</number>
             </property>
             <property name="bottomMargin">
-             <number>5</number>
+             <number>8</number>
             </property>
+            <item>
+             <layout class="QHBoxLayout" name="layoutTitleprofile3">
+              <item>
+               <widget class="QFrame" name="frame_9">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="titlepage3">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>400</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>11</pointsize>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">
+/* App Title (KeyBloom) */
+#titlepage3{
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #435663; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+
+</string>
+                </property>
+                <property name="text">
+                 <string>Custom Title #3</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_10">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QFrame" name="frameAllbutton3">
+              <property name="frameShape">
+               <enum>QFrame::Shape::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item>
+                <widget class="QFrame" name="frameout13">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_17">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame13">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof3_line1">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout14">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_18">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame14">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof3_line2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout15">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_19">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame15">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof3_line3">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout16">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_20">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame16">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof3_line4">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout17">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_21">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame17">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof3_line5">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout18">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_22">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame18">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof3_line6">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frameSavep3">
+              <property name="frameShape">
+               <enum>QFrame::Shape::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="frame_11">
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btn_saveload_p3">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {
+    background-color: #58B368;       /* hijau lembut tapi hidup */
+    border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
+    border-radius: 8px;
+    color: white;
+    font: 10pt &quot;Segoe UI&quot;;
+    font-weight: bold;
+    padding: 4px 10px;               /* lebih ramping, teks tetap lega */
+}
+
+QPushButton:hover {
+    background-color: #68C179;
+    border: 1.5px solid #3E874D;
+}
+
+QPushButton:pressed {
+    background-color: #4C9957;
+    border: 1.5px solid #3A7A44;
+}
+
+QPushButton:disabled {
+    background-color: #A7D9B0;
+    color: #EAF6EC;
+    border: 1.5px solid #8BC59A;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Save and Load</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_12">
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="pageProfile4">
-           <layout class="QVBoxLayout" name="verticalLayout_28">
+           <layout class="QVBoxLayout" name="verticalLayout_30">
             <property name="leftMargin">
              <number>0</number>
             </property>
@@ -1648,12 +3310,828 @@ QPushButton:disabled {
              <number>0</number>
             </property>
             <property name="bottomMargin">
-             <number>5</number>
+             <number>8</number>
             </property>
+            <item>
+             <layout class="QHBoxLayout" name="layoutTitleprofile4">
+              <item>
+               <widget class="QFrame" name="frame_13">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="titlepage4">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>400</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>11</pointsize>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">
+/* App Title (KeyBloom) */
+#titlepage4{
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #435663; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+
+</string>
+                </property>
+                <property name="text">
+                 <string>Custom Title #4</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_14">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QFrame" name="frameAllbutton4">
+              <property name="frameShape">
+               <enum>QFrame::Shape::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_12">
+               <item>
+                <widget class="QFrame" name="frameout19">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_24">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame19">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof4_line1">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout20">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_25">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame20">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof4_line2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout21">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_26">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame21">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof4_line3">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout22">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_27">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame22">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof4_line4">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout23">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_28">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame23">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof4_line5">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout24">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_29">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame24">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof4_line6">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frameSavep4">
+              <property name="frameShape">
+               <enum>QFrame::Shape::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_13">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="frame_15">
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btn_saveload_p4">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {
+    background-color: #58B368;       /* hijau lembut tapi hidup */
+    border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
+    border-radius: 8px;
+    color: white;
+    font: 10pt &quot;Segoe UI&quot;;
+    font-weight: bold;
+    padding: 4px 10px;               /* lebih ramping, teks tetap lega */
+}
+
+QPushButton:hover {
+    background-color: #68C179;
+    border: 1.5px solid #3E874D;
+}
+
+QPushButton:pressed {
+    background-color: #4C9957;
+    border: 1.5px solid #3A7A44;
+}
+
+QPushButton:disabled {
+    background-color: #A7D9B0;
+    color: #EAF6EC;
+    border: 1.5px solid #8BC59A;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Save and Load</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_16">
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="pageProfile5">
-           <layout class="QVBoxLayout" name="verticalLayout_34">
+           <layout class="QVBoxLayout" name="verticalLayout_37">
             <property name="leftMargin">
              <number>0</number>
             </property>
@@ -1664,11 +4142,2070 @@ QPushButton:disabled {
              <number>0</number>
             </property>
             <property name="bottomMargin">
-             <number>5</number>
+             <number>8</number>
             </property>
+            <item>
+             <layout class="QHBoxLayout" name="layoutTitleprofile5">
+              <item>
+               <widget class="QFrame" name="frame_17">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="titlepage5">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>400</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>11</pointsize>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">
+/* App Title (KeyBloom) */
+#titlepage5{
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #435663; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+
+</string>
+                </property>
+                <property name="text">
+                 <string>Custom Title #5</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_18">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QFrame" name="frameAllbutton5">
+              <property name="frameShape">
+               <enum>QFrame::Shape::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_14">
+               <item>
+                <widget class="QFrame" name="frameout25">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_31">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame25">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof5_line1">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout26">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_32">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame26">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof5_line2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout27">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_33">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame27">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof5_line3">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout28">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_34">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame28">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof5_line4">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout29">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_35">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame29">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof5_line5">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frameout30">
+                 <property name="minimumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>135</width>
+                   <height>185</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_36">
+                  <property name="spacing">
+                   <number>6</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="buttonFrame30">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>130</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="prof5_line6">
+                    <property name="minimumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>115</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frameSavep5">
+              <property name="frameShape">
+               <enum>QFrame::Shape::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_15">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="frame_19">
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btn_saveload_p5">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {
+    background-color: #58B368;       /* hijau lembut tapi hidup */
+    border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
+    border-radius: 8px;
+    color: white;
+    font: 10pt &quot;Segoe UI&quot;;
+    font-weight: bold;
+    padding: 4px 10px;               /* lebih ramping, teks tetap lega */
+}
+
+QPushButton:hover {
+    background-color: #68C179;
+    border: 1.5px solid #3E874D;
+}
+
+QPushButton:pressed {
+    background-color: #4C9957;
+    border: 1.5px solid #3A7A44;
+}
+
+QPushButton:disabled {
+    background-color: #A7D9B0;
+    color: #EAF6EC;
+    border: 1.5px solid #8BC59A;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Save and Load</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_20">
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="pageSettings"/>
+          <widget class="QWidget" name="pageSettings">
+           <property name="styleSheet">
+            <string notr="true">QCheckBox#cbAutoDetect,
+QCheckBox#cbAutoStartup {
+    color: #2e2a44;
+    font-weight: 600;
+}
+</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_40">
+            <item>
+             <layout class="QHBoxLayout" name="layoutTitleprofile1_2">
+              <item>
+               <widget class="QFrame" name="frame_5">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="titlepage6">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>400</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>11</pointsize>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">
+/* App Title (KeyBloom) */
+#titlepage6{
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #435663; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+
+</string>
+                </property>
+                <property name="text">
+                 <string>All Settings</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_21">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_25">
+              <item>
+               <widget class="QFrame" name="frame_28">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_38">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QFrame" name="frame_22">
+                   <property name="minimumSize">
+                    <size>
+                     <width>360</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_16">
+                    <property name="spacing">
+                     <number>6</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="titlecustom1">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>150</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>11</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">
+/* App Title (KeyBloom) */
+#titlecustom1 {
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #424874; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Profile Name 1</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="customName1">
+                      <property name="minimumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_23">
+                   <property name="minimumSize">
+                    <size>
+                     <width>360</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_17">
+                    <property name="spacing">
+                     <number>6</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="titlecustom2">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>150</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>11</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">
+/* App Title (KeyBloom) */
+#titlecustom2{
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #424874; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Profile Name 2</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="customName1_2">
+                      <property name="minimumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_27">
+                   <property name="minimumSize">
+                    <size>
+                     <width>360</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_21">
+                    <property name="spacing">
+                     <number>6</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="titlecustom3">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>150</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>11</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">
+/* App Title (KeyBloom) */
+#titlecustom3 {
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #424874; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Profile Name 3</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="customName1_6">
+                      <property name="minimumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_25">
+                   <property name="minimumSize">
+                    <size>
+                     <width>360</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_19">
+                    <property name="spacing">
+                     <number>6</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="titlecustom4">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>150</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>11</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">
+/* App Title (KeyBloom) */
+#titlecustom4{
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #424874; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Profile Name 4</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="customName1_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_26">
+                   <property name="minimumSize">
+                    <size>
+                     <width>360</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_20">
+                    <property name="spacing">
+                     <number>6</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="titlecustom5">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>150</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>150</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>11</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">
+/* App Title (KeyBloom) */
+#titlecustom5{
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #424874; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Profile Name 5</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="customName1_5">
+                      <property name="minimumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_24">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_39">
+                 <item>
+                  <widget class="QFrame" name="frame_29">
+                   <property name="minimumSize">
+                    <size>
+                     <width>360</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_23">
+                    <property name="spacing">
+                     <number>6</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="titleinputCOM">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>160</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>160</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>11</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">
+/* App Title (KeyBloom) */
+#titleinputCOM{
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #424874; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Input COM (Optional)</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="customName1_8">
+                      <property name="minimumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">/* ================= CUSTOM LINE EDIT ================= */
+QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
+    color: #2e2a44;                               /* teks ungu gelap */
+    
+	font-family: &quot;Segoe UI&quot;;
+    font-size: 10pt;
+    font-weight: 700;     
+
+    border: 2px solid #9b8acb;                    /* ungu medium */
+    border-radius: 8px;
+	padding: 2px 4px;
+}
+
+/* ================= FOCUS ================= */
+QLineEdit:focus {
+    border: 2px solid #7b5cff;                    /* ungu menyala (accent) */
+    background-color: rgba(155, 138, 203, 0.15);  /* glow ungu lembut */
+}
+
+/* ================= DISABLED ================= */
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);   /* abu ungu */
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}
+</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_31">
+                   <property name="minimumSize">
+                    <size>
+                     <width>350</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>350</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_24">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>20</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QCheckBox" name="cbAutostartup">
+                      <property name="minimumSize">
+                       <size>
+                        <width>25</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>25</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">/* ================= CHECKBOX ================= */
+QCheckBox {
+    color: #2e2a44;                 /* teks ungu gelap */
+    font: 10pt &quot;Segoe UI&quot;;
+    spacing: 8px;
+}
+
+/* Kotak checkbox */
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+
+    border-radius: 4px;
+    border: 2px solid #9b8acb;      /* ungu medium */
+    background-color: #ffffff;
+}
+
+/* Hover */
+QCheckBox::indicator:hover {
+    border-color: #7b5cff;          /* ungu accent */
+}
+
+/* Checked */
+QCheckBox::indicator:checked {
+    background-color: #7b5cff;      /* ungu menyala */
+    border-color: #6a55d9;
+}
+
+/* Checked + Hover */
+QCheckBox::indicator:checked:hover {
+    background-color: #8b78ff;
+}
+
+/* Disabled */
+QCheckBox::indicator:disabled {
+    background-color: #e3ddf5;
+    border-color: #c7bddf;
+}
+
+QCheckBox:disabled {
+    color: #9a95b3;
+}
+</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="titleAutostartup">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>160</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>11</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">
+/* App Title (KeyBloom) */
+#titleinputCOM{
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #435663; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Auto Start Up KeyBloom (Recommended)</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_30">
+                   <property name="minimumSize">
+                    <size>
+                     <width>320</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>320</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_18">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>7</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QCheckBox" name="cbAutodetect">
+                      <property name="minimumSize">
+                       <size>
+                        <width>25</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::LayoutDirection::LeftToRight</enum>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">/* ================= CHECKBOX ================= */
+QCheckBox {
+    color: #2e2a44;                 /* teks ungu gelap */
+    font: 10pt &quot;Segoe UI&quot;;
+    spacing: 8px;
+	weight:bold;
+}
+
+/* Kotak checkbox */
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+
+    border-radius: 4px;
+    border: 2px solid #9b8acb;      /* ungu medium */
+    background-color: #ffffff;
+}
+
+/* Hover */
+QCheckBox::indicator:hover {
+    border-color: #7b5cff;          /* ungu accent */
+}
+
+/* Checked */
+QCheckBox::indicator:checked {
+    background-color: #7b5cff;      /* ungu menyala */
+    border-color: #6a55d9;
+}
+
+/* Checked + Hover */
+QCheckBox::indicator:checked:hover {
+    background-color: #8b78ff;
+}
+
+/* Disabled */
+QCheckBox::indicator:disabled {
+    background-color: #e3ddf5;
+    border-color: #c7bddf;
+}
+
+QCheckBox:disabled {
+    color: #9a95b3;
+}
+</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="checked">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="titleAutodetect">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>160</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>11</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">
+/* App Title (KeyBloom) */
+#titleinputCOM{
+    color: white;      
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #435663; /* ungu menyala lembut */
+    border-radius: 6px;
+}
+
+
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Auto Detect KeyBloom (Recommended)</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_fan_ac_2">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+    background-color: #58B368;       /* hijau lembut tapi hidup */
+    border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
+    border-radius: 8px;
+    color: white;
+    font: 10pt &quot;Segoe UI&quot;;
+    font-weight: bold;
+    padding: 4px 10px;               /* lebih ramping, teks tetap lega */
+}
+
+QPushButton:hover {
+    background-color: #68C179;
+    border: 1.5px solid #3E874D;
+}
+
+QPushButton:pressed {
+    background-color: #4C9957;
+    border: 1.5px solid #3A7A44;
+}
+
+QPushButton:disabled {
+    background-color: #A7D9B0;
+    color: #EAF6EC;
+    border: 1.5px solid #8BC59A;
+}
+</string>
+                   </property>
+                   <property name="text">
+                    <string>Save Settings</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
        </layout>
