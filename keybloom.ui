@@ -398,7 +398,7 @@ QToolTip {
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/icon/images/icon_minimize.png</normaloff>:/icon/images/icon_minimize.png</iconset>
              </property>
              <property name="iconSize">
@@ -468,7 +468,7 @@ QPushButton#closeAppBtn QToolTip {
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/icon/images/icon_close.png</normaloff>:/icon/images/icon_close.png</iconset>
              </property>
              <property name="iconSize">
