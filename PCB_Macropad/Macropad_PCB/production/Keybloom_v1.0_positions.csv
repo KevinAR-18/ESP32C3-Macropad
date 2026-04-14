@@ -1,0 +1,10 @@
+﻿Designator,Mid X,Mid Y,Rotation,Layer
+ESP32-C3,56.0,-35.64,0.0,top
+ROTARY ENCODER 1,33.0,-36.0,0.0,top
+ROTARY ENCODER 2,80.0,-36.0,0.0,top
+SW1,36.0,-62.165,180.0,top
+SW2,56.0,-62.165,180.0,top
+SW3,76.0,-62.165,180.0,top
+SW4,36.0,-82.165,180.0,top
+SW5,56.0,-82.165,180.0,top
+SW6,76.0,-82.165,180.0,top

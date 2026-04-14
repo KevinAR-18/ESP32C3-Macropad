@@ -157,7 +157,7 @@ void handleEncoder1() {
   }
 
   lastEnc1Btn = btn;
-}
+} 
 
 // ================= ENCODER 2 =================
 void handleEncoder2() {

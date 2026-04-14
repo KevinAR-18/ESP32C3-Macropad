@@ -1,0 +1,10 @@
+﻿Designator,Footprint,Quantity,Value,LCSC Part #
+ESP32-C3,MODULE_ESP32-C3_SUPERMINI_TH,1,ESP32-C3,
+ROTARY ENCODER 1,RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm,1,Rotary Encoder Switch 1,
+ROTARY ENCODER 2,RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm,1,Rotary Encoder Switch 2,
+SW1,SW_Cherry_MX_PCB_1.00u,1,Button 1,
+SW2,SW_Cherry_MX_PCB_1.00u,1,Button 2,
+SW3,SW_Cherry_MX_PCB_1.00u,1,Button 3,
+SW4,SW_Cherry_MX_PCB_1.00u,1,Button 4,
+SW5,SW_Cherry_MX_PCB_1.00u,1,Button 5,
+SW6,SW_Cherry_MX_PCB_1.00u,1,Button 6,
