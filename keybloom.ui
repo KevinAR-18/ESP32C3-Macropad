@@ -1544,7 +1544,7 @@ QLineEdit:disabled {
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btn_fan_ac">
+                <widget class="QPushButton" name="btn_saveload1">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -2340,7 +2340,7 @@ QLineEdit:disabled {
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btn_saveload_p2">
+                <widget class="QPushButton" name="btn_saveload2">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -3136,7 +3136,7 @@ QLineEdit:disabled {
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btn_saveload_p3">
+                <widget class="QPushButton" name="btn_saveload3">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -3932,7 +3932,7 @@ QLineEdit:disabled {
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btn_saveload_p4">
+                <widget class="QPushButton" name="btn_saveload4">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -4731,7 +4731,7 @@ QLineEdit:disabled {
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btn_saveload_p5">
+                <widget class="QPushButton" name="btn_saveload5">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -5117,7 +5117,7 @@ QLineEdit:disabled {
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="customName1_2">
+                     <widget class="QLineEdit" name="customName2">
                       <property name="minimumSize">
                        <size>
                         <width>200</width>
@@ -5238,7 +5238,7 @@ QLineEdit:disabled {
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="customName1_6">
+                     <widget class="QLineEdit" name="customName3">
                       <property name="minimumSize">
                        <size>
                         <width>200</width>
@@ -5359,7 +5359,7 @@ QLineEdit:disabled {
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="customName1_4">
+                     <widget class="QLineEdit" name="customName4">
                       <property name="minimumSize">
                        <size>
                         <width>200</width>
@@ -5480,7 +5480,7 @@ QLineEdit:disabled {
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="customName1_5">
+                     <widget class="QLineEdit" name="customName5">
                       <property name="minimumSize">
                        <size>
                         <width>200</width>
@@ -5613,7 +5613,7 @@ QLineEdit:disabled {
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="customName1_8">
+                     <widget class="QLineEdit" name="inputCOM">
                       <property name="minimumSize">
                        <size>
                         <width>200</width>
@@ -5962,7 +5962,7 @@ QCheckBox:disabled {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="btn_fan_ac_2">
+                  <widget class="QPushButton" name="btn_savesettings">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -6078,7 +6078,7 @@ QPushButton:disabled {
            </font>
           </property>
           <property name="text">
-           <string>By: SKAR, IP, HW - 2026</string>
+           <string>By: SKAR - 2026</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -6118,6 +6118,9 @@ QPushButton:disabled {
          </widget>
         </item>
        </layout>
+       <zorder>version</zorder>
+       <zorder>frame_size_grip</zorder>
+       <zorder>creditsLabel</zorder>
       </widget>
      </item>
     </layout>
