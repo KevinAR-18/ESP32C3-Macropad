@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'keybloomDlfzjr.ui'
+## Form generated from reading UI file 'keybloomXPlhky.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.10.1
 ##
@@ -3113,7 +3113,7 @@ class Ui_MainWindow(object):
 "    color: #2e2a44;                 /* teks ungu gelap */\n"
 "    font: 10pt \"Segoe UI\";\n"
 "    spacing: 8px;\n"
-"	weight:bold;\n"
+"	font-weight: bold;\n"
 "}\n"
 "\n"
 "/* Kotak checkbox */\n"

@@ -5860,7 +5860,7 @@ QCheckBox {
     color: #2e2a44;                 /* teks ungu gelap */
     font: 10pt &quot;Segoe UI&quot;;
     spacing: 8px;
-	weight:bold;
+	font-weight: bold;
 }
 
 /* Kotak checkbox */
