@@ -65,13 +65,15 @@ class MainWindow(QMainWindow):
         self.tray.setToolTip(APP_NAME)
 
         tray_menu = QMenu(self)
-        show_action = tray_menu.addAction(QAction("Show", self))
+        show_action = QAction("Show", self)
         tray_menu.addSeparator()
-        exit_action = tray_menu.addAction(QAction("Exit", self))
+        exit_action = QAction("Exit", self)
 
         show_action.triggered.connect(self.show_normal_from_tray)
         exit_action.triggered.connect(QApplication.quit)
 
+        tray_menu.addAction(show_action)
+        tray_menu.addAction(exit_action)
         self.tray.setContextMenu(tray_menu)
         self.tray.activated.connect(self._on_tray_activated)
         self.tray.show()
@@ -212,7 +214,6 @@ class MainWindow(QMainWindow):
 
 
 def main():
-    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
