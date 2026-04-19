@@ -9,6 +9,8 @@ DEFAULT_PROFILE_TITLES = [
     "Custom Title #4",
     "Custom Title #5",
 ]
+SHORTCUT_MODE = "shortcut"
+APPLICATION_MODE = "application"
 
 
 def settings_path() -> str:
@@ -47,19 +49,43 @@ def apply_profile_titles(title_labels, names):
         label.setText(names[idx])
 
 
-def collect_profile_mappings(profile_lines):
+def normalize_profile_entry(entry):
+    if isinstance(entry, dict):
+        mode = entry.get("mode", SHORTCUT_MODE)
+        value = str(entry.get("value", ""))
+        if mode not in {SHORTCUT_MODE, APPLICATION_MODE}:
+            mode = SHORTCUT_MODE
+        return {"mode": mode, "value": value}
+
+    return {"mode": SHORTCUT_MODE, "value": str(entry or "")}
+
+
+def collect_profile_mappings(profile_slots):
     mappings = {}
-    for profile, lines in profile_lines.items():
-        mappings[profile] = [line.text().strip() for line in lines]
+    for profile, slots in profile_slots.items():
+        mappings[profile] = [
+            {
+                "mode": slot.get("mode", SHORTCUT_MODE),
+                "value": (
+                    slot.get("stored_value", "").strip()
+                    if slot.get("mode") == APPLICATION_MODE
+                    else slot["line_edit"].text().strip()
+                ),
+            }
+            for slot in slots
+        ]
     return mappings
 
 
-def apply_profile_mappings(profile_lines, mappings):
-    for profile, lines in profile_lines.items():
+def apply_profile_mappings(profile_slots, mappings):
+    for profile, slots in profile_slots.items():
         values = mappings.get(profile, [])
-        for idx, line in enumerate(lines):
+        for idx, slot in enumerate(slots):
             if idx < len(values):
-                line.setText(values[idx])
+                entry = normalize_profile_entry(values[idx])
+                slot["mode"] = entry["mode"]
+                slot["stored_value"] = entry["value"]
+                slot["line_edit"].setText(entry["value"])
 
 
 def set_autostart(enabled: bool, app_name: str, app_path: str):

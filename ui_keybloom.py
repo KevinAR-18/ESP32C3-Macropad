@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'keybloomXPlhky.ui'
+## Form generated from reading UI file 'keybloom.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.10.1
 ##
@@ -549,14 +549,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setSpacing(6)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame1 = QFrame(self.frameout1)
-        self.buttonFrame1.setObjectName(u"buttonFrame1")
-        self.buttonFrame1.setMinimumSize(QSize(115, 130))
-        self.buttonFrame1.setMaximumSize(QSize(115, 130))
-        self.buttonFrame1.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame1.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori = QFrame(self.frameout1)
+        self.framebutton_ori.setObjectName(u"framebutton_ori")
+        self.verticalLayout_slot_1 = QVBoxLayout(self.framebutton_ori)
+        self.verticalLayout_slot_1.setSpacing(0)
+        self.verticalLayout_slot_1.setObjectName(u"verticalLayout_slot_1")
+        self.verticalLayout_slot_1.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_1 = QFrame(self.framebutton_ori)
+        self.slotPreview_1.setObjectName(u"slotPreview_1")
+        self.slotPreview_1.setMinimumSize(QSize(115, 130))
+        self.slotPreview_1.setMaximumSize(QSize(115, 130))
+        self.slotPreview_1.setStyleSheet(u"#slotPreview_1 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_1.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_1.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_3.addWidget(self.buttonFrame1)
+        self.verticalLayout_slot_1.addWidget(self.slotPreview_1)
+
+
+        self.verticalLayout_3.addWidget(self.framebutton_ori)
 
         self.prof1_line1 = QLineEdit(self.frameout1)
         self.prof1_line1.setObjectName(u"prof1_line1")
@@ -599,14 +614,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setSpacing(6)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame2 = QFrame(self.frameout2)
-        self.buttonFrame2.setObjectName(u"buttonFrame2")
-        self.buttonFrame2.setMinimumSize(QSize(115, 130))
-        self.buttonFrame2.setMaximumSize(QSize(115, 130))
-        self.buttonFrame2.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame2.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_2 = QFrame(self.frameout2)
+        self.framebutton_ori_2.setObjectName(u"framebutton_ori_2")
+        self.verticalLayout_slot_2 = QVBoxLayout(self.framebutton_ori_2)
+        self.verticalLayout_slot_2.setSpacing(0)
+        self.verticalLayout_slot_2.setObjectName(u"verticalLayout_slot_2")
+        self.verticalLayout_slot_2.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_2 = QFrame(self.framebutton_ori_2)
+        self.slotPreview_2.setObjectName(u"slotPreview_2")
+        self.slotPreview_2.setMinimumSize(QSize(115, 130))
+        self.slotPreview_2.setMaximumSize(QSize(115, 130))
+        self.slotPreview_2.setStyleSheet(u"#slotPreview_2 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_2.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_2.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_5.addWidget(self.buttonFrame2)
+        self.verticalLayout_slot_2.addWidget(self.slotPreview_2)
+
+
+        self.verticalLayout_5.addWidget(self.framebutton_ori_2)
 
         self.prof1_line2 = QLineEdit(self.frameout2)
         self.prof1_line2.setObjectName(u"prof1_line2")
@@ -649,14 +679,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.setSpacing(6)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.verticalLayout_6.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame3 = QFrame(self.frameout3)
-        self.buttonFrame3.setObjectName(u"buttonFrame3")
-        self.buttonFrame3.setMinimumSize(QSize(115, 130))
-        self.buttonFrame3.setMaximumSize(QSize(115, 130))
-        self.buttonFrame3.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame3.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_3 = QFrame(self.frameout3)
+        self.framebutton_ori_3.setObjectName(u"framebutton_ori_3")
+        self.verticalLayout_slot_3 = QVBoxLayout(self.framebutton_ori_3)
+        self.verticalLayout_slot_3.setSpacing(0)
+        self.verticalLayout_slot_3.setObjectName(u"verticalLayout_slot_3")
+        self.verticalLayout_slot_3.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_3 = QFrame(self.framebutton_ori_3)
+        self.slotPreview_3.setObjectName(u"slotPreview_3")
+        self.slotPreview_3.setMinimumSize(QSize(115, 130))
+        self.slotPreview_3.setMaximumSize(QSize(115, 130))
+        self.slotPreview_3.setStyleSheet(u"#slotPreview_3 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_3.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_3.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_6.addWidget(self.buttonFrame3)
+        self.verticalLayout_slot_3.addWidget(self.slotPreview_3)
+
+
+        self.verticalLayout_6.addWidget(self.framebutton_ori_3)
 
         self.prof1_line3 = QLineEdit(self.frameout3)
         self.prof1_line3.setObjectName(u"prof1_line3")
@@ -699,14 +744,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setSpacing(6)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.verticalLayout_7.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame4 = QFrame(self.frameout4)
-        self.buttonFrame4.setObjectName(u"buttonFrame4")
-        self.buttonFrame4.setMinimumSize(QSize(115, 130))
-        self.buttonFrame4.setMaximumSize(QSize(115, 130))
-        self.buttonFrame4.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame4.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_4 = QFrame(self.frameout4)
+        self.framebutton_ori_4.setObjectName(u"framebutton_ori_4")
+        self.verticalLayout_slot_4 = QVBoxLayout(self.framebutton_ori_4)
+        self.verticalLayout_slot_4.setSpacing(0)
+        self.verticalLayout_slot_4.setObjectName(u"verticalLayout_slot_4")
+        self.verticalLayout_slot_4.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_4 = QFrame(self.framebutton_ori_4)
+        self.slotPreview_4.setObjectName(u"slotPreview_4")
+        self.slotPreview_4.setMinimumSize(QSize(115, 130))
+        self.slotPreview_4.setMaximumSize(QSize(115, 130))
+        self.slotPreview_4.setStyleSheet(u"#slotPreview_4 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_4.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_4.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_7.addWidget(self.buttonFrame4)
+        self.verticalLayout_slot_4.addWidget(self.slotPreview_4)
+
+
+        self.verticalLayout_7.addWidget(self.framebutton_ori_4)
 
         self.prof1_line4 = QLineEdit(self.frameout4)
         self.prof1_line4.setObjectName(u"prof1_line4")
@@ -749,14 +809,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.setSpacing(6)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_8.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame5 = QFrame(self.frameout5)
-        self.buttonFrame5.setObjectName(u"buttonFrame5")
-        self.buttonFrame5.setMinimumSize(QSize(115, 130))
-        self.buttonFrame5.setMaximumSize(QSize(115, 130))
-        self.buttonFrame5.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame5.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_5 = QFrame(self.frameout5)
+        self.framebutton_ori_5.setObjectName(u"framebutton_ori_5")
+        self.verticalLayout_slot_5 = QVBoxLayout(self.framebutton_ori_5)
+        self.verticalLayout_slot_5.setSpacing(0)
+        self.verticalLayout_slot_5.setObjectName(u"verticalLayout_slot_5")
+        self.verticalLayout_slot_5.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_5 = QFrame(self.framebutton_ori_5)
+        self.slotPreview_5.setObjectName(u"slotPreview_5")
+        self.slotPreview_5.setMinimumSize(QSize(115, 130))
+        self.slotPreview_5.setMaximumSize(QSize(115, 130))
+        self.slotPreview_5.setStyleSheet(u"#slotPreview_5 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_5.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_5.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_8.addWidget(self.buttonFrame5)
+        self.verticalLayout_slot_5.addWidget(self.slotPreview_5)
+
+
+        self.verticalLayout_8.addWidget(self.framebutton_ori_5)
 
         self.prof1_line5 = QLineEdit(self.frameout5)
         self.prof1_line5.setObjectName(u"prof1_line5")
@@ -799,14 +874,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.setSpacing(6)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.verticalLayout_10.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame6 = QFrame(self.frameout6)
-        self.buttonFrame6.setObjectName(u"buttonFrame6")
-        self.buttonFrame6.setMinimumSize(QSize(115, 130))
-        self.buttonFrame6.setMaximumSize(QSize(115, 130))
-        self.buttonFrame6.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame6.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_6 = QFrame(self.frameout6)
+        self.framebutton_ori_6.setObjectName(u"framebutton_ori_6")
+        self.verticalLayout_slot_6 = QVBoxLayout(self.framebutton_ori_6)
+        self.verticalLayout_slot_6.setSpacing(0)
+        self.verticalLayout_slot_6.setObjectName(u"verticalLayout_slot_6")
+        self.verticalLayout_slot_6.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_6 = QFrame(self.framebutton_ori_6)
+        self.slotPreview_6.setObjectName(u"slotPreview_6")
+        self.slotPreview_6.setMinimumSize(QSize(115, 130))
+        self.slotPreview_6.setMaximumSize(QSize(115, 130))
+        self.slotPreview_6.setStyleSheet(u"#slotPreview_6 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_6.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_6.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_10.addWidget(self.buttonFrame6)
+        self.verticalLayout_slot_6.addWidget(self.slotPreview_6)
+
+
+        self.verticalLayout_10.addWidget(self.framebutton_ori_6)
 
         self.prof1_line6 = QLineEdit(self.frameout6)
         self.prof1_line6.setObjectName(u"prof1_line6")
@@ -964,14 +1054,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setSpacing(6)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame7 = QFrame(self.frameout7)
-        self.buttonFrame7.setObjectName(u"buttonFrame7")
-        self.buttonFrame7.setMinimumSize(QSize(115, 130))
-        self.buttonFrame7.setMaximumSize(QSize(115, 130))
-        self.buttonFrame7.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame7.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_7 = QFrame(self.frameout7)
+        self.framebutton_ori_7.setObjectName(u"framebutton_ori_7")
+        self.verticalLayout_slot_7 = QVBoxLayout(self.framebutton_ori_7)
+        self.verticalLayout_slot_7.setSpacing(0)
+        self.verticalLayout_slot_7.setObjectName(u"verticalLayout_slot_7")
+        self.verticalLayout_slot_7.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_7 = QFrame(self.framebutton_ori_7)
+        self.slotPreview_7.setObjectName(u"slotPreview_7")
+        self.slotPreview_7.setMinimumSize(QSize(115, 130))
+        self.slotPreview_7.setMaximumSize(QSize(115, 130))
+        self.slotPreview_7.setStyleSheet(u"#slotPreview_7 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_7.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_7.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_4.addWidget(self.buttonFrame7)
+        self.verticalLayout_slot_7.addWidget(self.slotPreview_7)
+
+
+        self.verticalLayout_4.addWidget(self.framebutton_ori_7)
 
         self.prof2_line1 = QLineEdit(self.frameout7)
         self.prof2_line1.setObjectName(u"prof2_line1")
@@ -1014,14 +1119,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.setSpacing(6)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.verticalLayout_11.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame8 = QFrame(self.frameout8)
-        self.buttonFrame8.setObjectName(u"buttonFrame8")
-        self.buttonFrame8.setMinimumSize(QSize(115, 130))
-        self.buttonFrame8.setMaximumSize(QSize(115, 130))
-        self.buttonFrame8.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame8.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_8 = QFrame(self.frameout8)
+        self.framebutton_ori_8.setObjectName(u"framebutton_ori_8")
+        self.verticalLayout_slot_8 = QVBoxLayout(self.framebutton_ori_8)
+        self.verticalLayout_slot_8.setSpacing(0)
+        self.verticalLayout_slot_8.setObjectName(u"verticalLayout_slot_8")
+        self.verticalLayout_slot_8.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_8 = QFrame(self.framebutton_ori_8)
+        self.slotPreview_8.setObjectName(u"slotPreview_8")
+        self.slotPreview_8.setMinimumSize(QSize(115, 130))
+        self.slotPreview_8.setMaximumSize(QSize(115, 130))
+        self.slotPreview_8.setStyleSheet(u"#slotPreview_8 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_8.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_8.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_11.addWidget(self.buttonFrame8)
+        self.verticalLayout_slot_8.addWidget(self.slotPreview_8)
+
+
+        self.verticalLayout_11.addWidget(self.framebutton_ori_8)
 
         self.prof2_line2 = QLineEdit(self.frameout8)
         self.prof2_line2.setObjectName(u"prof2_line2")
@@ -1064,14 +1184,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_12.setSpacing(6)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.verticalLayout_12.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame9 = QFrame(self.frameout9)
-        self.buttonFrame9.setObjectName(u"buttonFrame9")
-        self.buttonFrame9.setMinimumSize(QSize(115, 130))
-        self.buttonFrame9.setMaximumSize(QSize(115, 130))
-        self.buttonFrame9.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame9.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_9 = QFrame(self.frameout9)
+        self.framebutton_ori_9.setObjectName(u"framebutton_ori_9")
+        self.verticalLayout_slot_9 = QVBoxLayout(self.framebutton_ori_9)
+        self.verticalLayout_slot_9.setSpacing(0)
+        self.verticalLayout_slot_9.setObjectName(u"verticalLayout_slot_9")
+        self.verticalLayout_slot_9.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_9 = QFrame(self.framebutton_ori_9)
+        self.slotPreview_9.setObjectName(u"slotPreview_9")
+        self.slotPreview_9.setMinimumSize(QSize(115, 130))
+        self.slotPreview_9.setMaximumSize(QSize(115, 130))
+        self.slotPreview_9.setStyleSheet(u"#slotPreview_9 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_9.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_9.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_12.addWidget(self.buttonFrame9)
+        self.verticalLayout_slot_9.addWidget(self.slotPreview_9)
+
+
+        self.verticalLayout_12.addWidget(self.framebutton_ori_9)
 
         self.prof2_line3 = QLineEdit(self.frameout9)
         self.prof2_line3.setObjectName(u"prof2_line3")
@@ -1114,14 +1249,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setSpacing(6)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.verticalLayout_13.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame10 = QFrame(self.frameout10)
-        self.buttonFrame10.setObjectName(u"buttonFrame10")
-        self.buttonFrame10.setMinimumSize(QSize(115, 130))
-        self.buttonFrame10.setMaximumSize(QSize(115, 130))
-        self.buttonFrame10.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame10.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_10 = QFrame(self.frameout10)
+        self.framebutton_ori_10.setObjectName(u"framebutton_ori_10")
+        self.verticalLayout_slot_10 = QVBoxLayout(self.framebutton_ori_10)
+        self.verticalLayout_slot_10.setSpacing(0)
+        self.verticalLayout_slot_10.setObjectName(u"verticalLayout_slot_10")
+        self.verticalLayout_slot_10.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_10 = QFrame(self.framebutton_ori_10)
+        self.slotPreview_10.setObjectName(u"slotPreview_10")
+        self.slotPreview_10.setMinimumSize(QSize(115, 130))
+        self.slotPreview_10.setMaximumSize(QSize(115, 130))
+        self.slotPreview_10.setStyleSheet(u"#slotPreview_10 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_10.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_10.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_13.addWidget(self.buttonFrame10)
+        self.verticalLayout_slot_10.addWidget(self.slotPreview_10)
+
+
+        self.verticalLayout_13.addWidget(self.framebutton_ori_10)
 
         self.prof2_line4 = QLineEdit(self.frameout10)
         self.prof2_line4.setObjectName(u"prof2_line4")
@@ -1164,14 +1314,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_14.setSpacing(6)
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
         self.verticalLayout_14.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame11 = QFrame(self.frameout11)
-        self.buttonFrame11.setObjectName(u"buttonFrame11")
-        self.buttonFrame11.setMinimumSize(QSize(115, 130))
-        self.buttonFrame11.setMaximumSize(QSize(115, 130))
-        self.buttonFrame11.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame11.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_11 = QFrame(self.frameout11)
+        self.framebutton_ori_11.setObjectName(u"framebutton_ori_11")
+        self.verticalLayout_slot_11 = QVBoxLayout(self.framebutton_ori_11)
+        self.verticalLayout_slot_11.setSpacing(0)
+        self.verticalLayout_slot_11.setObjectName(u"verticalLayout_slot_11")
+        self.verticalLayout_slot_11.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_11 = QFrame(self.framebutton_ori_11)
+        self.slotPreview_11.setObjectName(u"slotPreview_11")
+        self.slotPreview_11.setMinimumSize(QSize(115, 130))
+        self.slotPreview_11.setMaximumSize(QSize(115, 130))
+        self.slotPreview_11.setStyleSheet(u"#slotPreview_11 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_11.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_11.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_14.addWidget(self.buttonFrame11)
+        self.verticalLayout_slot_11.addWidget(self.slotPreview_11)
+
+
+        self.verticalLayout_14.addWidget(self.framebutton_ori_11)
 
         self.prof2_line5 = QLineEdit(self.frameout11)
         self.prof2_line5.setObjectName(u"prof2_line5")
@@ -1214,14 +1379,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_15.setSpacing(6)
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
         self.verticalLayout_15.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame12 = QFrame(self.frameout12)
-        self.buttonFrame12.setObjectName(u"buttonFrame12")
-        self.buttonFrame12.setMinimumSize(QSize(115, 130))
-        self.buttonFrame12.setMaximumSize(QSize(115, 130))
-        self.buttonFrame12.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame12.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_12 = QFrame(self.frameout12)
+        self.framebutton_ori_12.setObjectName(u"framebutton_ori_12")
+        self.verticalLayout_slot_12 = QVBoxLayout(self.framebutton_ori_12)
+        self.verticalLayout_slot_12.setSpacing(0)
+        self.verticalLayout_slot_12.setObjectName(u"verticalLayout_slot_12")
+        self.verticalLayout_slot_12.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_12 = QFrame(self.framebutton_ori_12)
+        self.slotPreview_12.setObjectName(u"slotPreview_12")
+        self.slotPreview_12.setMinimumSize(QSize(115, 130))
+        self.slotPreview_12.setMaximumSize(QSize(115, 130))
+        self.slotPreview_12.setStyleSheet(u"#slotPreview_12 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_12.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_12.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_15.addWidget(self.buttonFrame12)
+        self.verticalLayout_slot_12.addWidget(self.slotPreview_12)
+
+
+        self.verticalLayout_15.addWidget(self.framebutton_ori_12)
 
         self.prof2_line6 = QLineEdit(self.frameout12)
         self.prof2_line6.setObjectName(u"prof2_line6")
@@ -1379,14 +1559,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.setSpacing(6)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
         self.verticalLayout_17.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame13 = QFrame(self.frameout13)
-        self.buttonFrame13.setObjectName(u"buttonFrame13")
-        self.buttonFrame13.setMinimumSize(QSize(115, 130))
-        self.buttonFrame13.setMaximumSize(QSize(115, 130))
-        self.buttonFrame13.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame13.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_13 = QFrame(self.frameout13)
+        self.framebutton_ori_13.setObjectName(u"framebutton_ori_13")
+        self.verticalLayout_slot_13 = QVBoxLayout(self.framebutton_ori_13)
+        self.verticalLayout_slot_13.setSpacing(0)
+        self.verticalLayout_slot_13.setObjectName(u"verticalLayout_slot_13")
+        self.verticalLayout_slot_13.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_13 = QFrame(self.framebutton_ori_13)
+        self.slotPreview_13.setObjectName(u"slotPreview_13")
+        self.slotPreview_13.setMinimumSize(QSize(115, 130))
+        self.slotPreview_13.setMaximumSize(QSize(115, 130))
+        self.slotPreview_13.setStyleSheet(u"#slotPreview_13 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_13.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_13.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_17.addWidget(self.buttonFrame13)
+        self.verticalLayout_slot_13.addWidget(self.slotPreview_13)
+
+
+        self.verticalLayout_17.addWidget(self.framebutton_ori_13)
 
         self.prof3_line1 = QLineEdit(self.frameout13)
         self.prof3_line1.setObjectName(u"prof3_line1")
@@ -1429,14 +1624,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_18.setSpacing(6)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.verticalLayout_18.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame14 = QFrame(self.frameout14)
-        self.buttonFrame14.setObjectName(u"buttonFrame14")
-        self.buttonFrame14.setMinimumSize(QSize(115, 130))
-        self.buttonFrame14.setMaximumSize(QSize(115, 130))
-        self.buttonFrame14.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame14.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_14 = QFrame(self.frameout14)
+        self.framebutton_ori_14.setObjectName(u"framebutton_ori_14")
+        self.verticalLayout_slot_14 = QVBoxLayout(self.framebutton_ori_14)
+        self.verticalLayout_slot_14.setSpacing(0)
+        self.verticalLayout_slot_14.setObjectName(u"verticalLayout_slot_14")
+        self.verticalLayout_slot_14.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_14 = QFrame(self.framebutton_ori_14)
+        self.slotPreview_14.setObjectName(u"slotPreview_14")
+        self.slotPreview_14.setMinimumSize(QSize(115, 130))
+        self.slotPreview_14.setMaximumSize(QSize(115, 130))
+        self.slotPreview_14.setStyleSheet(u"#slotPreview_14 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_14.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_14.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_18.addWidget(self.buttonFrame14)
+        self.verticalLayout_slot_14.addWidget(self.slotPreview_14)
+
+
+        self.verticalLayout_18.addWidget(self.framebutton_ori_14)
 
         self.prof3_line2 = QLineEdit(self.frameout14)
         self.prof3_line2.setObjectName(u"prof3_line2")
@@ -1479,14 +1689,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_19.setSpacing(6)
         self.verticalLayout_19.setObjectName(u"verticalLayout_19")
         self.verticalLayout_19.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame15 = QFrame(self.frameout15)
-        self.buttonFrame15.setObjectName(u"buttonFrame15")
-        self.buttonFrame15.setMinimumSize(QSize(115, 130))
-        self.buttonFrame15.setMaximumSize(QSize(115, 130))
-        self.buttonFrame15.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame15.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_15 = QFrame(self.frameout15)
+        self.framebutton_ori_15.setObjectName(u"framebutton_ori_15")
+        self.verticalLayout_slot_15 = QVBoxLayout(self.framebutton_ori_15)
+        self.verticalLayout_slot_15.setSpacing(0)
+        self.verticalLayout_slot_15.setObjectName(u"verticalLayout_slot_15")
+        self.verticalLayout_slot_15.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_15 = QFrame(self.framebutton_ori_15)
+        self.slotPreview_15.setObjectName(u"slotPreview_15")
+        self.slotPreview_15.setMinimumSize(QSize(115, 130))
+        self.slotPreview_15.setMaximumSize(QSize(115, 130))
+        self.slotPreview_15.setStyleSheet(u"#slotPreview_15 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_15.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_15.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_19.addWidget(self.buttonFrame15)
+        self.verticalLayout_slot_15.addWidget(self.slotPreview_15)
+
+
+        self.verticalLayout_19.addWidget(self.framebutton_ori_15)
 
         self.prof3_line3 = QLineEdit(self.frameout15)
         self.prof3_line3.setObjectName(u"prof3_line3")
@@ -1529,14 +1754,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_20.setSpacing(6)
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
         self.verticalLayout_20.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame16 = QFrame(self.frameout16)
-        self.buttonFrame16.setObjectName(u"buttonFrame16")
-        self.buttonFrame16.setMinimumSize(QSize(115, 130))
-        self.buttonFrame16.setMaximumSize(QSize(115, 130))
-        self.buttonFrame16.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame16.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_16 = QFrame(self.frameout16)
+        self.framebutton_ori_16.setObjectName(u"framebutton_ori_16")
+        self.verticalLayout_slot_16 = QVBoxLayout(self.framebutton_ori_16)
+        self.verticalLayout_slot_16.setSpacing(0)
+        self.verticalLayout_slot_16.setObjectName(u"verticalLayout_slot_16")
+        self.verticalLayout_slot_16.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_16 = QFrame(self.framebutton_ori_16)
+        self.slotPreview_16.setObjectName(u"slotPreview_16")
+        self.slotPreview_16.setMinimumSize(QSize(115, 130))
+        self.slotPreview_16.setMaximumSize(QSize(115, 130))
+        self.slotPreview_16.setStyleSheet(u"#slotPreview_16 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_16.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_16.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_20.addWidget(self.buttonFrame16)
+        self.verticalLayout_slot_16.addWidget(self.slotPreview_16)
+
+
+        self.verticalLayout_20.addWidget(self.framebutton_ori_16)
 
         self.prof3_line4 = QLineEdit(self.frameout16)
         self.prof3_line4.setObjectName(u"prof3_line4")
@@ -1579,14 +1819,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_21.setSpacing(6)
         self.verticalLayout_21.setObjectName(u"verticalLayout_21")
         self.verticalLayout_21.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame17 = QFrame(self.frameout17)
-        self.buttonFrame17.setObjectName(u"buttonFrame17")
-        self.buttonFrame17.setMinimumSize(QSize(115, 130))
-        self.buttonFrame17.setMaximumSize(QSize(115, 130))
-        self.buttonFrame17.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame17.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_17 = QFrame(self.frameout17)
+        self.framebutton_ori_17.setObjectName(u"framebutton_ori_17")
+        self.verticalLayout_slot_17 = QVBoxLayout(self.framebutton_ori_17)
+        self.verticalLayout_slot_17.setSpacing(0)
+        self.verticalLayout_slot_17.setObjectName(u"verticalLayout_slot_17")
+        self.verticalLayout_slot_17.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_17 = QFrame(self.framebutton_ori_17)
+        self.slotPreview_17.setObjectName(u"slotPreview_17")
+        self.slotPreview_17.setMinimumSize(QSize(115, 130))
+        self.slotPreview_17.setMaximumSize(QSize(115, 130))
+        self.slotPreview_17.setStyleSheet(u"#slotPreview_17 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_17.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_17.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_21.addWidget(self.buttonFrame17)
+        self.verticalLayout_slot_17.addWidget(self.slotPreview_17)
+
+
+        self.verticalLayout_21.addWidget(self.framebutton_ori_17)
 
         self.prof3_line5 = QLineEdit(self.frameout17)
         self.prof3_line5.setObjectName(u"prof3_line5")
@@ -1629,14 +1884,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_22.setSpacing(6)
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
         self.verticalLayout_22.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame18 = QFrame(self.frameout18)
-        self.buttonFrame18.setObjectName(u"buttonFrame18")
-        self.buttonFrame18.setMinimumSize(QSize(115, 130))
-        self.buttonFrame18.setMaximumSize(QSize(115, 130))
-        self.buttonFrame18.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame18.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_18 = QFrame(self.frameout18)
+        self.framebutton_ori_18.setObjectName(u"framebutton_ori_18")
+        self.verticalLayout_slot_18 = QVBoxLayout(self.framebutton_ori_18)
+        self.verticalLayout_slot_18.setSpacing(0)
+        self.verticalLayout_slot_18.setObjectName(u"verticalLayout_slot_18")
+        self.verticalLayout_slot_18.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_18 = QFrame(self.framebutton_ori_18)
+        self.slotPreview_18.setObjectName(u"slotPreview_18")
+        self.slotPreview_18.setMinimumSize(QSize(115, 130))
+        self.slotPreview_18.setMaximumSize(QSize(115, 130))
+        self.slotPreview_18.setStyleSheet(u"#slotPreview_18 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_18.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_18.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_22.addWidget(self.buttonFrame18)
+        self.verticalLayout_slot_18.addWidget(self.slotPreview_18)
+
+
+        self.verticalLayout_22.addWidget(self.framebutton_ori_18)
 
         self.prof3_line6 = QLineEdit(self.frameout18)
         self.prof3_line6.setObjectName(u"prof3_line6")
@@ -1794,14 +2064,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_24.setSpacing(6)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
         self.verticalLayout_24.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame19 = QFrame(self.frameout19)
-        self.buttonFrame19.setObjectName(u"buttonFrame19")
-        self.buttonFrame19.setMinimumSize(QSize(115, 130))
-        self.buttonFrame19.setMaximumSize(QSize(115, 130))
-        self.buttonFrame19.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame19.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_19 = QFrame(self.frameout19)
+        self.framebutton_ori_19.setObjectName(u"framebutton_ori_19")
+        self.verticalLayout_slot_19 = QVBoxLayout(self.framebutton_ori_19)
+        self.verticalLayout_slot_19.setSpacing(0)
+        self.verticalLayout_slot_19.setObjectName(u"verticalLayout_slot_19")
+        self.verticalLayout_slot_19.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_19 = QFrame(self.framebutton_ori_19)
+        self.slotPreview_19.setObjectName(u"slotPreview_19")
+        self.slotPreview_19.setMinimumSize(QSize(115, 130))
+        self.slotPreview_19.setMaximumSize(QSize(115, 130))
+        self.slotPreview_19.setStyleSheet(u"#slotPreview_19 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_19.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_19.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_24.addWidget(self.buttonFrame19)
+        self.verticalLayout_slot_19.addWidget(self.slotPreview_19)
+
+
+        self.verticalLayout_24.addWidget(self.framebutton_ori_19)
 
         self.prof4_line1 = QLineEdit(self.frameout19)
         self.prof4_line1.setObjectName(u"prof4_line1")
@@ -1844,14 +2129,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_25.setSpacing(6)
         self.verticalLayout_25.setObjectName(u"verticalLayout_25")
         self.verticalLayout_25.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame20 = QFrame(self.frameout20)
-        self.buttonFrame20.setObjectName(u"buttonFrame20")
-        self.buttonFrame20.setMinimumSize(QSize(115, 130))
-        self.buttonFrame20.setMaximumSize(QSize(115, 130))
-        self.buttonFrame20.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame20.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_20 = QFrame(self.frameout20)
+        self.framebutton_ori_20.setObjectName(u"framebutton_ori_20")
+        self.verticalLayout_slot_20 = QVBoxLayout(self.framebutton_ori_20)
+        self.verticalLayout_slot_20.setSpacing(0)
+        self.verticalLayout_slot_20.setObjectName(u"verticalLayout_slot_20")
+        self.verticalLayout_slot_20.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_20 = QFrame(self.framebutton_ori_20)
+        self.slotPreview_20.setObjectName(u"slotPreview_20")
+        self.slotPreview_20.setMinimumSize(QSize(115, 130))
+        self.slotPreview_20.setMaximumSize(QSize(115, 130))
+        self.slotPreview_20.setStyleSheet(u"#slotPreview_20 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_20.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_20.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_25.addWidget(self.buttonFrame20)
+        self.verticalLayout_slot_20.addWidget(self.slotPreview_20)
+
+
+        self.verticalLayout_25.addWidget(self.framebutton_ori_20)
 
         self.prof4_line2 = QLineEdit(self.frameout20)
         self.prof4_line2.setObjectName(u"prof4_line2")
@@ -1894,14 +2194,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_26.setSpacing(6)
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
         self.verticalLayout_26.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame21 = QFrame(self.frameout21)
-        self.buttonFrame21.setObjectName(u"buttonFrame21")
-        self.buttonFrame21.setMinimumSize(QSize(115, 130))
-        self.buttonFrame21.setMaximumSize(QSize(115, 130))
-        self.buttonFrame21.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame21.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_21 = QFrame(self.frameout21)
+        self.framebutton_ori_21.setObjectName(u"framebutton_ori_21")
+        self.verticalLayout_slot_21 = QVBoxLayout(self.framebutton_ori_21)
+        self.verticalLayout_slot_21.setSpacing(0)
+        self.verticalLayout_slot_21.setObjectName(u"verticalLayout_slot_21")
+        self.verticalLayout_slot_21.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_21 = QFrame(self.framebutton_ori_21)
+        self.slotPreview_21.setObjectName(u"slotPreview_21")
+        self.slotPreview_21.setMinimumSize(QSize(115, 130))
+        self.slotPreview_21.setMaximumSize(QSize(115, 130))
+        self.slotPreview_21.setStyleSheet(u"#slotPreview_21 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_21.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_21.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_26.addWidget(self.buttonFrame21)
+        self.verticalLayout_slot_21.addWidget(self.slotPreview_21)
+
+
+        self.verticalLayout_26.addWidget(self.framebutton_ori_21)
 
         self.prof4_line3 = QLineEdit(self.frameout21)
         self.prof4_line3.setObjectName(u"prof4_line3")
@@ -1944,14 +2259,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_27.setSpacing(6)
         self.verticalLayout_27.setObjectName(u"verticalLayout_27")
         self.verticalLayout_27.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame22 = QFrame(self.frameout22)
-        self.buttonFrame22.setObjectName(u"buttonFrame22")
-        self.buttonFrame22.setMinimumSize(QSize(115, 130))
-        self.buttonFrame22.setMaximumSize(QSize(115, 130))
-        self.buttonFrame22.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame22.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_22 = QFrame(self.frameout22)
+        self.framebutton_ori_22.setObjectName(u"framebutton_ori_22")
+        self.verticalLayout_slot_22 = QVBoxLayout(self.framebutton_ori_22)
+        self.verticalLayout_slot_22.setSpacing(0)
+        self.verticalLayout_slot_22.setObjectName(u"verticalLayout_slot_22")
+        self.verticalLayout_slot_22.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_22 = QFrame(self.framebutton_ori_22)
+        self.slotPreview_22.setObjectName(u"slotPreview_22")
+        self.slotPreview_22.setMinimumSize(QSize(115, 130))
+        self.slotPreview_22.setMaximumSize(QSize(115, 130))
+        self.slotPreview_22.setStyleSheet(u"#slotPreview_22 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_22.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_22.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_27.addWidget(self.buttonFrame22)
+        self.verticalLayout_slot_22.addWidget(self.slotPreview_22)
+
+
+        self.verticalLayout_27.addWidget(self.framebutton_ori_22)
 
         self.prof4_line4 = QLineEdit(self.frameout22)
         self.prof4_line4.setObjectName(u"prof4_line4")
@@ -1994,14 +2324,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_28.setSpacing(6)
         self.verticalLayout_28.setObjectName(u"verticalLayout_28")
         self.verticalLayout_28.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame23 = QFrame(self.frameout23)
-        self.buttonFrame23.setObjectName(u"buttonFrame23")
-        self.buttonFrame23.setMinimumSize(QSize(115, 130))
-        self.buttonFrame23.setMaximumSize(QSize(115, 130))
-        self.buttonFrame23.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame23.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_23 = QFrame(self.frameout23)
+        self.framebutton_ori_23.setObjectName(u"framebutton_ori_23")
+        self.verticalLayout_slot_23 = QVBoxLayout(self.framebutton_ori_23)
+        self.verticalLayout_slot_23.setSpacing(0)
+        self.verticalLayout_slot_23.setObjectName(u"verticalLayout_slot_23")
+        self.verticalLayout_slot_23.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_23 = QFrame(self.framebutton_ori_23)
+        self.slotPreview_23.setObjectName(u"slotPreview_23")
+        self.slotPreview_23.setMinimumSize(QSize(115, 130))
+        self.slotPreview_23.setMaximumSize(QSize(115, 130))
+        self.slotPreview_23.setStyleSheet(u"#slotPreview_23 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_23.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_23.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_28.addWidget(self.buttonFrame23)
+        self.verticalLayout_slot_23.addWidget(self.slotPreview_23)
+
+
+        self.verticalLayout_28.addWidget(self.framebutton_ori_23)
 
         self.prof4_line5 = QLineEdit(self.frameout23)
         self.prof4_line5.setObjectName(u"prof4_line5")
@@ -2044,14 +2389,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.setSpacing(6)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.verticalLayout_29.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame24 = QFrame(self.frameout24)
-        self.buttonFrame24.setObjectName(u"buttonFrame24")
-        self.buttonFrame24.setMinimumSize(QSize(115, 130))
-        self.buttonFrame24.setMaximumSize(QSize(115, 130))
-        self.buttonFrame24.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame24.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_24 = QFrame(self.frameout24)
+        self.framebutton_ori_24.setObjectName(u"framebutton_ori_24")
+        self.verticalLayout_slot_24 = QVBoxLayout(self.framebutton_ori_24)
+        self.verticalLayout_slot_24.setSpacing(0)
+        self.verticalLayout_slot_24.setObjectName(u"verticalLayout_slot_24")
+        self.verticalLayout_slot_24.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_24 = QFrame(self.framebutton_ori_24)
+        self.slotPreview_24.setObjectName(u"slotPreview_24")
+        self.slotPreview_24.setMinimumSize(QSize(115, 130))
+        self.slotPreview_24.setMaximumSize(QSize(115, 130))
+        self.slotPreview_24.setStyleSheet(u"#slotPreview_24 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_24.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_24.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_29.addWidget(self.buttonFrame24)
+        self.verticalLayout_slot_24.addWidget(self.slotPreview_24)
+
+
+        self.verticalLayout_29.addWidget(self.framebutton_ori_24)
 
         self.prof4_line6 = QLineEdit(self.frameout24)
         self.prof4_line6.setObjectName(u"prof4_line6")
@@ -2210,14 +2570,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_31.setSpacing(6)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
         self.verticalLayout_31.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame25 = QFrame(self.frameout25)
-        self.buttonFrame25.setObjectName(u"buttonFrame25")
-        self.buttonFrame25.setMinimumSize(QSize(115, 130))
-        self.buttonFrame25.setMaximumSize(QSize(115, 130))
-        self.buttonFrame25.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame25.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_25 = QFrame(self.frameout25)
+        self.framebutton_ori_25.setObjectName(u"framebutton_ori_25")
+        self.verticalLayout_slot_25 = QVBoxLayout(self.framebutton_ori_25)
+        self.verticalLayout_slot_25.setSpacing(0)
+        self.verticalLayout_slot_25.setObjectName(u"verticalLayout_slot_25")
+        self.verticalLayout_slot_25.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_25 = QFrame(self.framebutton_ori_25)
+        self.slotPreview_25.setObjectName(u"slotPreview_25")
+        self.slotPreview_25.setMinimumSize(QSize(115, 130))
+        self.slotPreview_25.setMaximumSize(QSize(115, 130))
+        self.slotPreview_25.setStyleSheet(u"#slotPreview_25 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_25.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_25.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_31.addWidget(self.buttonFrame25)
+        self.verticalLayout_slot_25.addWidget(self.slotPreview_25)
+
+
+        self.verticalLayout_31.addWidget(self.framebutton_ori_25)
 
         self.prof5_line1 = QLineEdit(self.frameout25)
         self.prof5_line1.setObjectName(u"prof5_line1")
@@ -2260,14 +2635,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_32.setSpacing(6)
         self.verticalLayout_32.setObjectName(u"verticalLayout_32")
         self.verticalLayout_32.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame26 = QFrame(self.frameout26)
-        self.buttonFrame26.setObjectName(u"buttonFrame26")
-        self.buttonFrame26.setMinimumSize(QSize(115, 130))
-        self.buttonFrame26.setMaximumSize(QSize(115, 130))
-        self.buttonFrame26.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame26.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_26 = QFrame(self.frameout26)
+        self.framebutton_ori_26.setObjectName(u"framebutton_ori_26")
+        self.verticalLayout_slot_26 = QVBoxLayout(self.framebutton_ori_26)
+        self.verticalLayout_slot_26.setSpacing(0)
+        self.verticalLayout_slot_26.setObjectName(u"verticalLayout_slot_26")
+        self.verticalLayout_slot_26.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_26 = QFrame(self.framebutton_ori_26)
+        self.slotPreview_26.setObjectName(u"slotPreview_26")
+        self.slotPreview_26.setMinimumSize(QSize(115, 130))
+        self.slotPreview_26.setMaximumSize(QSize(115, 130))
+        self.slotPreview_26.setStyleSheet(u"#slotPreview_26 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_26.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_26.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_32.addWidget(self.buttonFrame26)
+        self.verticalLayout_slot_26.addWidget(self.slotPreview_26)
+
+
+        self.verticalLayout_32.addWidget(self.framebutton_ori_26)
 
         self.prof5_line2 = QLineEdit(self.frameout26)
         self.prof5_line2.setObjectName(u"prof5_line2")
@@ -2310,14 +2700,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_33.setSpacing(6)
         self.verticalLayout_33.setObjectName(u"verticalLayout_33")
         self.verticalLayout_33.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame27 = QFrame(self.frameout27)
-        self.buttonFrame27.setObjectName(u"buttonFrame27")
-        self.buttonFrame27.setMinimumSize(QSize(115, 130))
-        self.buttonFrame27.setMaximumSize(QSize(115, 130))
-        self.buttonFrame27.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame27.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_27 = QFrame(self.frameout27)
+        self.framebutton_ori_27.setObjectName(u"framebutton_ori_27")
+        self.verticalLayout_slot_27 = QVBoxLayout(self.framebutton_ori_27)
+        self.verticalLayout_slot_27.setSpacing(0)
+        self.verticalLayout_slot_27.setObjectName(u"verticalLayout_slot_27")
+        self.verticalLayout_slot_27.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_27 = QFrame(self.framebutton_ori_27)
+        self.slotPreview_27.setObjectName(u"slotPreview_27")
+        self.slotPreview_27.setMinimumSize(QSize(115, 130))
+        self.slotPreview_27.setMaximumSize(QSize(115, 130))
+        self.slotPreview_27.setStyleSheet(u"#slotPreview_27 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_27.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_27.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_33.addWidget(self.buttonFrame27)
+        self.verticalLayout_slot_27.addWidget(self.slotPreview_27)
+
+
+        self.verticalLayout_33.addWidget(self.framebutton_ori_27)
 
         self.prof5_line3 = QLineEdit(self.frameout27)
         self.prof5_line3.setObjectName(u"prof5_line3")
@@ -2360,14 +2765,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_34.setSpacing(6)
         self.verticalLayout_34.setObjectName(u"verticalLayout_34")
         self.verticalLayout_34.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame28 = QFrame(self.frameout28)
-        self.buttonFrame28.setObjectName(u"buttonFrame28")
-        self.buttonFrame28.setMinimumSize(QSize(115, 130))
-        self.buttonFrame28.setMaximumSize(QSize(115, 130))
-        self.buttonFrame28.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame28.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_28 = QFrame(self.frameout28)
+        self.framebutton_ori_28.setObjectName(u"framebutton_ori_28")
+        self.verticalLayout_slot_28 = QVBoxLayout(self.framebutton_ori_28)
+        self.verticalLayout_slot_28.setSpacing(0)
+        self.verticalLayout_slot_28.setObjectName(u"verticalLayout_slot_28")
+        self.verticalLayout_slot_28.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_28 = QFrame(self.framebutton_ori_28)
+        self.slotPreview_28.setObjectName(u"slotPreview_28")
+        self.slotPreview_28.setMinimumSize(QSize(115, 130))
+        self.slotPreview_28.setMaximumSize(QSize(115, 130))
+        self.slotPreview_28.setStyleSheet(u"#slotPreview_28 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_28.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_28.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_34.addWidget(self.buttonFrame28)
+        self.verticalLayout_slot_28.addWidget(self.slotPreview_28)
+
+
+        self.verticalLayout_34.addWidget(self.framebutton_ori_28)
 
         self.prof5_line4 = QLineEdit(self.frameout28)
         self.prof5_line4.setObjectName(u"prof5_line4")
@@ -2410,14 +2830,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_35.setSpacing(6)
         self.verticalLayout_35.setObjectName(u"verticalLayout_35")
         self.verticalLayout_35.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame29 = QFrame(self.frameout29)
-        self.buttonFrame29.setObjectName(u"buttonFrame29")
-        self.buttonFrame29.setMinimumSize(QSize(115, 130))
-        self.buttonFrame29.setMaximumSize(QSize(115, 130))
-        self.buttonFrame29.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame29.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_29 = QFrame(self.frameout29)
+        self.framebutton_ori_29.setObjectName(u"framebutton_ori_29")
+        self.verticalLayout_slot_29 = QVBoxLayout(self.framebutton_ori_29)
+        self.verticalLayout_slot_29.setSpacing(0)
+        self.verticalLayout_slot_29.setObjectName(u"verticalLayout_slot_29")
+        self.verticalLayout_slot_29.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_29 = QFrame(self.framebutton_ori_29)
+        self.slotPreview_29.setObjectName(u"slotPreview_29")
+        self.slotPreview_29.setMinimumSize(QSize(115, 130))
+        self.slotPreview_29.setMaximumSize(QSize(115, 130))
+        self.slotPreview_29.setStyleSheet(u"#slotPreview_29 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_29.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_29.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_35.addWidget(self.buttonFrame29)
+        self.verticalLayout_slot_29.addWidget(self.slotPreview_29)
+
+
+        self.verticalLayout_35.addWidget(self.framebutton_ori_29)
 
         self.prof5_line5 = QLineEdit(self.frameout29)
         self.prof5_line5.setObjectName(u"prof5_line5")
@@ -2460,14 +2895,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_36.setSpacing(6)
         self.verticalLayout_36.setObjectName(u"verticalLayout_36")
         self.verticalLayout_36.setContentsMargins(9, 9, 9, 9)
-        self.buttonFrame30 = QFrame(self.frameout30)
-        self.buttonFrame30.setObjectName(u"buttonFrame30")
-        self.buttonFrame30.setMinimumSize(QSize(115, 130))
-        self.buttonFrame30.setMaximumSize(QSize(115, 130))
-        self.buttonFrame30.setFrameShape(QFrame.Shape.NoFrame)
-        self.buttonFrame30.setFrameShadow(QFrame.Shadow.Raised)
+        self.framebutton_ori_30 = QFrame(self.frameout30)
+        self.framebutton_ori_30.setObjectName(u"framebutton_ori_30")
+        self.verticalLayout_slot_30 = QVBoxLayout(self.framebutton_ori_30)
+        self.verticalLayout_slot_30.setSpacing(0)
+        self.verticalLayout_slot_30.setObjectName(u"verticalLayout_slot_30")
+        self.verticalLayout_slot_30.setContentsMargins(0, 0, 0, 0)
+        self.slotPreview_30 = QFrame(self.framebutton_ori_30)
+        self.slotPreview_30.setObjectName(u"slotPreview_30")
+        self.slotPreview_30.setMinimumSize(QSize(115, 130))
+        self.slotPreview_30.setMaximumSize(QSize(115, 130))
+        self.slotPreview_30.setStyleSheet(u"#slotPreview_30 {\n"
+"    background-color: rgba(255, 255, 255, 0.22);\n"
+"    border: 1px dashed rgba(185, 174, 220, 0.95);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"")
+        self.slotPreview_30.setFrameShape(QFrame.Shape.NoFrame)
+        self.slotPreview_30.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_36.addWidget(self.buttonFrame30)
+        self.verticalLayout_slot_30.addWidget(self.slotPreview_30)
+
+
+        self.verticalLayout_36.addWidget(self.framebutton_ori_30)
 
         self.prof5_line6 = QLineEdit(self.frameout30)
         self.prof5_line6.setObjectName(u"prof5_line6")

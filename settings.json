@@ -1,52 +1,142 @@
 {
   "profile_names": [
-    "Aveva",
-    "Adobe Photoshop",
     "Spotify",
-    "I dunno",
-    "i dunno 2"
+    "Profile 2",
+    "Profile 3",
+    "Profile 4",
+    "Profile 5"
   ],
   "autostart": false,
   "profiles": {
     "1": [
-      "D",
-      "D",
-      "S",
-      "S",
-      "S",
-      "S"
+      {
+        "mode": "shortcut",
+        "value": "MediaPrevious"
+      },
+      {
+        "mode": "shortcut",
+        "value": "Toggle Media Play/Pause"
+      },
+      {
+        "mode": "shortcut",
+        "value": "MediaNext"
+      },
+      {
+        "mode": "shortcut",
+        "value": "Alt"
+      },
+      {
+        "mode": "shortcut",
+        "value": "Ctrl+Win+Right"
+      },
+      {
+        "mode": "shortcut",
+        "value": "A+S+D"
+      }
     ],
     "2": [
-      "Ctrl+F4",
-      "Ctrl+Shift+AsciiCircum",
-      "Ctrl+Shift+E",
-      "",
-      "",
-      ""
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      }
     ],
     "3": [
-      "Tab+Right",
-      "Tab+P",
-      "",
-      "",
-      "",
-      ""
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      }
     ],
     "4": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      }
     ],
     "5": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "application",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      },
+      {
+        "mode": "shortcut",
+        "value": ""
+      }
     ]
   }
 }
