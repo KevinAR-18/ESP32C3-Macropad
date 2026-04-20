@@ -13,12 +13,16 @@ SHORTCUT_MODE = "shortcut"
 APPLICATION_MODE = "application"
 
 
-def settings_path() -> str:
+def app_config_path(filename: str) -> str:
     if getattr(sys, "frozen", False):
         base_dir = os.path.dirname(sys.executable)
     else:
         base_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
-    return os.path.join(base_dir, "settings.json")
+    return os.path.join(base_dir, filename)
+
+
+def settings_path() -> str:
+    return app_config_path("settings.json")
 
 
 def load_settings(path: str):

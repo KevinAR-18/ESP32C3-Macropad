@@ -1,5 +1,6 @@
 // ================= CONFIG =================
-const int buttonPins[5] = {0, 1, 2, 3, 4};
+const int buttonPins[6] = {0, 1, 2, 3, 4, 20};
+const int buttonCount = sizeof(buttonPins) / sizeof(buttonPins[0]);
 
 // Rotary Encoder 1
 #define ENC1_A 6
@@ -19,11 +20,11 @@ const int buttonPins[5] = {0, 1, 2, 3, 4};
 // ================= STATE =================
 
 // ---------- BUTTON ----------
-bool lastButtonState[5] = {HIGH, HIGH, HIGH, HIGH, HIGH};
-unsigned long pressTime[5] = {0};
-unsigned long lastRepeat[5] = {0};
-unsigned long lastEventTime[5] = {0};
-bool isRepeating[5] = {false};
+bool lastButtonState[buttonCount] = {HIGH, HIGH, HIGH, HIGH, HIGH, HIGH};
+unsigned long pressTime[buttonCount] = {0};
+unsigned long lastRepeat[buttonCount] = {0};
+unsigned long lastEventTime[buttonCount] = {0};
+bool isRepeating[buttonCount] = {false};
 
 // ---------- ENCODER 1 ----------
 int lastEnc1A = HIGH;
@@ -45,7 +46,7 @@ bool enc2Repeating = false;
 void setup() {
   Serial.begin(115200);
 
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < buttonCount; i++) {
     pinMode(buttonPins[i], INPUT_PULLUP);
   }
 
@@ -71,7 +72,7 @@ void loop() {
 void handleButtons() {
   unsigned long now = millis();
 
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < buttonCount; i++) {
     bool current = digitalRead(buttonPins[i]);
 
     // FIRST PRESS

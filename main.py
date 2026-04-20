@@ -1,5 +1,6 @@
 import os
 import re
+import subprocess
 import sys
 from functools import partial
 from pathlib import Path
@@ -16,6 +17,11 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+import keyboard
+import psutil
+import serial
+from pycaw.pycaw import AudioUtilities, ISimpleAudioVolume
+from serial.tools import list_ports
 
 from date_utils import Date
 from key_capture import KeyCaptureFilter
@@ -39,6 +45,13 @@ from preview_button import APP_MODE, KEYBOARD_MODE, UNSET_MODE, TransparentKeyca
 APP_NAME = "KeyBloom"
 PROFILE_IDS = tuple(str(index) for index in range(1, 6))
 PROFILE_LINE_COUNT = 6
+SERIAL_BAUDRATE = 115200
+SERIAL_POLL_MS = 25
+SERIAL_RECONNECT_MS = 2000
+SETTINGS_SAVE_DEBOUNCE_MS = 250
+ESP32_VID = 0x303A
+SPOTIFY_MODE_SESSION = "session"
+SPOTIFY_WEB_STEP_PERCENT = 3
 
 PROFILE_INPUT_STYLE = (
     "\nQLineEdit:hover { border: 2px solid #6f5fa8; background-color: rgba(255, 255, 255, 1); }"
@@ -58,6 +71,41 @@ SHORTCUT_PRESETS = [
     ("Ctrl+Win+Left", "Ctrl+Win+Left"),
     ("Ctrl+Win+Right", "Ctrl+Win+Right"),
 ]
+SHORTCUT_TOKEN_MAP = {
+    "win": "windows",
+    "left": "left",
+    "right": "right",
+    "up": "up",
+    "down": "down",
+    "pageup": "page up",
+    "pagedown": "page down",
+    "space": "space",
+    "tab": "tab",
+    "shift": "shift",
+    "ctrl": "ctrl",
+    "alt": "alt",
+    "enter": "enter",
+    "esc": "esc",
+    "backspace": "backspace",
+    "delete": "delete",
+    "insert": "insert",
+    "home": "home",
+    "end": "end",
+    "capslock": "caps lock",
+    "numlock": "num lock",
+    "scrolllock": "scroll lock",
+    "printscreen": "print screen",
+    "pause": "pause",
+    "menu": "menu",
+    "mediaprevious": "previous track",
+    "medianext": "next track",
+    "toggle media play/pause": "play/pause media",
+    "play/pause media": "play/pause media",
+    "mediaplaypause": "play/pause media",
+    "volumeup": "volume up",
+    "volumedown": "volume down",
+    "volumemute": "volume mute",
+}
 
 
 class _PreviewClickFilter(QObject):
@@ -80,6 +128,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         self._loading_settings = False
+        self._settings_initialized = False
         self._date_helper = Date()
         self._key_filter = KeyCaptureFilter(self)
         self._preview_filter = _PreviewClickFilter(self._on_preview_clicked, self)
@@ -87,6 +136,19 @@ class MainWindow(QMainWindow):
         self._shortcut_capture_timer = QTimer(self)
         self._shortcut_capture_timer.setSingleShot(True)
         self._shortcut_capture_timer.timeout.connect(self._stop_shortcut_capture)
+        self._settings_save_timer = QTimer(self)
+        self._settings_save_timer.setSingleShot(True)
+        self._settings_save_timer.timeout.connect(self._save_settings)
+        self._serial = None
+        self._serial_port_name = ""
+        self._serial_buffer = ""
+        self._current_profile_id = "1"
+        self._settings_data = {}
+        self._spotify_volume = None
+        self._serial_poll_timer = QTimer(self)
+        self._serial_poll_timer.timeout.connect(self._poll_serial)
+        self._serial_reconnect_timer = QTimer(self)
+        self._serial_reconnect_timer.timeout.connect(self._ensure_serial_connection)
 
         self._profile_name_inputs = self._build_profile_name_inputs()
         self._profile_title_labels = self._build_profile_title_labels()
@@ -96,12 +158,14 @@ class MainWindow(QMainWindow):
         self._profile_slots = self._build_profile_slots()
 
         self._configure_window()
+        self._configure_settings_controls()
         self._setup_tray()
         self._setup_profile_slots()
-        self._show_page(self._profile_pages["1"])
+        self._show_page(self._profile_pages["1"], profile_id="1")
         self._connect_signals()
         self._setup_clock()
         self._load_settings()
+        self._start_serial_bridge()
 
     def _configure_window(self):
         UIFunctions.set_borderless(self)
@@ -134,23 +198,32 @@ class MainWindow(QMainWindow):
         )
         self.ui.btn_savesettings.clicked.connect(self._save_settings)
         self.ui.cbAutostartup.toggled.connect(self._on_autostart_toggled)
+        self.ui.cbAutodetect.toggled.connect(self._on_serial_settings_changed)
+        self.ui.inputCOM.textChanged.connect(self._on_serial_settings_changed)
 
         for profile_id, button in self._profile_buttons.items():
             button.clicked.connect(
-                partial(self._show_page, self._profile_pages[profile_id])
+                partial(self._show_page, self._profile_pages[profile_id], profile_id=profile_id)
             )
 
         for button in self._save_buttons:
             button.clicked.connect(self._save_settings)
 
         for line_edit in self._profile_name_inputs:
-            line_edit.textChanged.connect(self._save_settings)
+            line_edit.textChanged.connect(self._schedule_save_settings)
 
     def _setup_clock(self):
         self._date_helper.update_time(self.ui.clockInfo)
         self.clock_timer = QTimer(self)
         self.clock_timer.timeout.connect(self._update_clock)
         self.clock_timer.start(1000)
+
+    def _configure_settings_controls(self):
+        self.ui.inputCOM.setPlaceholderText("Contoh: COM6")
+        self.ui.inputCOM.setToolTip("Isi jika Auto Detect dimatikan.")
+        self.ui.frame_spotifyMode.hide()
+        self.ui.frame_spotifyApi.hide()
+        self._apply_settings_ui_state()
 
     def _update_clock(self):
         self._date_helper.update_time(self.ui.clockInfo)
@@ -291,7 +364,7 @@ class MainWindow(QMainWindow):
         self._apply_slot_mode(slot)
         if mode == SHORTCUT_MODE and arm_capture:
             self._start_shortcut_capture(slot)
-        self._save_settings()
+        self._schedule_save_settings()
 
     def _clear_slot(self, slot):
         if self._active_capture_slot is slot:
@@ -300,7 +373,7 @@ class MainWindow(QMainWindow):
         slot["stored_value"] = ""
         slot["line_edit"].clear()
         self._apply_slot_mode(slot)
-        self._save_settings()
+        self._schedule_save_settings()
 
     def _apply_slot_mode(self, slot):
         mode = slot.get("mode", SHORTCUT_MODE)
@@ -363,7 +436,7 @@ class MainWindow(QMainWindow):
             slot["mode"] = APPLICATION_MODE
             slot["stored_value"] = file_path
             self._apply_slot_mode(slot)
-            self._save_settings()
+            self._schedule_save_settings()
 
     def _apply_shortcut_preset(self, slot, shortcut_text: str):
         if self._active_capture_slot is slot:
@@ -372,7 +445,7 @@ class MainWindow(QMainWindow):
         slot["stored_value"] = shortcut_text
         slot["line_edit"].setText(shortcut_text)
         self._apply_slot_mode(slot)
-        self._save_settings()
+        self._schedule_save_settings()
 
     def _start_shortcut_capture(self, slot):
         self._active_capture_slot = slot
@@ -400,7 +473,7 @@ class MainWindow(QMainWindow):
             slot["stored_value"] = slot["line_edit"].text().strip()
         self._fit_line_edit_text(slot)
         self._apply_slot_mode(slot)
-        self._save_settings()
+        self._schedule_save_settings()
 
     def _fit_line_edit_text(self, slot):
         line = slot["line_edit"]
@@ -435,12 +508,36 @@ class MainWindow(QMainWindow):
         )
         slot["line_edit"].setStyleSheet(updated_stylesheet)
 
+    def _serial_settings(self):
+        return {
+            "auto_detect": self.ui.cbAutodetect.isChecked(),
+            "port": self.ui.inputCOM.text().strip(),
+        }
+
+    def _spotify_settings(self):
+        return {"mode": SPOTIFY_MODE_SESSION}
+
+    def _apply_settings_ui_state(self):
+        self.ui.inputCOM.setEnabled(not self.ui.cbAutodetect.isChecked())
+
+    def _on_serial_settings_changed(self, *_args):
+        self._apply_settings_ui_state()
+        if self._loading_settings:
+            return
+        self._disconnect_serial()
+        self._ensure_serial_connection()
+        self._schedule_save_settings()
+
     def _load_settings(self):
         data = load_settings(settings_path())
         if not data:
+            self.ui.cbAutodetect.setChecked(True)
+            self._apply_settings_ui_state()
             self._apply_profile_titles()
+            self._settings_initialized = True
             return
 
+        self._settings_data = dict(data)
         self._loading_settings = True
         try:
             for line_edit, name in zip(
@@ -449,26 +546,41 @@ class MainWindow(QMainWindow):
                 line_edit.setText(name)
 
             self.ui.cbAutostartup.setChecked(bool(data.get("autostart", False)))
+            serial_settings = data.get("serial", {})
+            self.ui.cbAutodetect.setChecked(bool(serial_settings.get("auto_detect", True)))
+            self.ui.inputCOM.setText(str(serial_settings.get("port", "")))
+            self._apply_settings_ui_state()
             apply_profile_mappings(self._profile_slots, data.get("profiles", {}))
+            active_profile = str(data.get("active_profile", "1"))
+            if active_profile in self._profile_pages:
+                self._show_page(self._profile_pages[active_profile], profile_id=active_profile)
             self._refresh_slot_modes()
             self._apply_profile_titles()
             self._set_autostart(self.ui.cbAutostartup.isChecked())
         finally:
             self._loading_settings = False
+            self._settings_initialized = True
 
     def _save_settings(self):
+        self._settings_save_timer.stop()
         if self._loading_settings:
             return
         names = self._current_profile_names()
         self._apply_profile_titles(names)
-        save_settings(
-            settings_path(),
-            {
-                "profile_names": names,
-                "autostart": self.ui.cbAutostartup.isChecked(),
-                "profiles": collect_profile_mappings(self._profile_slots),
-            },
-        )
+        self._settings_data = {
+            "profile_names": names,
+            "autostart": self.ui.cbAutostartup.isChecked(),
+            "active_profile": self._current_profile_id,
+            "serial": self._serial_settings(),
+            "spotify": self._spotify_settings(),
+            "profiles": collect_profile_mappings(self._profile_slots),
+        }
+        save_settings(settings_path(), self._settings_data)
+
+    def _schedule_save_settings(self):
+        if self._loading_settings:
+            return
+        self._settings_save_timer.start(SETTINGS_SAVE_DEBOUNCE_MS)
 
     def _current_profile_names(self):
         return collect_profile_names(self._profile_name_inputs)
@@ -485,7 +597,7 @@ class MainWindow(QMainWindow):
         if self._loading_settings:
             return
         self._set_autostart(checked)
-        self._save_settings()
+        self._schedule_save_settings()
 
     def _set_autostart(self, enabled: bool):
         if getattr(sys, "frozen", False):
@@ -495,8 +607,12 @@ class MainWindow(QMainWindow):
 
         set_autostart(enabled, APP_NAME, app_path)
 
-    def _show_page(self, page):
+    def _show_page(self, page, profile_id=None):
+        if profile_id in self._profile_pages:
+            self._current_profile_id = profile_id
         self.ui.stackedWidget.setCurrentWidget(page)
+        if self._settings_initialized and not self._loading_settings:
+            self._schedule_save_settings()
 
     def minimize_to_tray(self):
         self.hide()
@@ -515,6 +631,231 @@ class MainWindow(QMainWindow):
     def _on_tray_activated(self, reason):
         if reason == QSystemTrayIcon.Trigger:
             self.show_normal_from_tray()
+
+    def closeEvent(self, event):
+        self._disconnect_serial()
+        super().closeEvent(event)
+
+    def _start_serial_bridge(self):
+        self._serial_reconnect_timer.start(SERIAL_RECONNECT_MS)
+        self._ensure_serial_connection()
+
+    def _ensure_serial_connection(self):
+        desired_port = self._resolve_serial_port()
+        if not desired_port:
+            self._disconnect_serial()
+            return
+
+        if self._serial and self._serial.is_open and self._serial_port_name == desired_port:
+            return
+
+        if self._serial and self._serial_port_name != desired_port:
+            self._disconnect_serial()
+
+        try:
+            self._serial = serial.Serial(desired_port, SERIAL_BAUDRATE, timeout=0)
+        except serial.SerialException as error:
+            print(f"[SERIAL] Failed to open {desired_port}: {error}")
+            self._disconnect_serial()
+            return
+
+        self._serial_port_name = desired_port
+        self._serial_buffer = ""
+        self._serial_poll_timer.start(SERIAL_POLL_MS)
+
+    def _disconnect_serial(self):
+        self._serial_poll_timer.stop()
+        port_name = self._serial_port_name
+        serial_device = self._serial
+        self._serial = None
+        self._serial_port_name = ""
+        self._serial_buffer = ""
+        if serial_device is not None:
+            try:
+                if serial_device.is_open:
+                    serial_device.close()
+            except serial.SerialException:
+                pass
+
+    def _detect_esp32_port(self):
+        for port in list_ports.comports():
+            if port.vid == ESP32_VID:
+                return port.device
+
+            details = " ".join(
+                part.lower()
+                for part in (port.description, port.manufacturer, port.product, port.hwid)
+                if part
+            )
+            if "esp32" in details or "espressif" in details:
+                return port.device
+
+        return ""
+
+    def _resolve_serial_port(self):
+        serial_settings = self._serial_settings()
+        if not serial_settings["auto_detect"]:
+            return serial_settings["port"]
+        return self._detect_esp32_port()
+
+    def _poll_serial(self):
+        if not self._serial:
+            return
+
+        try:
+            waiting = self._serial.in_waiting
+            chunk = self._serial.read(waiting or 1)
+        except (serial.SerialException, OSError) as error:
+            print(f"[SERIAL] Read failed: {error}")
+            self._disconnect_serial()
+            return
+
+        if not chunk:
+            return
+
+        self._serial_buffer += chunk.decode(errors="ignore")
+        while "\n" in self._serial_buffer:
+            line, self._serial_buffer = self._serial_buffer.split("\n", 1)
+            event = line.strip()
+            if event:
+                self._handle_serial_event(event)
+
+    def _handle_serial_event(self, event_text: str):
+        if event_text == "START":
+            return
+
+        button_match = re.fullmatch(r"BUTTON\s+(\d+)\s+PRESSED", event_text)
+        if button_match:
+            self._execute_profile_slot(int(button_match.group(1)))
+            return
+
+        if event_text == "ENC1 RIGHT":
+            keyboard.send("volume up")
+            return
+        if event_text == "ENC1 LEFT":
+            keyboard.send("volume down")
+            return
+        if event_text == "ENC1 BUTTON PRESSED":
+            keyboard.send("volume mute")
+            return
+
+        if event_text == "ENC2 RIGHT":
+            self._adjust_spotify_volume(SPOTIFY_WEB_STEP_PERCENT / 100)
+            return
+        if event_text == "ENC2 LEFT":
+            self._adjust_spotify_volume(-(SPOTIFY_WEB_STEP_PERCENT / 100))
+            return
+        if event_text == "ENC2 BUTTON PRESSED":
+            keyboard.send("play/pause media")
+
+    def _execute_profile_slot(self, slot_number: int):
+        slots = self._profile_slots.get(self._current_profile_id, [])
+        slot_index = slot_number - 1
+        if slot_index < 0 or slot_index >= len(slots):
+            return
+
+        slot = slots[slot_index]
+        value = slot.get("stored_value", "").strip()
+        if slot.get("mode") == APPLICATION_MODE:
+            self._launch_application(value)
+        else:
+            self._send_shortcut(value)
+
+    def _launch_application(self, target_path: str):
+        if not target_path:
+            return
+
+        try:
+            os.startfile(target_path)
+        except AttributeError:
+            subprocess.Popen([target_path])
+        except OSError as error:
+            print(f"[APP] Failed to open {target_path}: {error}")
+
+    def _send_shortcut(self, shortcut_text: str):
+        normalized = self._normalize_shortcut(shortcut_text)
+        if not normalized:
+            return
+
+        try:
+            keyboard.press_and_release(normalized)
+        except ValueError as error:
+            print(f"[SHORTCUT] Invalid shortcut '{shortcut_text}': {error}")
+
+    def _normalize_shortcut(self, shortcut_text: str) -> str:
+        text = shortcut_text.strip()
+        if not text:
+            return ""
+
+        mapped_value = SHORTCUT_TOKEN_MAP.get(text.lower())
+        if mapped_value:
+            return mapped_value
+
+        normalized_parts = []
+        for part in text.split("+"):
+            token = part.strip()
+            if not token:
+                continue
+
+            mapped_token = SHORTCUT_TOKEN_MAP.get(token.lower())
+            if mapped_token:
+                normalized_parts.append(mapped_token)
+                continue
+
+            if re.fullmatch(r"F\d{1,2}", token, re.IGNORECASE):
+                normalized_parts.append(token.lower())
+                continue
+
+            if len(token) == 1:
+                normalized_parts.append(token.lower())
+                continue
+
+            normalized_parts.append(token.lower())
+
+        return "+".join(normalized_parts)
+
+    def _adjust_spotify_volume(self, delta: float):
+        spotify_volume = self._get_spotify_volume()
+        if spotify_volume is None:
+            print("[SPOTIFY] Spotify session not found.")
+            return
+
+        try:
+            current_volume = spotify_volume.GetMasterVolume()
+            spotify_volume.SetMasterVolume(min(max(current_volume + delta, 0.0), 1.0), None)
+        except Exception:
+            self._spotify_volume = None
+            spotify_volume = self._get_spotify_volume()
+            if spotify_volume is None:
+                print("[SPOTIFY] Spotify session not found.")
+                return
+            current_volume = spotify_volume.GetMasterVolume()
+            spotify_volume.SetMasterVolume(min(max(current_volume + delta, 0.0), 1.0), None)
+
+    def _get_spotify_volume(self):
+        if not self._is_spotify_running():
+            self._spotify_volume = None
+            return None
+
+        if self._spotify_volume is not None:
+            return self._spotify_volume
+
+        for session in AudioUtilities.GetAllSessions():
+            process = session.Process
+            if process and process.name().lower() == "spotify.exe":
+                self._spotify_volume = session._ctl.QueryInterface(ISimpleAudioVolume)
+                return self._spotify_volume
+
+        return None
+
+    def _is_spotify_running(self) -> bool:
+        for process in psutil.process_iter(["name"]):
+            try:
+                if (process.info.get("name") or "").lower() == "spotify.exe":
+                    return True
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
+        return False
 
 
 def main():

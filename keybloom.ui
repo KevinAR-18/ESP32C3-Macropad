@@ -6678,7 +6678,7 @@ QCheckBox:disabled {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QFrame" name="frame_30">
+                 <widget class="QFrame" name="frame_30">
                    <property name="minimumSize">
                     <size>
                      <width>320</width>
@@ -6828,11 +6828,299 @@ QCheckBox:disabled {
                       </property>
                      </widget>
                     </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="btn_savesettings">
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_spotifyMode">
+                  <property name="minimumSize">
+                   <size>
+                    <width>360</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::NoFrame</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_spotifyMode">
+                   <property name="spacing">
+                    <number>6</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="titleSpotifyMode">
+                     <property name="minimumSize">
+                      <size>
+                       <width>160</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>160</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>11</pointsize>
+                       <italic>false</italic>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#titleSpotifyMode{
+    color: white;
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #2f7c67;
+    border-radius: 6px;
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>Spotify Mode</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="spotifyModeCombo">
+                     <property name="minimumSize">
+                      <size>
+                       <width>200</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>200</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QComboBox {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #2e2a44;
+    font-family: "Segoe UI";
+    font-size: 10pt;
+    font-weight: 700;
+    border: 2px solid #9b8acb;
+    border-radius: 8px;
+    padding: 2px 8px;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #ffffff;
+    color: #2e2a44;
+    border: 1px solid #9b8acb;
+    selection-background-color: #dfd7f4;
+}</string>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Windows Session</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Spotify Web API</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_spotifyApi">
+                  <property name="minimumSize">
+                   <size>
+                    <width>360</width>
+                    <height>140</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::NoFrame</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_spotifyApi">
+                   <property name="spacing">
+                    <number>6</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="titleSpotifyApi">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>26</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <italic>false</italic>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#titleSpotifyApi{
+    color: white;
+    font-size: 10pt;
+    font-weight: bold;
+    background-color: #1f5f57;
+    border-radius: 6px;
+    padding: 2px 6px;
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>Spotify Web API Credentials</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="spotifyClientIdInput">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>28</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #2e2a44;
+    font-family: "Segoe UI";
+    font-size: 10pt;
+    font-weight: 700;
+    border: 2px solid #9b8acb;
+    border-radius: 8px;
+    padding: 2px 6px;
+}
+
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}</string>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Client ID</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="spotifyClientSecretInput">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>28</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #2e2a44;
+    font-family: "Segoe UI";
+    font-size: 10pt;
+    font-weight: 700;
+    border: 2px solid #9b8acb;
+    border-radius: 8px;
+    padding: 2px 6px;
+}
+
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}</string>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::Password</enum>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Client Secret</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="spotifyRefreshTokenInput">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>28</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QLineEdit{
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #2e2a44;
+    font-family: "Segoe UI";
+    font-size: 10pt;
+    font-weight: 700;
+    border: 2px solid #9b8acb;
+    border-radius: 8px;
+    padding: 2px 6px;
+}
+
+QLineEdit:disabled {
+    background-color: rgba(235, 231, 246, 0.8);
+    color: #9a95b3;
+    border: 2px solid #c7bddf;
+}</string>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::Password</enum>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Refresh Token</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_savesettings">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>

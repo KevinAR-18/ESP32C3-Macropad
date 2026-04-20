@@ -6,7 +6,15 @@
     "Profile 4",
     "Profile 5"
   ],
-  "autostart": false,
+  "autostart": true,
+  "active_profile": "1",
+  "serial": {
+    "auto_detect": true,
+    "port": ""
+  },
+  "spotify": {
+    "mode": "session"
+  },
   "profiles": {
     "1": [
       {
@@ -23,7 +31,7 @@
       },
       {
         "mode": "shortcut",
-        "value": "Alt"
+        "value": "Ctrl+Win+Left"
       },
       {
         "mode": "shortcut",
@@ -31,7 +39,7 @@
       },
       {
         "mode": "shortcut",
-        "value": "A+S+D"
+        "value": ""
       }
     ],
     "2": [
@@ -122,7 +130,7 @@
         "value": ""
       },
       {
-        "mode": "shortcut",
+        "mode": "application",
         "value": ""
       },
       {

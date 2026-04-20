@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QHBoxLayout,
-    QLabel, QLineEdit, QMainWindow, QPushButton,
-    QSizePolicy, QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
+    QHBoxLayout, QLabel, QLineEdit, QMainWindow,
+    QPushButton, QSizePolicy, QStackedWidget, QVBoxLayout,
+    QWidget)
 import resources_rc
 
 class Ui_MainWindow(object):
@@ -3632,6 +3633,166 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_39.addWidget(self.frame_30)
 
+        self.frame_spotifyMode = QFrame(self.frame_24)
+        self.frame_spotifyMode.setObjectName(u"frame_spotifyMode")
+        self.frame_spotifyMode.setMinimumSize(QSize(360, 40))
+        self.frame_spotifyMode.setFrameShape(QFrame.Shape.NoFrame)
+        self.frame_spotifyMode.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_spotifyMode = QHBoxLayout(self.frame_spotifyMode)
+        self.horizontalLayout_spotifyMode.setSpacing(6)
+        self.horizontalLayout_spotifyMode.setObjectName(u"horizontalLayout_spotifyMode")
+        self.horizontalLayout_spotifyMode.setContentsMargins(0, 0, 0, 0)
+        self.titleSpotifyMode = QLabel(self.frame_spotifyMode)
+        self.titleSpotifyMode.setObjectName(u"titleSpotifyMode")
+        self.titleSpotifyMode.setMinimumSize(QSize(160, 30))
+        self.titleSpotifyMode.setMaximumSize(QSize(160, 30))
+        self.titleSpotifyMode.setFont(font2)
+        self.titleSpotifyMode.setStyleSheet(u"#titleSpotifyMode{\n"
+"    color: white;\n"
+"    font-size: 11pt;\n"
+"    font-weight: bold;\n"
+"    background-color: #2f7c67;\n"
+"    border-radius: 6px;\n"
+"}")
+        self.titleSpotifyMode.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_spotifyMode.addWidget(self.titleSpotifyMode)
+
+        self.spotifyModeCombo = QComboBox(self.frame_spotifyMode)
+        self.spotifyModeCombo.addItem("")
+        self.spotifyModeCombo.addItem("")
+        self.spotifyModeCombo.setObjectName(u"spotifyModeCombo")
+        self.spotifyModeCombo.setMinimumSize(QSize(200, 30))
+        self.spotifyModeCombo.setMaximumSize(QSize(200, 30))
+        self.spotifyModeCombo.setStyleSheet(u"QComboBox {\n"
+"    background-color: rgba(255, 255, 255, 0.9);\n"
+"    color: #2e2a44;\n"
+"    font-family: \"Segoe UI\";\n"
+"    font-size: 10pt;\n"
+"    font-weight: 700;\n"
+"    border: 2px solid #9b8acb;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px 8px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    border: none;\n"
+"    width: 24px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: #ffffff;\n"
+"    color: #2e2a44;\n"
+"    border: 1px solid #9b8acb;\n"
+"    selection-background-color: #dfd7f4;\n"
+"}")
+
+        self.horizontalLayout_spotifyMode.addWidget(self.spotifyModeCombo)
+
+
+        self.verticalLayout_39.addWidget(self.frame_spotifyMode)
+
+        self.frame_spotifyApi = QFrame(self.frame_24)
+        self.frame_spotifyApi.setObjectName(u"frame_spotifyApi")
+        self.frame_spotifyApi.setMinimumSize(QSize(360, 140))
+        self.frame_spotifyApi.setFrameShape(QFrame.Shape.NoFrame)
+        self.frame_spotifyApi.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_spotifyApi = QVBoxLayout(self.frame_spotifyApi)
+        self.verticalLayout_spotifyApi.setSpacing(6)
+        self.verticalLayout_spotifyApi.setObjectName(u"verticalLayout_spotifyApi")
+        self.verticalLayout_spotifyApi.setContentsMargins(0, 0, 0, 0)
+        self.titleSpotifyApi = QLabel(self.frame_spotifyApi)
+        self.titleSpotifyApi.setObjectName(u"titleSpotifyApi")
+        self.titleSpotifyApi.setMinimumSize(QSize(0, 26))
+        font3 = QFont()
+        font3.setFamilies([u"Segoe UI"])
+        font3.setPointSize(10)
+        font3.setBold(True)
+        font3.setItalic(False)
+        self.titleSpotifyApi.setFont(font3)
+        self.titleSpotifyApi.setStyleSheet(u"#titleSpotifyApi{\n"
+"    color: white;\n"
+"    font-size: 10pt;\n"
+"    font-weight: bold;\n"
+"    background-color: #1f5f57;\n"
+"    border-radius: 6px;\n"
+"    padding: 2px 6px;\n"
+"}")
+        self.titleSpotifyApi.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.verticalLayout_spotifyApi.addWidget(self.titleSpotifyApi)
+
+        self.spotifyClientIdInput = QLineEdit(self.frame_spotifyApi)
+        self.spotifyClientIdInput.setObjectName(u"spotifyClientIdInput")
+        self.spotifyClientIdInput.setMinimumSize(QSize(0, 28))
+        self.spotifyClientIdInput.setStyleSheet(u"QLineEdit{\n"
+"    background-color: rgba(255, 255, 255, 0.9);\n"
+"    color: #2e2a44;\n"
+"    font-family: \"Segoe UI\";\n"
+"    font-size: 10pt;\n"
+"    font-weight: 700;\n"
+"    border: 2px solid #9b8acb;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px 6px;\n"
+"}\n"
+"\n"
+"QLineEdit:disabled {\n"
+"    background-color: rgba(235, 231, 246, 0.8);\n"
+"    color: #9a95b3;\n"
+"    border: 2px solid #c7bddf;\n"
+"}")
+
+        self.verticalLayout_spotifyApi.addWidget(self.spotifyClientIdInput)
+
+        self.spotifyClientSecretInput = QLineEdit(self.frame_spotifyApi)
+        self.spotifyClientSecretInput.setObjectName(u"spotifyClientSecretInput")
+        self.spotifyClientSecretInput.setMinimumSize(QSize(0, 28))
+        self.spotifyClientSecretInput.setStyleSheet(u"QLineEdit{\n"
+"    background-color: rgba(255, 255, 255, 0.9);\n"
+"    color: #2e2a44;\n"
+"    font-family: \"Segoe UI\";\n"
+"    font-size: 10pt;\n"
+"    font-weight: 700;\n"
+"    border: 2px solid #9b8acb;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px 6px;\n"
+"}\n"
+"\n"
+"QLineEdit:disabled {\n"
+"    background-color: rgba(235, 231, 246, 0.8);\n"
+"    color: #9a95b3;\n"
+"    border: 2px solid #c7bddf;\n"
+"}")
+        self.spotifyClientSecretInput.setEchoMode(QLineEdit.Password)
+
+        self.verticalLayout_spotifyApi.addWidget(self.spotifyClientSecretInput)
+
+        self.spotifyRefreshTokenInput = QLineEdit(self.frame_spotifyApi)
+        self.spotifyRefreshTokenInput.setObjectName(u"spotifyRefreshTokenInput")
+        self.spotifyRefreshTokenInput.setMinimumSize(QSize(0, 28))
+        self.spotifyRefreshTokenInput.setStyleSheet(u"QLineEdit{\n"
+"    background-color: rgba(255, 255, 255, 0.9);\n"
+"    color: #2e2a44;\n"
+"    font-family: \"Segoe UI\";\n"
+"    font-size: 10pt;\n"
+"    font-weight: 700;\n"
+"    border: 2px solid #9b8acb;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px 6px;\n"
+"}\n"
+"\n"
+"QLineEdit:disabled {\n"
+"    background-color: rgba(235, 231, 246, 0.8);\n"
+"    color: #9a95b3;\n"
+"    border: 2px solid #c7bddf;\n"
+"}")
+        self.spotifyRefreshTokenInput.setEchoMode(QLineEdit.Password)
+
+        self.verticalLayout_spotifyApi.addWidget(self.spotifyRefreshTokenInput)
+
+
+        self.verticalLayout_39.addWidget(self.frame_spotifyApi)
+
         self.btn_savesettings = QPushButton(self.frame_24)
         self.btn_savesettings.setObjectName(u"btn_savesettings")
         self.btn_savesettings.setMinimumSize(QSize(0, 0))
@@ -3682,9 +3843,9 @@ class Ui_MainWindow(object):
         self.bottomBar.setObjectName(u"bottomBar")
         self.bottomBar.setMinimumSize(QSize(0, 15))
         self.bottomBar.setMaximumSize(QSize(16777215, 15))
-        font3 = QFont()
-        font3.setPointSize(9)
-        self.bottomBar.setFont(font3)
+        font4 = QFont()
+        font4.setPointSize(9)
+        self.bottomBar.setFont(font4)
         self.bottomBar.setFrameShape(QFrame.Shape.NoFrame)
         self.bottomBar.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_6 = QHBoxLayout(self.bottomBar)
@@ -3694,12 +3855,12 @@ class Ui_MainWindow(object):
         self.creditsLabel = QLabel(self.bottomBar)
         self.creditsLabel.setObjectName(u"creditsLabel")
         self.creditsLabel.setMaximumSize(QSize(16777215, 16))
-        font4 = QFont()
-        font4.setFamilies([u"Segoe UI"])
-        font4.setPointSize(8)
-        font4.setBold(False)
-        font4.setItalic(False)
-        self.creditsLabel.setFont(font4)
+        font5 = QFont()
+        font5.setFamilies([u"Segoe UI"])
+        font5.setPointSize(8)
+        font5.setBold(False)
+        font5.setItalic(False)
+        self.creditsLabel.setFont(font5)
         self.creditsLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.horizontalLayout_6.addWidget(self.creditsLabel)
@@ -3774,6 +3935,14 @@ class Ui_MainWindow(object):
         self.titleAutostartup.setText(QCoreApplication.translate("MainWindow", u"Auto Start Up KeyBloom (Recommended)", None))
         self.cbAutodetect.setText("")
         self.titleAutodetect.setText(QCoreApplication.translate("MainWindow", u"Auto Detect KeyBloom (Recommended)", None))
+        self.titleSpotifyMode.setText(QCoreApplication.translate("MainWindow", u"Spotify Mode", None))
+        self.spotifyModeCombo.setItemText(0, QCoreApplication.translate("MainWindow", u"Windows Session", None))
+        self.spotifyModeCombo.setItemText(1, QCoreApplication.translate("MainWindow", u"Spotify Web API", None))
+
+        self.titleSpotifyApi.setText(QCoreApplication.translate("MainWindow", u"Spotify Web API Credentials", None))
+        self.spotifyClientIdInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Client ID", None))
+        self.spotifyClientSecretInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Client Secret", None))
+        self.spotifyRefreshTokenInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Refresh Token", None))
         self.btn_savesettings.setText(QCoreApplication.translate("MainWindow", u"Save Settings", None))
         self.creditsLabel.setText(QCoreApplication.translate("MainWindow", u"By: SKAR - 2026", None))
         self.version.setText(QCoreApplication.translate("MainWindow", u"v1.0", None))
