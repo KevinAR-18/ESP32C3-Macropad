@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
@@ -43,7 +43,7 @@
 QMainWindow {
     background-color: #f2effc;   /* ungu sangat terang tapi hidup */
     color: #2b2545;
-    font-family: "Segoe UI";
+    font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
 }
 
@@ -365,7 +365,7 @@ QMainWindow {
     min-height: 22px;
 
     color: white;
-    font: 10pt "Segoe UI";
+    font: 10pt &quot;Segoe UI&quot;;
     font-weight: bold;
 }
 
@@ -385,7 +385,7 @@ QToolTip {
     border-radius: 4px;
 
     padding: 3px 6px;
-    font-family: "Segoe UI";
+    font-family: &quot;Segoe UI&quot;;
     font-size: 8pt;
 }
 
@@ -395,7 +395,7 @@ QToolTip {
 </string>
              </property>
              <property name="text">
-              <string />
+              <string/>
              </property>
              <property name="icon">
               <iconset resource="resources.qrc">
@@ -439,7 +439,7 @@ QToolTip {
     min-height: 22px;
 
     color: white;
-    font: 10pt "Segoe UI";
+    font: 10pt &quot;Segoe UI&quot;;
     font-weight: bold;
 }
 
@@ -458,14 +458,14 @@ QPushButton#closeAppBtn QToolTip {
     border-radius: 4px;
 
     padding: 3px 6px;
-    font-family: "Segoe UI";
+    font-family: &quot;Segoe UI&quot;;
     font-size: 8pt;
 }
 
 </string>
              </property>
              <property name="text">
-              <string />
+              <string/>
              </property>
              <property name="icon">
               <iconset resource="resources.qrc">
@@ -573,7 +573,7 @@ QPushButton {
     border: 2px solid #8f6fa0;
     border-radius: 8px;
     color: white;
-    font: 12pt "Segoe UI";
+    font: 12pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 5px 12px;
 }
@@ -615,7 +615,7 @@ QPushButton{
     border: 2px solid #9e78b8;
     border-radius: 8px;
     color: white;
-    font: 12pt "Segoe UI";
+    font: 12pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 5px 12px;
 }
@@ -655,7 +655,7 @@ QPushButton {
     border: 2px solid #8f6fa0;
     border-radius: 8px;
     color: white;
-    font: 12pt "Segoe UI";
+    font: 12pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 5px 12px;
 }
@@ -697,7 +697,7 @@ QPushButton{
     border: 2px solid #9e78b8;
     border-radius: 8px;
     color: white;
-    font: 12pt "Segoe UI";
+    font: 12pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 5px 12px;
 }
@@ -737,7 +737,7 @@ QPushButton {
     border: 2px solid #8f6fa0;
     border-radius: 8px;
     color: white;
-    font: 12pt "Segoe UI";
+    font: 12pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 5px 12px;
 }
@@ -779,7 +779,7 @@ QPushButton {
     border: 2px solid #9386e6;
     border-radius: 8px;
     color: white;
-    font: 12pt "Segoe UI";
+    font: 12pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 5px 12px;
 }
@@ -804,7 +804,7 @@ QPushButton:pressed {
         <item>
          <widget class="QStackedWidget" name="stackedWidget">
           <property name="currentIndex">
-           <number>4</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="pageProfile1">
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1013,7 +1013,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -1142,7 +1142,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -1271,7 +1271,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -1400,7 +1400,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -1529,7 +1529,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -1658,7 +1658,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -1737,7 +1737,7 @@ QLineEdit:disabled {
     border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
     border-radius: 8px;
     color: white;
-    font: 10pt "Segoe UI";
+    font: 10pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 4px 10px;               /* lebih ramping, teks tetap lega */
 }
@@ -1983,7 +1983,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -2112,7 +2112,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -2241,7 +2241,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -2370,7 +2370,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -2499,7 +2499,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -2628,7 +2628,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -2707,7 +2707,7 @@ QLineEdit:disabled {
     border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
     border-radius: 8px;
     color: white;
-    font: 10pt "Segoe UI";
+    font: 10pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 4px 10px;               /* lebih ramping, teks tetap lega */
 }
@@ -2953,7 +2953,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -3082,7 +3082,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -3211,7 +3211,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -3340,7 +3340,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -3469,7 +3469,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -3598,7 +3598,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -3677,7 +3677,7 @@ QLineEdit:disabled {
     border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
     border-radius: 8px;
     color: white;
-    font: 10pt "Segoe UI";
+    font: 10pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 4px 10px;               /* lebih ramping, teks tetap lega */
 }
@@ -3923,7 +3923,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -4052,7 +4052,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -4181,7 +4181,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -4310,7 +4310,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -4439,7 +4439,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -4568,7 +4568,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -4647,7 +4647,7 @@ QLineEdit:disabled {
     border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
     border-radius: 8px;
     color: white;
-    font: 10pt "Segoe UI";
+    font: 10pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 4px 10px;               /* lebih ramping, teks tetap lega */
 }
@@ -4691,7 +4691,7 @@ QPushButton:disabled {
           </widget>
           <widget class="QWidget" name="pageProfile5">
            <property name="styleSheet">
-            <string notr="true" />
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_37">
             <property name="leftMargin">
@@ -4896,7 +4896,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -5025,7 +5025,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -5154,7 +5154,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -5283,7 +5283,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -5412,7 +5412,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -5541,7 +5541,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -5620,7 +5620,7 @@ QLineEdit:disabled {
     border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
     border-radius: 8px;
     color: white;
-    font: 10pt "Segoe UI";
+    font: 10pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 4px 10px;               /* lebih ramping, teks tetap lega */
 }
@@ -5884,7 +5884,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -6006,7 +6006,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -6127,7 +6127,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -6248,7 +6248,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -6369,7 +6369,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -6502,7 +6502,7 @@ QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);   /* putih lembut, bersih */
     color: #2e2a44;                               /* teks ungu gelap */
     
-	font-family: "Segoe UI";
+	font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;     
 
@@ -6578,7 +6578,7 @@ QLineEdit:disabled {
                        <string notr="true">/* ================= CHECKBOX ================= */
 QCheckBox {
     color: #2e2a44;                 /* teks ungu gelap */
-    font: 10pt "Segoe UI";
+    font: 10pt &quot;Segoe UI&quot;;
     spacing: 8px;
 }
 
@@ -6620,7 +6620,7 @@ QCheckBox:disabled {
 </string>
                       </property>
                       <property name="text">
-                       <string />
+                       <string/>
                       </property>
                      </widget>
                     </item>
@@ -6678,7 +6678,7 @@ QCheckBox:disabled {
                   </widget>
                  </item>
                  <item>
-                 <widget class="QFrame" name="frame_30">
+                  <widget class="QFrame" name="frame_30">
                    <property name="minimumSize">
                     <size>
                      <width>320</width>
@@ -6728,7 +6728,7 @@ QCheckBox:disabled {
                        <string notr="true">/* ================= CHECKBOX ================= */
 QCheckBox {
     color: #2e2a44;                 /* teks ungu gelap */
-    font: 10pt "Segoe UI";
+    font: 10pt &quot;Segoe UI&quot;;
     spacing: 8px;
 	font-weight: bold;
 }
@@ -6771,7 +6771,7 @@ QCheckBox:disabled {
 </string>
                       </property>
                       <property name="text">
-                       <string />
+                       <string/>
                       </property>
                       <property name="checked">
                        <bool>false</bool>
@@ -6828,97 +6828,97 @@ QCheckBox:disabled {
                       </property>
                      </widget>
                     </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QFrame" name="frame_spotifyMode">
-                  <property name="minimumSize">
-                   <size>
-                    <width>360</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::Shape::NoFrame</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Shadow::Raised</enum>
-                  </property>
-                  <layout class="QHBoxLayout" name="horizontalLayout_spotifyMode">
-                   <property name="spacing">
-                    <number>6</number>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_spotifyMode">
+                   <property name="minimumSize">
+                    <size>
+                     <width>360</width>
+                     <height>40</height>
+                    </size>
                    </property>
-                   <property name="leftMargin">
-                    <number>0</number>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
                    </property>
-                   <property name="topMargin">
-                    <number>0</number>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
                    </property>
-                   <property name="rightMargin">
-                    <number>0</number>
-                   </property>
-                   <property name="bottomMargin">
-                    <number>0</number>
-                   </property>
-                   <item>
-                    <widget class="QLabel" name="titleSpotifyMode">
-                     <property name="minimumSize">
-                      <size>
-                       <width>160</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>160</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>11</pointsize>
-                       <italic>false</italic>
-                       <bold>true</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">#titleSpotifyMode{
+                   <layout class="QHBoxLayout" name="horizontalLayout_spotifyMode">
+                    <property name="spacing">
+                     <number>6</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="titleSpotifyMode">
+                      <property name="minimumSize">
+                       <size>
+                        <width>160</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>160</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>11</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">#titleSpotifyMode{
     color: white;
     font-size: 11pt;
     font-weight: bold;
     background-color: #2f7c67;
     border-radius: 6px;
 }</string>
-                     </property>
-                     <property name="text">
-                      <string>Spotify Mode</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignmentFlag::AlignCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QComboBox" name="spotifyModeCombo">
-                     <property name="minimumSize">
-                      <size>
-                       <width>200</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>200</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QComboBox {
+                      </property>
+                      <property name="text">
+                       <string>Spotify Mode</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="spotifyModeCombo">
+                      <property name="minimumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>200</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QComboBox {
     background-color: rgba(255, 255, 255, 0.9);
     color: #2e2a44;
-    font-family: "Segoe UI";
+    font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;
     border: 2px solid #9b8acb;
@@ -6937,70 +6937,70 @@ QComboBox QAbstractItemView {
     border: 1px solid #9b8acb;
     selection-background-color: #dfd7f4;
 }</string>
-                     </property>
-                     <item>
-                      <property name="text">
-                       <string>Windows Session</string>
                       </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Spotify Web API</string>
+                      <item>
+                       <property name="text">
+                        <string>Windows Session</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Spotify Web API</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_spotifyApi">
+                   <property name="minimumSize">
+                    <size>
+                     <width>360</width>
+                     <height>140</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_spotifyApi">
+                    <property name="spacing">
+                     <number>6</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="titleSpotifyApi">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>26</height>
+                       </size>
                       </property>
-                     </item>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QFrame" name="frame_spotifyApi">
-                  <property name="minimumSize">
-                   <size>
-                    <width>360</width>
-                    <height>140</height>
-                   </size>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::Shape::NoFrame</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Shadow::Raised</enum>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_spotifyApi">
-                   <property name="spacing">
-                    <number>6</number>
-                   </property>
-                   <property name="leftMargin">
-                    <number>0</number>
-                   </property>
-                   <property name="topMargin">
-                    <number>0</number>
-                   </property>
-                   <property name="rightMargin">
-                    <number>0</number>
-                   </property>
-                   <property name="bottomMargin">
-                    <number>0</number>
-                   </property>
-                   <item>
-                    <widget class="QLabel" name="titleSpotifyApi">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>26</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <italic>false</italic>
-                       <bold>true</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">#titleSpotifyApi{
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>10</pointsize>
+                        <italic>false</italic>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">#titleSpotifyApi{
     color: white;
     font-size: 10pt;
     font-weight: bold;
@@ -7008,28 +7008,28 @@ QComboBox QAbstractItemView {
     border-radius: 6px;
     padding: 2px 6px;
 }</string>
-                     </property>
-                     <property name="text">
-                      <string>Spotify Web API Credentials</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignmentFlag::AlignCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLineEdit" name="spotifyClientIdInput">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>28</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLineEdit{
+                      </property>
+                      <property name="text">
+                       <string>Spotify Web API Credentials</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="spotifyClientIdInput">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>28</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);
     color: #2e2a44;
-    font-family: "Segoe UI";
+    font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;
     border: 2px solid #9b8acb;
@@ -7042,25 +7042,25 @@ QLineEdit:disabled {
     color: #9a95b3;
     border: 2px solid #c7bddf;
 }</string>
-                     </property>
-                     <property name="placeholderText">
-                      <string>Client ID</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLineEdit" name="spotifyClientSecretInput">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>28</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLineEdit{
+                      </property>
+                      <property name="placeholderText">
+                       <string>Client ID</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="spotifyClientSecretInput">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>28</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);
     color: #2e2a44;
-    font-family: "Segoe UI";
+    font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;
     border: 2px solid #9b8acb;
@@ -7073,28 +7073,28 @@ QLineEdit:disabled {
     color: #9a95b3;
     border: 2px solid #c7bddf;
 }</string>
-                     </property>
-                     <property name="echoMode">
-                      <enum>QLineEdit::Password</enum>
-                     </property>
-                     <property name="placeholderText">
-                      <string>Client Secret</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLineEdit" name="spotifyRefreshTokenInput">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>28</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLineEdit{
+                      </property>
+                      <property name="echoMode">
+                       <enum>QLineEdit::EchoMode::Password</enum>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Client Secret</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="spotifyRefreshTokenInput">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>28</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLineEdit{
     background-color: rgba(255, 255, 255, 0.9);
     color: #2e2a44;
-    font-family: "Segoe UI";
+    font-family: &quot;Segoe UI&quot;;
     font-size: 10pt;
     font-weight: 700;
     border: 2px solid #9b8acb;
@@ -7107,20 +7107,20 @@ QLineEdit:disabled {
     color: #9a95b3;
     border: 2px solid #c7bddf;
 }</string>
-                     </property>
-                     <property name="echoMode">
-                      <enum>QLineEdit::Password</enum>
-                     </property>
-                     <property name="placeholderText">
-                      <string>Refresh Token</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btn_savesettings">
+                      </property>
+                      <property name="echoMode">
+                       <enum>QLineEdit::EchoMode::Password</enum>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Refresh Token</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_savesettings">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -7139,7 +7139,7 @@ QLineEdit:disabled {
     border: 1.5px solid #4A9A59;     /* diperkecil dari 2px */
     border-radius: 8px;
     color: white;
-    font: 10pt "Segoe UI";
+    font: 10pt &quot;Segoe UI&quot;;
     font-weight: bold;
     padding: 4px 10px;               /* lebih ramping, teks tetap lega */
 }
@@ -7286,7 +7286,7 @@ QPushButton:disabled {
   </widget>
  </widget>
  <resources>
-  <include location="resources.qrc" />
+  <include location="resources.qrc"/>
  </resources>
- <connections />
+ <connections/>
 </ui>

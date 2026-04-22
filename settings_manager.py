@@ -11,9 +11,10 @@ DEFAULT_PROFILE_TITLES = [
 ]
 SHORTCUT_MODE = "shortcut"
 APPLICATION_MODE = "application"
+APP_NAME = "KeyBloom"
 
 
-def app_config_path(filename: str) -> str:
+def legacy_app_config_path(filename: str) -> str:
     if getattr(sys, "frozen", False):
         base_dir = os.path.dirname(sys.executable)
     else:
@@ -21,21 +22,52 @@ def app_config_path(filename: str) -> str:
     return os.path.join(base_dir, filename)
 
 
+def app_config_dir() -> str:
+    # Roaming AppData is safer for packaged Windows apps because Program Files
+    # or other install folders may not be writable.
+    roaming_appdata = os.getenv("APPDATA")
+    if roaming_appdata:
+        return os.path.join(roaming_appdata, APP_NAME)
+
+    local_appdata = os.getenv("LOCALAPPDATA")
+    if local_appdata:
+        return os.path.join(local_appdata, APP_NAME)
+
+    return os.path.join(os.path.expanduser("~"), f".{APP_NAME.lower()}")
+
+
+def app_config_path(filename: str) -> str:
+    return os.path.join(app_config_dir(), filename)
+
+
 def settings_path() -> str:
     return app_config_path("settings.json")
 
 
+def legacy_settings_path() -> str:
+    return legacy_app_config_path("settings.json")
+
+
 def load_settings(path: str):
-    if not os.path.exists(path):
+    # Prefer the AppData file, but still accept a legacy settings file placed
+    # next to the script or executable.
+    candidate_paths = [path]
+    legacy_path = legacy_settings_path()
+    if legacy_path not in candidate_paths:
+        candidate_paths.append(legacy_path)
+
+    existing_path = next((candidate for candidate in candidate_paths if os.path.exists(candidate)), None)
+    if not existing_path:
         return None
     try:
-        with open(path, "r", encoding="utf-8") as file:
+        with open(existing_path, "r", encoding="utf-8") as file:
             return json.load(file)
     except (OSError, json.JSONDecodeError):
         return None
 
 
 def save_settings(path: str, data: dict):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=2)
 

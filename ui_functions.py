@@ -37,7 +37,6 @@ class UIFunctions:
         window.setWindowFlag(Qt.WindowSystemMenuHint, False)
         window.setWindowFlag(Qt.WindowMinMaxButtonsHint, False)
         window.setWindowFlag(Qt.WindowCloseButtonHint, False)
-        window.show()
 
     @staticmethod
     def apply_border(

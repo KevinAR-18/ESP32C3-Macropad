@@ -88,6 +88,8 @@ class KeyCaptureFilter(QObject):
             self.active_keys.remove(key)
 
     def _update_text(self, obj, modifiers):
+        # Rebuild the displayed shortcut from the active modifiers plus the
+        # current non-modifier keys being held.
         keys = []
 
         modifier_pairs = (

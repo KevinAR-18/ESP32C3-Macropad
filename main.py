@@ -2,6 +2,7 @@ import os
 import re
 import subprocess
 import sys
+from importlib import import_module
 from functools import partial
 from pathlib import Path
 
@@ -17,15 +18,10 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
-import keyboard
-import psutil
 import serial
-from pycaw.pycaw import AudioUtilities, ISimpleAudioVolume
-from serial.tools import list_ports
 
 from date_utils import Date
 from key_capture import KeyCaptureFilter
-import resources_rc
 from settings_manager import (
     APPLICATION_MODE,
     SHORTCUT_MODE,
@@ -46,7 +42,7 @@ APP_NAME = "KeyBloom"
 PROFILE_IDS = tuple(str(index) for index in range(1, 6))
 PROFILE_LINE_COUNT = 6
 SERIAL_BAUDRATE = 115200
-SERIAL_POLL_MS = 25
+SERIAL_POLL_MS = 40
 SERIAL_RECONNECT_MS = 2000
 SETTINGS_SAVE_DEBOUNCE_MS = 250
 ESP32_VID = 0x303A
@@ -142,9 +138,14 @@ class MainWindow(QMainWindow):
         self._serial = None
         self._serial_port_name = ""
         self._serial_buffer = ""
+        self._serial_buffer_limit = 4096
         self._current_profile_id = "1"
         self._settings_data = {}
         self._spotify_volume = None
+        self._keyboard = None
+        self._list_ports_module = None
+        self._pycaw_interfaces = None
+        self._psutil = None
         self._serial_poll_timer = QTimer(self)
         self._serial_poll_timer.timeout.connect(self._poll_serial)
         self._serial_reconnect_timer = QTimer(self)
@@ -157,14 +158,16 @@ class MainWindow(QMainWindow):
         self._save_buttons = self._build_save_buttons()
         self._profile_slots = self._build_profile_slots()
 
+        # Keep startup cheap, then lazily prepare profile widgets when the user
+        # opens a page that actually needs them.
         self._configure_window()
         self._configure_settings_controls()
         self._setup_tray()
-        self._setup_profile_slots()
         self._show_page(self._profile_pages["1"], profile_id="1")
         self._connect_signals()
         self._setup_clock()
         self._load_settings()
+        self._ensure_profile_slots_ready(self._current_profile_id)
         self._start_serial_bridge()
 
     def _configure_window(self):
@@ -221,9 +224,23 @@ class MainWindow(QMainWindow):
     def _configure_settings_controls(self):
         self.ui.inputCOM.setPlaceholderText("Contoh: COM6")
         self.ui.inputCOM.setToolTip("Isi jika Auto Detect dimatikan.")
-        self.ui.frame_spotifyMode.hide()
-        self.ui.frame_spotifyApi.hide()
+        self._remove_unused_spotify_ui()
         self._apply_settings_ui_state()
+
+    def _remove_unused_spotify_ui(self):
+        # These widgets exist in the generated UI but are not part of the
+        # active flow, so they are detached to reduce idle memory usage.
+        for attribute_name in ("frame_spotifyMode", "frame_spotifyApi"):
+            frame = getattr(self.ui, attribute_name, None)
+            if frame is None:
+                continue
+            frame.hide()
+            layout = frame.parentWidget().layout() if frame.parentWidget() else None
+            if layout is not None:
+                layout.removeWidget(frame)
+            frame.setParent(None)
+            frame.deleteLater()
+            setattr(self.ui, attribute_name, None)
 
     def _update_clock(self):
         self._date_helper.update_time(self.ui.clockInfo)
@@ -270,10 +287,15 @@ class MainWindow(QMainWindow):
 
         return profile_slots
 
-    def _setup_profile_slots(self):
-        for slots in self._profile_slots.values():
-            for slot in slots:
-                self._setup_single_slot(slot)
+    def _ensure_profile_slots_ready(self, profile_id):
+        # Preview widgets are more expensive than plain line edits, so they are
+        # created only for the currently visited profile page.
+        slots = self._profile_slots.get(profile_id, [])
+        for slot in slots:
+            if slot.get("initialized"):
+                continue
+            self._setup_single_slot(slot)
+            slot["initialized"] = True
 
     def _setup_single_slot(self, slot):
         line = slot["line_edit"]
@@ -378,7 +400,7 @@ class MainWindow(QMainWindow):
     def _apply_slot_mode(self, slot):
         mode = slot.get("mode", SHORTCUT_MODE)
         line = slot["line_edit"]
-        preview = slot["preview_widget"]
+        preview = slot.get("preview_widget")
 
         is_shortcut_mode = mode == SHORTCUT_MODE
         is_capture_active = is_shortcut_mode and self._active_capture_slot is slot
@@ -395,8 +417,9 @@ class MainWindow(QMainWindow):
         elif line.text().strip():
             preview_mode = KEYBOARD_MODE
 
-        preview.set_mode(preview_mode)
-        preview.setToolTip(PREVIEW_TOOLTIP[mode])
+        if preview is not None:
+            preview.set_mode(preview_mode)
+            preview.setToolTip(PREVIEW_TOOLTIP[mode])
         if is_capture_active:
             line.setToolTip("Rekam shortcut aktif selama 5 detik.")
         else:
@@ -448,6 +471,8 @@ class MainWindow(QMainWindow):
         self._schedule_save_settings()
 
     def _start_shortcut_capture(self, slot):
+        # Only one capture target should be active so the key event filter has
+        # a single destination for the recorded shortcut.
         self._active_capture_slot = slot
         self._key_filter.reset()
         self._apply_slot_mode(slot)
@@ -540,6 +565,8 @@ class MainWindow(QMainWindow):
         self._settings_data = dict(data)
         self._loading_settings = True
         try:
+            # Many widget updates happen here; suppress autosave side effects
+            # until the initial load sequence is finished.
             for line_edit, name in zip(
                 self._profile_name_inputs, data.get("profile_names", [])
             ):
@@ -575,6 +602,8 @@ class MainWindow(QMainWindow):
             "spotify": self._spotify_settings(),
             "profiles": collect_profile_mappings(self._profile_slots),
         }
+        # Persist into AppData so the packaged executable does not need write
+        # permission inside its install directory.
         save_settings(settings_path(), self._settings_data)
 
     def _schedule_save_settings(self):
@@ -591,7 +620,8 @@ class MainWindow(QMainWindow):
     def _refresh_slot_modes(self):
         for slots in self._profile_slots.values():
             for slot in slots:
-                self._apply_slot_mode(slot)
+                if slot.get("initialized"):
+                    self._apply_slot_mode(slot)
 
     def _on_autostart_toggled(self, checked: bool):
         if self._loading_settings:
@@ -610,6 +640,7 @@ class MainWindow(QMainWindow):
     def _show_page(self, page, profile_id=None):
         if profile_id in self._profile_pages:
             self._current_profile_id = profile_id
+            self._ensure_profile_slots_ready(profile_id)
         self.ui.stackedWidget.setCurrentWidget(page)
         if self._settings_initialized and not self._loading_settings:
             self._schedule_save_settings()
@@ -628,6 +659,16 @@ class MainWindow(QMainWindow):
         self.raise_()
         self.activateWindow()
 
+    def hideEvent(self, event):
+        self.clock_timer.stop()
+        super().hideEvent(event)
+
+    def showEvent(self, event):
+        if hasattr(self, "clock_timer") and not self.clock_timer.isActive():
+            self._update_clock()
+            self.clock_timer.start(1000)
+        super().showEvent(event)
+
     def _on_tray_activated(self, reason):
         if reason == QSystemTrayIcon.Trigger:
             self.show_normal_from_tray()
@@ -637,13 +678,14 @@ class MainWindow(QMainWindow):
         super().closeEvent(event)
 
     def _start_serial_bridge(self):
-        self._serial_reconnect_timer.start(SERIAL_RECONNECT_MS)
+        self._serial_reconnect_timer.stop()
         self._ensure_serial_connection()
 
     def _ensure_serial_connection(self):
         desired_port = self._resolve_serial_port()
         if not desired_port:
             self._disconnect_serial()
+            self._serial_reconnect_timer.start(SERIAL_RECONNECT_MS)
             return
 
         if self._serial and self._serial.is_open and self._serial_port_name == desired_port:
@@ -662,6 +704,7 @@ class MainWindow(QMainWindow):
         self._serial_port_name = desired_port
         self._serial_buffer = ""
         self._serial_poll_timer.start(SERIAL_POLL_MS)
+        self._serial_reconnect_timer.stop()
 
     def _disconnect_serial(self):
         self._serial_poll_timer.stop()
@@ -676,9 +719,15 @@ class MainWindow(QMainWindow):
                     serial_device.close()
             except serial.SerialException:
                 pass
+        if self._resolve_serial_port():
+            self._serial_reconnect_timer.start(SERIAL_RECONNECT_MS)
 
     def _detect_esp32_port(self):
-        for port in list_ports.comports():
+        list_ports_module = self._get_list_ports_module()
+        if list_ports_module is None:
+            return ""
+
+        for port in list_ports_module.comports():
             if port.vid == ESP32_VID:
                 return port.device
 
@@ -704,7 +753,9 @@ class MainWindow(QMainWindow):
 
         try:
             waiting = self._serial.in_waiting
-            chunk = self._serial.read(waiting or 1)
+            if waiting <= 0:
+                return
+            chunk = self._serial.read(waiting)
         except (serial.SerialException, OSError) as error:
             print(f"[SERIAL] Read failed: {error}")
             self._disconnect_serial()
@@ -713,7 +764,11 @@ class MainWindow(QMainWindow):
         if not chunk:
             return
 
+        # A bounded text buffer prevents malformed serial traffic from growing
+        # memory usage indefinitely.
         self._serial_buffer += chunk.decode(errors="ignore")
+        if len(self._serial_buffer) > self._serial_buffer_limit:
+            self._serial_buffer = self._serial_buffer[-self._serial_buffer_limit :]
         while "\n" in self._serial_buffer:
             line, self._serial_buffer = self._serial_buffer.split("\n", 1)
             event = line.strip()
@@ -721,6 +776,8 @@ class MainWindow(QMainWindow):
                 self._handle_serial_event(event)
 
     def _handle_serial_event(self, event_text: str):
+        # The firmware sends simple text commands; this is the translation layer
+        # from hardware events into desktop actions.
         if event_text == "START":
             return
 
@@ -730,13 +787,13 @@ class MainWindow(QMainWindow):
             return
 
         if event_text == "ENC1 RIGHT":
-            keyboard.send("volume up")
+            self._send_media_key("volume up")
             return
         if event_text == "ENC1 LEFT":
-            keyboard.send("volume down")
+            self._send_media_key("volume down")
             return
         if event_text == "ENC1 BUTTON PRESSED":
-            keyboard.send("volume mute")
+            self._send_media_key("volume mute")
             return
 
         if event_text == "ENC2 RIGHT":
@@ -746,7 +803,7 @@ class MainWindow(QMainWindow):
             self._adjust_spotify_volume(-(SPOTIFY_WEB_STEP_PERCENT / 100))
             return
         if event_text == "ENC2 BUTTON PRESSED":
-            keyboard.send("play/pause media")
+            self._send_media_key("play/pause media")
 
     def _execute_profile_slot(self, slot_number: int):
         slots = self._profile_slots.get(self._current_profile_id, [])
@@ -777,10 +834,24 @@ class MainWindow(QMainWindow):
         if not normalized:
             return
 
+        keyboard_module = self._get_keyboard_module()
+        if keyboard_module is None:
+            return
+
         try:
-            keyboard.press_and_release(normalized)
+            keyboard_module.press_and_release(normalized)
         except ValueError as error:
             print(f"[SHORTCUT] Invalid shortcut '{shortcut_text}': {error}")
+
+    def _send_media_key(self, key_name: str):
+        keyboard_module = self._get_keyboard_module()
+        if keyboard_module is None:
+            return
+
+        try:
+            keyboard_module.send(key_name)
+        except ValueError as error:
+            print(f"[SHORTCUT] Invalid media key '{key_name}': {error}")
 
     def _normalize_shortcut(self, shortcut_text: str) -> str:
         text = shortcut_text.strip()
@@ -833,6 +904,10 @@ class MainWindow(QMainWindow):
             spotify_volume.SetMasterVolume(min(max(current_volume + delta, 0.0), 1.0), None)
 
     def _get_spotify_volume(self):
+        pycaw_interfaces = self._get_pycaw_interfaces()
+        if pycaw_interfaces is None:
+            return None
+
         if not self._is_spotify_running():
             self._spotify_volume = None
             return None
@@ -840,22 +915,69 @@ class MainWindow(QMainWindow):
         if self._spotify_volume is not None:
             return self._spotify_volume
 
-        for session in AudioUtilities.GetAllSessions():
+        audio_utilities, simple_audio_volume = pycaw_interfaces
+        for session in audio_utilities.GetAllSessions():
             process = session.Process
             if process and process.name().lower() == "spotify.exe":
-                self._spotify_volume = session._ctl.QueryInterface(ISimpleAudioVolume)
+                self._spotify_volume = session._ctl.QueryInterface(simple_audio_volume)
                 return self._spotify_volume
 
         return None
 
     def _is_spotify_running(self) -> bool:
-        for process in psutil.process_iter(["name"]):
+        psutil_module = self._get_psutil_module()
+        if psutil_module is None:
+            return False
+
+        for process in psutil_module.process_iter(["name"]):
             try:
                 if (process.info.get("name") or "").lower() == "spotify.exe":
                     return True
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
+            except (psutil_module.NoSuchProcess, psutil_module.AccessDenied):
                 continue
         return False
+
+    def _get_keyboard_module(self):
+        if self._keyboard is None:
+            try:
+                # Delay global hook modules until they are actually needed to
+                # keep the tray process lighter at startup.
+                self._keyboard = import_module("keyboard")
+            except ImportError as error:
+                print(f"[SHORTCUT] Keyboard module unavailable: {error}")
+                return None
+        return self._keyboard
+
+    def _get_list_ports_module(self):
+        if self._list_ports_module is None:
+            try:
+                self._list_ports_module = import_module("serial.tools.list_ports")
+            except ImportError as error:
+                print(f"[SERIAL] list_ports module unavailable: {error}")
+                return None
+        return self._list_ports_module
+
+    def _get_pycaw_interfaces(self):
+        if self._pycaw_interfaces is None:
+            try:
+                pycaw_module = import_module("pycaw.pycaw")
+            except ImportError as error:
+                print(f"[SPOTIFY] Pycaw module unavailable: {error}")
+                return None
+            self._pycaw_interfaces = (
+                pycaw_module.AudioUtilities,
+                pycaw_module.ISimpleAudioVolume,
+            )
+        return self._pycaw_interfaces
+
+    def _get_psutil_module(self):
+        if self._psutil is None:
+            try:
+                self._psutil = import_module("psutil")
+            except ImportError as error:
+                print(f"[SPOTIFY] psutil module unavailable: {error}")
+                return None
+        return self._psutil
 
 
 def main():

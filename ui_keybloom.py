@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'keybloom.ui'
+## Form generated from reading UI file 'keybloomlNjrTZ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.10.1
 ##
@@ -3763,7 +3763,7 @@ class Ui_MainWindow(object):
 "    color: #9a95b3;\n"
 "    border: 2px solid #c7bddf;\n"
 "}")
-        self.spotifyClientSecretInput.setEchoMode(QLineEdit.Password)
+        self.spotifyClientSecretInput.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.verticalLayout_spotifyApi.addWidget(self.spotifyClientSecretInput)
 
@@ -3786,7 +3786,7 @@ class Ui_MainWindow(object):
 "    color: #9a95b3;\n"
 "    border: 2px solid #c7bddf;\n"
 "}")
-        self.spotifyRefreshTokenInput.setEchoMode(QLineEdit.Password)
+        self.spotifyRefreshTokenInput.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.verticalLayout_spotifyApi.addWidget(self.spotifyRefreshTokenInput)
 
@@ -3890,7 +3890,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

@@ -8,12 +8,12 @@ UNSET_MODE = "unset"
 APP_MODE = "application"
 KEYBOARD_MODE = "keyboard"
 DEFAULT_SLOT_BODY_COLORS = {
-    1: "#D0C5E3",
-    2: "#F2C9D3",
-    3: "#E88C8D",
-    4: "#9ED1D3",
-    5: "#E3E7AA",
-    6: "#C9E0B6",
+    1: "#BEB0D6",
+    2: "#EBB7C4",
+    3: "#BEB0D6",
+    4: "#EBB7C4",
+    5: "#BEB0D6",
+    6: "#EBB7C4",
 }
 DEFAULT_SLOT_TEXT_COLOR = "#111111"
 
@@ -99,11 +99,17 @@ class TransparentKeycapPreview(QWidget):
     glowStrength = Property(float, get_glow_strength, set_glow_strength)
 
     def set_mode(self, mode: str):
+        if self._mode == mode:
+            return
         self._mode = mode
         self._glow_anim.stop()
         self._glow_anim.setStartValue(self._glow_strength)
         self._glow_anim.setEndValue(0.15 if mode == UNSET_MODE else 1.0)
-        self._glow_anim.start()
+        # No need to animate an off-screen widget that the user cannot see yet.
+        if self.isVisible():
+            self._glow_anim.start()
+        else:
+            self.set_glow_strength(0.15 if mode == UNSET_MODE else 1.0)
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
