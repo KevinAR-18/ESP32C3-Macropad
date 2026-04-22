@@ -39,6 +39,7 @@ from ui_keybloom import Ui_MainWindow
 from preview_button import APP_MODE, KEYBOARD_MODE, UNSET_MODE, TransparentKeycapPreview
 
 APP_NAME = "KeyBloom"
+APP_ICON_FILE = "icon.ico"
 PROFILE_IDS = tuple(str(index) for index in range(1, 6))
 PROFILE_LINE_COUNT = 6
 SERIAL_BAUDRATE = 115200
@@ -104,6 +105,16 @@ SHORTCUT_TOKEN_MAP = {
 }
 
 
+def app_icon():
+    if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+        icon_path = Path(sys._MEIPASS) / APP_ICON_FILE
+    else:
+        icon_path = Path(__file__).with_name(APP_ICON_FILE)
+    if icon_path.is_file():
+        return QIcon(str(icon_path))
+    return QIcon(":/icon/images/icon_minimize.png")
+
+
 class _PreviewClickFilter(QObject):
     def __init__(self, callback, parent=None):
         super().__init__(parent)
@@ -122,6 +133,8 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle(APP_NAME)
+        self.setWindowIcon(app_icon())
 
         self._loading_settings = False
         self._settings_initialized = False
@@ -176,7 +189,7 @@ class MainWindow(QMainWindow):
         UIFunctions.enable_drag(self, self.ui.titleFrame)
 
     def _setup_tray(self):
-        self.tray = QSystemTrayIcon(QIcon(":/icon/images/icon_minimize.png"), self)
+        self.tray = QSystemTrayIcon(self.windowIcon(), self)
         self.tray.setToolTip(APP_NAME)
 
         tray_menu = QMenu(self)
@@ -982,6 +995,9 @@ class MainWindow(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    app.setApplicationName(APP_NAME)
+    app.setApplicationDisplayName(APP_NAME)
+    app.setWindowIcon(app_icon())
     window = MainWindow()
     window.show()
     sys.exit(app.exec())

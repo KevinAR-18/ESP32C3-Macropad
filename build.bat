@@ -6,6 +6,9 @@ set "ENTRY_FILE=main.py"
 set "DIST_DIR=dist"
 set "BUILD_DIR=build"
 set "VENV_PYINSTALLER=.venv\Scripts\pyinstaller.exe"
+set "ICON_FILE=icon.ico"
+set "ICON_ARG="
+set "ADD_ICON_ARG="
 
 echo ========================================
 echo Building %APP_NAME%...
@@ -22,6 +25,12 @@ if not exist "%VENV_PYINSTALLER%" (
     echo Install it first with:
     echo   .venv\Scripts\python.exe -m pip install pyinstaller
     exit /b 1
+)
+
+if exist "%ICON_FILE%" (
+    set "ICON_ARG=--icon=%ICON_FILE%"
+    set "ADD_ICON_ARG=--add-data=%ICON_FILE%;."
+    echo Using icon: %ICON_FILE%
 )
 
 if exist "%BUILD_DIR%" (
@@ -43,6 +52,8 @@ echo.
   --onefile ^
   --windowed ^
   --name "%APP_NAME%" ^
+  %ICON_ARG% ^
+  %ADD_ICON_ARG% ^
   --hidden-import=keyboard ^
   --hidden-import=psutil ^
   --hidden-import=pycaw.pycaw ^
