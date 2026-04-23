@@ -40,6 +40,7 @@ from preview_button import APP_MODE, KEYBOARD_MODE, UNSET_MODE, TransparentKeyca
 
 APP_NAME = "KeyBloom"
 APP_ICON_FILE = "icon.ico"
+START_MINIMIZED_ARG = "--start-minimized"
 PROFILE_IDS = tuple(str(index) for index in range(1, 6))
 PROFILE_LINE_COUNT = 6
 SERIAL_BAUDRATE = 115200
@@ -644,9 +645,11 @@ class MainWindow(QMainWindow):
 
     def _set_autostart(self, enabled: bool):
         if getattr(sys, "frozen", False):
-            app_path = sys.executable
+            app_path = f'"{sys.executable}" {START_MINIMIZED_ARG}'
         else:
-            app_path = f'"{sys.executable}" "{os.path.abspath(sys.argv[0])}"'
+            app_path = (
+                f'"{sys.executable}" "{os.path.abspath(sys.argv[0])}" {START_MINIMIZED_ARG}'
+            )
 
         set_autostart(enabled, APP_NAME, app_path)
 
@@ -659,13 +662,17 @@ class MainWindow(QMainWindow):
             self._schedule_save_settings()
 
     def minimize_to_tray(self):
+        self._hide_to_tray(show_message=True)
+
+    def _hide_to_tray(self, show_message: bool):
         self.hide()
-        self.tray.showMessage(
-            APP_NAME,
-            "Application minimized to tray.",
-            QSystemTrayIcon.Information,
-            2000,
-        )
+        if show_message:
+            self.tray.showMessage(
+                APP_NAME,
+                "Application minimized to tray.",
+                QSystemTrayIcon.Information,
+                2000,
+            )
 
     def show_normal_from_tray(self):
         self.show()
@@ -998,10 +1005,17 @@ def main():
     app.setApplicationName(APP_NAME)
     app.setApplicationDisplayName(APP_NAME)
     app.setWindowIcon(app_icon())
+    start_minimized = START_MINIMIZED_ARG in sys.argv
     window = MainWindow()
-    window.show()
+    if start_minimized:
+        window._hide_to_tray(show_message=False)
+    else:
+        window.show()
     sys.exit(app.exec())
 
 
 if __name__ == "__main__":
     main()
+    
+
+#Test Komentar

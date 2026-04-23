@@ -5,10 +5,14 @@ set "APP_NAME=KeyBloom"
 set "ENTRY_FILE=main.py"
 set "DIST_DIR=dist"
 set "BUILD_DIR=build"
-set "VENV_PYINSTALLER=.venv\Scripts\pyinstaller.exe"
+set "TARGET_EXE=%DIST_DIR%\%APP_NAME%.exe"
+set "VENV_PYTHON=.venv\Scripts\python.exe"
 set "ICON_FILE=icon.ico"
 set "ICON_ARG="
 set "ADD_ICON_ARG="
+set "PAUSE_ON_EXIT=1"
+
+if /i "%~1"=="--no-pause" set "PAUSE_ON_EXIT="
 
 echo ========================================
 echo Building %APP_NAME%...
@@ -17,14 +21,23 @@ echo.
 
 if not exist "%ENTRY_FILE%" (
     echo ERROR: Entry file "%ENTRY_FILE%" not found.
-    exit /b 1
+    set "EXIT_CODE=1"
+    goto :finish
 )
 
-if not exist "%VENV_PYINSTALLER%" (
-    echo ERROR: PyInstaller not found at "%VENV_PYINSTALLER%".
+if not exist "%VENV_PYTHON%" (
+    echo ERROR: Python not found at "%VENV_PYTHON%".
+    set "EXIT_CODE=1"
+    goto :finish
+)
+
+"%VENV_PYTHON%" -m PyInstaller --version >nul 2>&1
+if errorlevel 1 (
+    echo ERROR: PyInstaller is not installed in this virtual environment.
     echo Install it first with:
     echo   .venv\Scripts\python.exe -m pip install pyinstaller
-    exit /b 1
+    set "EXIT_CODE=1"
+    goto :finish
 )
 
 if exist "%ICON_FILE%" (
@@ -43,10 +56,17 @@ if exist "%DIST_DIR%" (
     rmdir /s /q "%DIST_DIR%"
 )
 
+if exist "%TARGET_EXE%" (
+    echo ERROR: "%TARGET_EXE%" is still locked by another process.
+    echo Close KeyBloom.exe or stop the running process, then try again.
+    set "EXIT_CODE=1"
+    goto :finish
+)
+
 echo Running PyInstaller...
 echo.
 
-"%VENV_PYINSTALLER%" ^
+"%VENV_PYTHON%" -m PyInstaller ^
   --noconfirm ^
   --clean ^
   --onefile ^
@@ -66,7 +86,8 @@ if errorlevel 1 (
     echo ========================================
     echo ERROR: Build failed.
     echo ========================================
-    exit /b 1
+    set "EXIT_CODE=1"
+    goto :finish
 )
 
 echo.
@@ -75,5 +96,10 @@ echo Build complete.
 echo Output: %DIST_DIR%\%APP_NAME%.exe
 echo Settings path at runtime: %%APPDATA%%\%APP_NAME%\settings.json
 echo ========================================
+set "EXIT_CODE=0"
+goto :finish
+
+:finish
+if defined PAUSE_ON_EXIT pause
 endlocal
-exit /b 0
+exit /b %EXIT_CODE%

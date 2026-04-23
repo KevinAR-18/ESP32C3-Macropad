@@ -27,3 +27,8 @@ spotify_credentials.txt
 __pycache__/preview_button.cpython-314.pyc
 __pycache__/spotify_auth_helper.cpython-312.pyc
 examplebuildbat.bat
+build/
+dist/
+*.spec
+__pycache__/
+*.pyc
