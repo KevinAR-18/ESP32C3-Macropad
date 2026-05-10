@@ -90,10 +90,21 @@ if errorlevel 1 (
     goto :finish
 )
 
+if exist "%ICON_FILE%" (
+    echo Copying %ICON_FILE% to "%DIST_DIR%"...
+    copy /y "%ICON_FILE%" "%DIST_DIR%\%ICON_FILE%" >nul
+    if errorlevel 1 (
+        echo ERROR: Failed to copy %ICON_FILE% to "%DIST_DIR%".
+        set "EXIT_CODE=1"
+        goto :finish
+    )
+)
+
 echo.
 echo ========================================
 echo Build complete.
 echo Output: %DIST_DIR%\%APP_NAME%.exe
+if exist "%DIST_DIR%\%ICON_FILE%" echo Icon: %DIST_DIR%\%ICON_FILE%
 echo Settings path at runtime: %%APPDATA%%\%APP_NAME%\settings.json
 echo ========================================
 set "EXIT_CODE=0"

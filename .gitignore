@@ -32,3 +32,15 @@ dist/
 *.spec
 __pycache__/
 *.pyc
+
+# Only keep the main KiCad source files for the macro pad project.
+PCB_Macropad/Macropad_PCB/**
+PCB_Macropad/Macropad_PCB/Macropad_PCB-backups/
+PCB_Macropad/Macropad_PCB/production/
+!PCB_Macropad/Macropad_PCB/
+!PCB_Macropad/Macropad_PCB/Macropad_PCB.kicad_pcb
+!PCB_Macropad/Macropad_PCB/Macropad_PCB.kicad_pro
+!PCB_Macropad/Macropad_PCB/Macropad_PCB.kicad_sch
+PCB_Macropad/Macropad_PCB/Macropad_PCB.kicad_prl
+PCB_Macropad/Macropad_PCB/Macropad_PCB-backups/Macropad_PCB-2026-04-24_173927.zip
+.gitignore

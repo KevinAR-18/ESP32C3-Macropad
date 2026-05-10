@@ -7,10 +7,13 @@ KeyBloom is a Windows desktop companion for a custom ESP32-C3 macro pad. It prov
 - 5 configurable profiles
 - 6 slots per profile
 - Keyboard shortcut capture with presets
+- Media key capture support, including fallback for `Fn`-based media keys
 - Application launcher per slot
-- ESP32 serial auto-detection
+- ESP32 serial auto-detection with reconnect retry/backoff
 - System tray mode for background runtime
-- Windows startup integration
+- Windows startup integration with start-minimized tray behavior
+- Default startup page always returns to Profile 1
+- Settings stored in `%APPDATA%\KeyBloom\settings.json`
 - Spotify session volume control for the second encoder
 - KiCad PCB files included in the repository
 - ESP32-C3 firmware source included in the repository
@@ -18,12 +21,19 @@ KeyBloom is a Windows desktop companion for a custom ESP32-C3 macro pad. It prov
 ## Project Structure
 
 - [main.py](./main.py): application entry point and main runtime logic
-- [ui_keybloom.py](./ui_keybloom.py): generated Qt UI file
-- [preview_button.py](./preview_button.py): custom keycap preview widget
-- [key_capture.py](./key_capture.py): shortcut capture event filter
-- [settings_manager.py](./settings_manager.py): settings load/save and profile serialization
-- [ui_functions.py](./ui_functions.py): borderless window and drag helpers
+- [keybloom.ui](./keybloom.ui): Qt Designer source file
+- [ui/ui_keybloom.py](./ui/ui_keybloom.py): generated Qt UI file
+- [ui/preview_button.py](./ui/preview_button.py): custom keycap preview widget
+- [ui/ui_functions.py](./ui/ui_functions.py): borderless window and drag helpers
+- [config/settings_manager.py](./config/settings_manager.py): settings load/save and profile serialization
+- [input/key_capture.py](./input/key_capture.py): shortcut capture event filter
+- [input/shortcut_utils.py](./input/shortcut_utils.py): shortcut normalization helpers
+- [serial_tools/port_detector.py](./serial_tools/port_detector.py): serial port auto-detection helpers
+- [utils/date_utils.py](./utils/date_utils.py): clock/date formatting helper
+- [resources.qrc](./resources.qrc): Qt resource manifest
+- [resources_rc.py](./resources_rc.py): generated Qt resource module
 - [build.bat](./build.bat): main PyInstaller build script
+- [KeyBloom.spec](./KeyBloom.spec): PyInstaller spec file
 - [examplebuildbat.bat](./examplebuildbat.bat): simplified build example
 - [PCB_Macropad/Macropad_PCB](./PCB_Macropad/Macropad_PCB): KiCad project for the macro pad PCB
 - [ProgramESP32C3_Macropad/ProgramESP32C3_Macropad.ino](./ProgramESP32C3_Macropad/ProgramESP32C3_Macropad.ino): ESP32-C3 firmware source
@@ -46,6 +56,13 @@ Install dependencies:
 ```powershell
 .venv\Scripts\python.exe main.py
 ```
+
+## Runtime Behavior
+
+- When Auto Startup is enabled, Windows launches KeyBloom with a start-minimized flag so the app goes directly to the system tray.
+- When the main window is opened manually, the app always starts on Profile 1.
+- Shortcut capture uses the Qt event path first and temporarily enables a global keyboard hook while recording, which improves capture for media keys such as `Media Next` and `Media Previous`.
+- Serial auto-detect keeps retrying with a reconnect backoff when the ESP32-C3 disconnects or re-enumerates.
 
 ## Settings Location
 
@@ -75,7 +92,10 @@ Expected output:
 
 ```text
 dist\KeyBloom.exe
+dist\icon.ico
 ```
+
+`build.bat` also copies `icon.ico` into `dist\` after a successful build.
 
 ## Hardware Files
 
@@ -111,4 +131,4 @@ START
 
 - The UI is generated from `keybloom.ui`, but runtime optimizations are handled in Python code.
 - The app is tuned to stay lighter while minimized to tray by reducing unnecessary timers, delayed widget setup, and lazy-loading heavy modules.
-- Some packages in `requirements.txt` come from the current virtual environment snapshot because the file was regenerated using `pip freeze`.
+- `requirements.txt` is kept intentionally small to match the runtime dependencies used by the current app.

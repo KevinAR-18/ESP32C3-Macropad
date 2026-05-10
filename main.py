@@ -6,7 +6,7 @@ from importlib import import_module
 from functools import partial
 from pathlib import Path
 
-from PySide6.QtCore import QEvent, QObject, Qt, QTimer
+from PySide6.QtCore import QEvent, QObject, Qt, QTimer, Signal
 from PySide6.QtGui import QAction, QCursor, QFontMetrics, QIcon
 from PySide6.QtWidgets import (
     QApplication,
@@ -20,9 +20,11 @@ from PySide6.QtWidgets import (
 )
 import serial
 
-from date_utils import Date
-from key_capture import KeyCaptureFilter
-from settings_manager import (
+from utils.date_utils import Date
+from input.key_capture import KeyCaptureFilter
+from input.shortcut_utils import global_event_to_shortcut_text, normalize_shortcut
+from serial_tools.port_detector import detect_best_port
+from config.settings_manager import (
     APPLICATION_MODE,
     SHORTCUT_MODE,
     apply_profile_mappings,
@@ -34,9 +36,9 @@ from settings_manager import (
     set_autostart,
     settings_path,
 )
-from ui_functions import UIFunctions
-from ui_keybloom import Ui_MainWindow
-from preview_button import APP_MODE, KEYBOARD_MODE, UNSET_MODE, TransparentKeycapPreview
+from ui.ui_functions import UIFunctions
+from ui.ui_keybloom import Ui_MainWindow
+from ui.preview_button import APP_MODE, KEYBOARD_MODE, UNSET_MODE, TransparentKeycapPreview
 
 APP_NAME = "KeyBloom"
 APP_ICON_FILE = "icon.ico"
@@ -46,6 +48,7 @@ PROFILE_LINE_COUNT = 6
 SERIAL_BAUDRATE = 115200
 SERIAL_POLL_MS = 40
 SERIAL_RECONNECT_MS = 2000
+SERIAL_RECONNECT_MAX_MS = 10000
 SETTINGS_SAVE_DEBOUNCE_MS = 250
 ESP32_VID = 0x303A
 SPOTIFY_MODE_SESSION = "session"
@@ -69,41 +72,6 @@ SHORTCUT_PRESETS = [
     ("Ctrl+Win+Left", "Ctrl+Win+Left"),
     ("Ctrl+Win+Right", "Ctrl+Win+Right"),
 ]
-SHORTCUT_TOKEN_MAP = {
-    "win": "windows",
-    "left": "left",
-    "right": "right",
-    "up": "up",
-    "down": "down",
-    "pageup": "page up",
-    "pagedown": "page down",
-    "space": "space",
-    "tab": "tab",
-    "shift": "shift",
-    "ctrl": "ctrl",
-    "alt": "alt",
-    "enter": "enter",
-    "esc": "esc",
-    "backspace": "backspace",
-    "delete": "delete",
-    "insert": "insert",
-    "home": "home",
-    "end": "end",
-    "capslock": "caps lock",
-    "numlock": "num lock",
-    "scrolllock": "scroll lock",
-    "printscreen": "print screen",
-    "pause": "pause",
-    "menu": "menu",
-    "mediaprevious": "previous track",
-    "medianext": "next track",
-    "toggle media play/pause": "play/pause media",
-    "play/pause media": "play/pause media",
-    "mediaplaypause": "play/pause media",
-    "volumeup": "volume up",
-    "volumedown": "volume down",
-    "volumemute": "volume mute",
-}
 
 
 def app_icon():
@@ -130,8 +98,15 @@ class _PreviewClickFilter(QObject):
 
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    global_shortcut_captured = Signal(str)
+
+    def __init__(self, start_minimized: bool = False):
         super().__init__()
+        self._start_minimized = start_minimized
+        if self._start_minimized:
+            # Prevent a visible startup flash when Windows launches the app
+            # from autostart.
+            self.setAttribute(Qt.WA_DontShowOnScreen, True)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle(APP_NAME)
@@ -151,12 +126,14 @@ class MainWindow(QMainWindow):
         self._settings_save_timer.timeout.connect(self._save_settings)
         self._serial = None
         self._serial_port_name = ""
+        self._preferred_port_name = ""
         self._serial_buffer = ""
         self._serial_buffer_limit = 4096
+        self._serial_reconnect_delay_ms = SERIAL_RECONNECT_MS
         self._current_profile_id = "1"
-        self._settings_data = {}
         self._spotify_volume = None
         self._keyboard = None
+        self._keyboard_capture_hook = None
         self._list_ports_module = None
         self._pycaw_interfaces = None
         self._psutil = None
@@ -164,6 +141,7 @@ class MainWindow(QMainWindow):
         self._serial_poll_timer.timeout.connect(self._poll_serial)
         self._serial_reconnect_timer = QTimer(self)
         self._serial_reconnect_timer.timeout.connect(self._ensure_serial_connection)
+        self.global_shortcut_captured.connect(self._apply_global_shortcut_capture)
 
         self._profile_name_inputs = self._build_profile_name_inputs()
         self._profile_title_labels = self._build_profile_title_labels()
@@ -183,6 +161,8 @@ class MainWindow(QMainWindow):
         self._load_settings()
         self._ensure_profile_slots_ready(self._current_profile_id)
         self._start_serial_bridge()
+        if self._start_minimized:
+            self.start_in_tray()
 
     def _configure_window(self):
         UIFunctions.set_borderless(self)
@@ -489,6 +469,7 @@ class MainWindow(QMainWindow):
         # a single destination for the recorded shortcut.
         self._active_capture_slot = slot
         self._key_filter.reset()
+        self._start_global_shortcut_capture()
         self._apply_slot_mode(slot)
         line = slot["line_edit"]
         line.setFocus()
@@ -503,7 +484,63 @@ class MainWindow(QMainWindow):
         self._active_capture_slot = None
         self._shortcut_capture_timer.stop()
         self._key_filter.reset()
+        self._stop_global_shortcut_capture()
         self._apply_slot_mode(slot)
+
+    def _start_global_shortcut_capture(self):
+        keyboard_module = self._get_keyboard_module()
+        if keyboard_module is None or self._keyboard_capture_hook is not None:
+            return
+
+        try:
+            # Qt does not reliably receive media keys produced through Fn
+            # layers, so a temporary global hook is used only during capture.
+            self._keyboard_capture_hook = keyboard_module.hook(
+                self._on_global_shortcut_event,
+                suppress=False,
+            )
+        except Exception as error:
+            print(f"[SHORTCUT] Global capture unavailable: {error}")
+            self._keyboard_capture_hook = None
+
+    def _stop_global_shortcut_capture(self):
+        keyboard_module = self._get_keyboard_module()
+        if keyboard_module is None or self._keyboard_capture_hook is None:
+            self._keyboard_capture_hook = None
+            return
+
+        try:
+            keyboard_module.unhook(self._keyboard_capture_hook)
+        except Exception:
+            pass
+        self._keyboard_capture_hook = None
+
+    def _on_global_shortcut_event(self, event):
+        if self._active_capture_slot is None:
+            return
+        if getattr(event, "event_type", "") != "down":
+            return
+
+        shortcut_text = global_event_to_shortcut_text(getattr(event, "name", None))
+        if not shortcut_text:
+            return
+
+        self.global_shortcut_captured.emit(shortcut_text)
+
+    def _apply_global_shortcut_capture(self, shortcut_text: str):
+        if self._active_capture_slot is None:
+            return
+
+        slot = self._active_capture_slot
+        slot["mode"] = SHORTCUT_MODE
+        slot["stored_value"] = shortcut_text
+        line = slot["line_edit"]
+        line.blockSignals(True)
+        line.setText(shortcut_text)
+        line.blockSignals(False)
+        self._fit_line_edit_text(slot)
+        self._stop_shortcut_capture()
+        self._schedule_save_settings()
 
     def _on_slot_text_changed(self, slot, *_args):
         if self._loading_settings:
@@ -573,10 +610,10 @@ class MainWindow(QMainWindow):
             self.ui.cbAutodetect.setChecked(True)
             self._apply_settings_ui_state()
             self._apply_profile_titles()
+            self._show_page(self._profile_pages["1"], profile_id="1")
             self._settings_initialized = True
             return
 
-        self._settings_data = dict(data)
         self._loading_settings = True
         try:
             # Many widget updates happen here; suppress autosave side effects
@@ -592,9 +629,8 @@ class MainWindow(QMainWindow):
             self.ui.inputCOM.setText(str(serial_settings.get("port", "")))
             self._apply_settings_ui_state()
             apply_profile_mappings(self._profile_slots, data.get("profiles", {}))
-            active_profile = str(data.get("active_profile", "1"))
-            if active_profile in self._profile_pages:
-                self._show_page(self._profile_pages[active_profile], profile_id=active_profile)
+            # Always return to profile 1 when the app opens.
+            self._show_page(self._profile_pages["1"], profile_id="1")
             self._refresh_slot_modes()
             self._apply_profile_titles()
             self._set_autostart(self.ui.cbAutostartup.isChecked())
@@ -608,17 +644,17 @@ class MainWindow(QMainWindow):
             return
         names = self._current_profile_names()
         self._apply_profile_titles(names)
-        self._settings_data = {
+        settings_data = {
             "profile_names": names,
             "autostart": self.ui.cbAutostartup.isChecked(),
-            "active_profile": self._current_profile_id,
+            "active_profile": "1",
             "serial": self._serial_settings(),
             "spotify": self._spotify_settings(),
             "profiles": collect_profile_mappings(self._profile_slots),
         }
         # Persist into AppData so the packaged executable does not need write
         # permission inside its install directory.
-        save_settings(settings_path(), self._settings_data)
+        save_settings(settings_path(), settings_data)
 
     def _schedule_save_settings(self):
         if self._loading_settings:
@@ -664,6 +700,10 @@ class MainWindow(QMainWindow):
     def minimize_to_tray(self):
         self._hide_to_tray(show_message=True)
 
+    def start_in_tray(self):
+        self.hide()
+        self.setAttribute(Qt.WA_DontShowOnScreen, False)
+
     def _hide_to_tray(self, show_message: bool):
         self.hide()
         if show_message:
@@ -699,13 +739,14 @@ class MainWindow(QMainWindow):
 
     def _start_serial_bridge(self):
         self._serial_reconnect_timer.stop()
+        self._serial_reconnect_delay_ms = SERIAL_RECONNECT_MS
         self._ensure_serial_connection()
 
     def _ensure_serial_connection(self):
         desired_port = self._resolve_serial_port()
         if not desired_port:
             self._disconnect_serial()
-            self._serial_reconnect_timer.start(SERIAL_RECONNECT_MS)
+            self._schedule_serial_retry()
             return
 
         if self._serial and self._serial.is_open and self._serial_port_name == desired_port:
@@ -715,20 +756,23 @@ class MainWindow(QMainWindow):
             self._disconnect_serial()
 
         try:
-            self._serial = serial.Serial(desired_port, SERIAL_BAUDRATE, timeout=0)
+            # A small timeout is more stable across reconnects than a pure
+            # non-blocking port and still keeps polling responsive.
+            self._serial = serial.Serial(desired_port, SERIAL_BAUDRATE, timeout=0.05)
         except serial.SerialException as error:
             print(f"[SERIAL] Failed to open {desired_port}: {error}")
             self._disconnect_serial()
             return
 
         self._serial_port_name = desired_port
+        self._preferred_port_name = desired_port
         self._serial_buffer = ""
         self._serial_poll_timer.start(SERIAL_POLL_MS)
         self._serial_reconnect_timer.stop()
+        self._serial_reconnect_delay_ms = SERIAL_RECONNECT_MS
 
     def _disconnect_serial(self):
         self._serial_poll_timer.stop()
-        port_name = self._serial_port_name
         serial_device = self._serial
         self._serial = None
         self._serial_port_name = ""
@@ -739,27 +783,29 @@ class MainWindow(QMainWindow):
                     serial_device.close()
             except serial.SerialException:
                 pass
-        if self._resolve_serial_port():
-            self._serial_reconnect_timer.start(SERIAL_RECONNECT_MS)
+        if self._should_keep_reconnecting():
+            self._schedule_serial_retry()
+
+    def _schedule_serial_retry(self):
+        self._serial_reconnect_timer.start(self._serial_reconnect_delay_ms)
+        self._serial_reconnect_delay_ms = min(
+            self._serial_reconnect_delay_ms * 2,
+            SERIAL_RECONNECT_MAX_MS,
+        )
+
+    def _should_keep_reconnecting(self):
+        serial_settings = self._serial_settings()
+        return serial_settings["auto_detect"] or bool(serial_settings["port"])
 
     def _detect_esp32_port(self):
         list_ports_module = self._get_list_ports_module()
         if list_ports_module is None:
             return ""
-
-        for port in list_ports_module.comports():
-            if port.vid == ESP32_VID:
-                return port.device
-
-            details = " ".join(
-                part.lower()
-                for part in (port.description, port.manufacturer, port.product, port.hwid)
-                if part
-            )
-            if "esp32" in details or "espressif" in details:
-                return port.device
-
-        return ""
+        return detect_best_port(
+            list_ports_module,
+            preferred_port=self._preferred_port_name,
+            expected_vid=ESP32_VID,
+        )
 
     def _resolve_serial_port(self):
         serial_settings = self._serial_settings()
@@ -850,7 +896,7 @@ class MainWindow(QMainWindow):
             print(f"[APP] Failed to open {target_path}: {error}")
 
     def _send_shortcut(self, shortcut_text: str):
-        normalized = self._normalize_shortcut(shortcut_text)
+        normalized = normalize_shortcut(shortcut_text)
         if not normalized:
             return
 
@@ -869,41 +915,9 @@ class MainWindow(QMainWindow):
             return
 
         try:
-            keyboard_module.send(key_name)
+            keyboard_module.send(normalize_shortcut(key_name))
         except ValueError as error:
             print(f"[SHORTCUT] Invalid media key '{key_name}': {error}")
-
-    def _normalize_shortcut(self, shortcut_text: str) -> str:
-        text = shortcut_text.strip()
-        if not text:
-            return ""
-
-        mapped_value = SHORTCUT_TOKEN_MAP.get(text.lower())
-        if mapped_value:
-            return mapped_value
-
-        normalized_parts = []
-        for part in text.split("+"):
-            token = part.strip()
-            if not token:
-                continue
-
-            mapped_token = SHORTCUT_TOKEN_MAP.get(token.lower())
-            if mapped_token:
-                normalized_parts.append(mapped_token)
-                continue
-
-            if re.fullmatch(r"F\d{1,2}", token, re.IGNORECASE):
-                normalized_parts.append(token.lower())
-                continue
-
-            if len(token) == 1:
-                normalized_parts.append(token.lower())
-                continue
-
-            normalized_parts.append(token.lower())
-
-        return "+".join(normalized_parts)
 
     def _adjust_spotify_volume(self, delta: float):
         spotify_volume = self._get_spotify_volume()
@@ -1002,14 +1016,13 @@ class MainWindow(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    app.setQuitOnLastWindowClosed(False)
     app.setApplicationName(APP_NAME)
     app.setApplicationDisplayName(APP_NAME)
     app.setWindowIcon(app_icon())
     start_minimized = START_MINIMIZED_ARG in sys.argv
-    window = MainWindow()
-    if start_minimized:
-        window._hide_to_tray(show_message=False)
-    else:
+    window = MainWindow(start_minimized=start_minimized)
+    if not start_minimized:
         window.show()
     sys.exit(app.exec())
 

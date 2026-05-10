@@ -2,6 +2,19 @@ from PySide6.QtCore import QEvent, QObject, Qt
 from PySide6.QtGui import QKeySequence
 from PySide6.QtWidgets import QLineEdit
 
+MEDIA_SPECIAL_KEY_NAMES = {
+    getattr(Qt, "Key_MediaPlay", None): "Media Play Pause",
+    getattr(Qt, "Key_MediaTogglePlayPause", None): "Media Play Pause",
+    getattr(Qt, "Key_MediaNext", None): "Media Next",
+    getattr(Qt, "Key_MediaPrevious", None): "Media Previous",
+    getattr(Qt, "Key_VolumeUp", None): "Volume Up",
+    getattr(Qt, "Key_VolumeDown", None): "Volume Down",
+    getattr(Qt, "Key_VolumeMute", None): "Volume Mute",
+}
+MEDIA_SPECIAL_KEY_NAMES = {
+    key: value for key, value in MEDIA_SPECIAL_KEY_NAMES.items() if key is not None
+}
+
 
 class KeyCaptureFilter(QObject):
     MODIFIER_KEYS = {
@@ -36,6 +49,7 @@ class KeyCaptureFilter(QObject):
         Qt.Key_Pause: "Pause",
         Qt.Key_Menu: "Menu",
     }
+    SPECIAL_KEY_NAMES.update(MEDIA_SPECIAL_KEY_NAMES)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -51,8 +65,8 @@ class KeyCaptureFilter(QObject):
             return super().eventFilter(obj, event)
 
         if event.type() == QEvent.ShortcutOverride:
-            # Blok shortcut level window/aplikasi seperti Alt+F4 saat field
-            # sedang dipakai untuk merekam kombinasi tombol.
+            # Block window-level shortcuts such as Alt+F4 while capture mode is
+            # active, so the field can safely record the combination.
             event.accept()
             return True
 
