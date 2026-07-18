@@ -91,9 +91,35 @@ def normalize_profile_entry(entry):
         value = str(entry.get("value", ""))
         if mode not in {SHORTCUT_MODE, APPLICATION_MODE}:
             mode = SHORTCUT_MODE
+        if mode == SHORTCUT_MODE:
+            value = _normalize_loaded_shortcut(value)
         return {"mode": mode, "value": value}
 
-    return {"mode": SHORTCUT_MODE, "value": str(entry or "")}
+    return {"mode": SHORTCUT_MODE, "value": _normalize_loaded_shortcut(str(entry or ""))}
+
+
+def _normalize_loaded_shortcut(value: str) -> str:
+    # Keep application targets and empty values untouched; only normalize
+    # shortcut text so legacy/raw values stored in settings become valid
+    # tokens understood by the keyboard module.
+    if not value:
+        return value
+    try:
+        from input.shortcut_utils import normalize_shortcut
+    except ImportError:
+        return value
+    normalized = normalize_shortcut(value)
+    return normalized or value
+
+
+def _format_loaded_display(value: str) -> str:
+    if not value:
+        return value
+    try:
+        from input.shortcut_utils import format_shortcut_display
+    except ImportError:
+        return value
+    return format_shortcut_display(value)
 
 
 def collect_profile_mappings(profile_slots):
@@ -121,7 +147,10 @@ def apply_profile_mappings(profile_slots, mappings):
                 entry = normalize_profile_entry(values[idx])
                 slot["mode"] = entry["mode"]
                 slot["stored_value"] = entry["value"]
-                slot["line_edit"].setText(entry["value"])
+                display_value = entry["value"]
+                if entry["mode"] == SHORTCUT_MODE:
+                    display_value = _format_loaded_display(entry["value"])
+                slot["line_edit"].setText(display_value)
 
 
 def set_autostart(enabled: bool, app_name: str, app_path: str):

@@ -22,7 +22,11 @@ import serial
 
 from utils.date_utils import Date
 from input.key_capture import KeyCaptureFilter
-from input.shortcut_utils import global_event_to_shortcut_text, normalize_shortcut
+from input.shortcut_utils import (
+    format_shortcut_display,
+    global_event_to_shortcut_text,
+    normalize_shortcut,
+)
 from serial_tools.port_detector import detect_best_port
 from config.settings_manager import (
     APPLICATION_MODE,
@@ -41,6 +45,7 @@ from ui.ui_keybloom import Ui_MainWindow
 from ui.preview_button import APP_MODE, KEYBOARD_MODE, UNSET_MODE, TransparentKeycapPreview
 
 APP_NAME = "KeyBloom"
+APP_VERSION = "1.0.1"
 APP_ICON_FILE = "icon.ico"
 START_MINIMIZED_ARG = "--start-minimized"
 PROFILE_IDS = tuple(str(index) for index in range(1, 6))
@@ -111,6 +116,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowTitle(APP_NAME)
         self.setWindowIcon(app_icon())
+        self.ui.version.setText(f"v{APP_VERSION}")
 
         self._loading_settings = False
         self._settings_initialized = False
@@ -460,7 +466,7 @@ class MainWindow(QMainWindow):
             self._stop_shortcut_capture()
         slot["mode"] = SHORTCUT_MODE
         slot["stored_value"] = shortcut_text
-        slot["line_edit"].setText(shortcut_text)
+        slot["line_edit"].setText(format_shortcut_display(shortcut_text))
         self._apply_slot_mode(slot)
         self._schedule_save_settings()
 
@@ -536,7 +542,7 @@ class MainWindow(QMainWindow):
         slot["stored_value"] = shortcut_text
         line = slot["line_edit"]
         line.blockSignals(True)
-        line.setText(shortcut_text)
+        line.setText(format_shortcut_display(shortcut_text))
         line.blockSignals(False)
         self._fit_line_edit_text(slot)
         self._stop_shortcut_capture()

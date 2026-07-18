@@ -2,6 +2,14 @@
 setlocal
 
 set "APP_NAME=KeyBloom"
+set "APP_VERSION=1.0.1"
+if exist "main.py" (
+    for /f "tokens=*" %%a in ('findstr /r /c:"^APP_VERSION" main.py') do (
+        for /f "tokens=3 delims= " %%v in ("%%a") do (
+            set "APP_VERSION=%%~v"
+        )
+    )
+)
 set "ENTRY_FILE=main.py"
 set "DIST_DIR=dist"
 set "BUILD_DIR=build"
@@ -15,7 +23,7 @@ set "PAUSE_ON_EXIT=1"
 if /i "%~1"=="--no-pause" set "PAUSE_ON_EXIT="
 
 echo ========================================
-echo Building %APP_NAME%...
+echo Building %APP_NAME% v%APP_VERSION%...
 echo ========================================
 echo.
 
@@ -104,6 +112,7 @@ echo.
 echo ========================================
 echo Build complete.
 echo Output: %DIST_DIR%\%APP_NAME%.exe
+echo Version: %APP_VERSION%
 if exist "%DIST_DIR%\%ICON_FILE%" echo Icon: %DIST_DIR%\%ICON_FILE%
 echo Settings path at runtime: %%APPDATA%%\%APP_NAME%\settings.json
 echo ========================================

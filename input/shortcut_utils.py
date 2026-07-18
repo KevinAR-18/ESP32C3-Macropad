@@ -28,10 +28,12 @@ SHORTCUT_TOKEN_MAP = {
     "menu": "menu",
     "media previous": "previous track",
     "mediaprevious": "previous track",
+    "media previous track": "previous track",
     "previoustrack": "previous track",
     "previous track": "previous track",
     "media next": "next track",
     "medianext": "next track",
+    "media next track": "next track",
     "nexttrack": "next track",
     "next track": "next track",
     "media play pause": "play/pause media",
@@ -39,6 +41,8 @@ SHORTCUT_TOKEN_MAP = {
     "media_play_pause": "play/pause media",
     "playpause": "play/pause media",
     "toggle media play/pause": "play/pause media",
+    "toggle media play pause": "play/pause media",
+    "media play/pause": "play/pause media",
     "play/pause media": "play/pause media",
     "mediaplaypause": "play/pause media",
     "media volume up": "volume up",
@@ -113,3 +117,39 @@ def global_event_to_shortcut_text(event_name: str | None) -> str:
         return ""
     normalized_name = normalize_shortcut(event_name)
     return GLOBAL_MEDIA_KEY_DISPLAY.get(normalized_name, "")
+
+
+# Words that should stay lowercase unless they begin the shortcut label.
+_DISPLAY_LOWER_WORDS = {"a", "an", "the", "and", "or", "of", "to", "in", "on", "media"}
+
+
+def _format_token(token: str) -> str:
+    # Split on both whitespace and slashes so "play/pause" becomes
+    # "Play/Pause" instead of "Play/pause".
+    chunks = re.split(r"([ /])", token)
+    formatted_chunks = []
+    for index, chunk in enumerate(chunks):
+        if chunk in (" ", "/"):
+            formatted_chunks.append(chunk)
+            continue
+        if index > 0 and chunk.lower() in _DISPLAY_LOWER_WORDS:
+            formatted_chunks.append(chunk.lower())
+        else:
+            formatted_chunks.append(chunk.capitalize())
+    return "".join(formatted_chunks)
+
+
+def format_shortcut_display(shortcut_text: str) -> str:
+    text = (shortcut_text or "").strip()
+    if not text:
+        return ""
+
+    parts = text.split("+")
+    formatted_parts = []
+    for part in parts:
+        token = part.strip()
+        if not token:
+            continue
+        formatted_parts.append(_format_token(token))
+
+    return " + ".join(formatted_parts)

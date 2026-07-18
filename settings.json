@@ -19,15 +19,15 @@
     "1": [
       {
         "mode": "shortcut",
-        "value": "MediaPrevious"
+        "value": "previous track"
       },
       {
         "mode": "shortcut",
-        "value": "Toggle Media Play/Pause"
+        "value": "play/pause media"
       },
       {
         "mode": "shortcut",
-        "value": "MediaNext"
+        "value": "next track"
       },
       {
         "mode": "shortcut",
