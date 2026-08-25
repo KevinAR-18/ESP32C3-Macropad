@@ -37,6 +37,7 @@ KeyBloom is a Windows desktop companion for a custom ESP32-C3 macro pad. It prov
 - [examplebuildbat.bat](./examplebuildbat.bat): simplified build example
 - [PCB_Macropad/Macropad_PCB](./PCB_Macropad/Macropad_PCB): KiCad project for the macro pad PCB
 - [ProgramESP32C3_Macropad/ProgramESP32C3_Macropad.ino](./ProgramESP32C3_Macropad/ProgramESP32C3_Macropad.ino): ESP32-C3 firmware source
+- [bluetooth_test](./bluetooth_test): isolated ESP32-C3 BLE communication prototype for Windows 11
 
 ## Requirements
 
