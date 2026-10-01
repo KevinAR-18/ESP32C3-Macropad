@@ -14,11 +14,13 @@ from PySide6.QtWidgets import (
     QFrame,
     QMainWindow,
     QMenu,
+    QPushButton,
     QSystemTrayIcon,
     QVBoxLayout,
     QWidget,
 )
-import serial
+from connection.manager import ConnectionManager
+from connection.dialog import ConnectionDialog
 
 from utils.date_utils import Date
 from input.key_capture import KeyCaptureFilter
@@ -27,7 +29,6 @@ from input.shortcut_utils import (
     global_event_to_shortcut_text,
     normalize_shortcut,
 )
-from serial_tools.port_detector import detect_best_port
 from config.settings_manager import (
     APPLICATION_MODE,
     SHORTCUT_MODE,
@@ -45,17 +46,12 @@ from ui.ui_keybloom import Ui_MainWindow
 from ui.preview_button import APP_MODE, KEYBOARD_MODE, UNSET_MODE, TransparentKeycapPreview
 
 APP_NAME = "KeyBloom"
-APP_VERSION = "1.0.1"
+APP_VERSION = "1.1.0"
 APP_ICON_FILE = "icon.ico"
 START_MINIMIZED_ARG = "--start-minimized"
 PROFILE_IDS = tuple(str(index) for index in range(1, 6))
 PROFILE_LINE_COUNT = 6
-SERIAL_BAUDRATE = 115200
-SERIAL_POLL_MS = 40
-SERIAL_RECONNECT_MS = 2000
-SERIAL_RECONNECT_MAX_MS = 10000
 SETTINGS_SAVE_DEBOUNCE_MS = 250
-ESP32_VID = 0x303A
 SPOTIFY_MODE_SESSION = "session"
 SPOTIFY_WEB_STEP_PERCENT = 3
 
@@ -130,23 +126,13 @@ class MainWindow(QMainWindow):
         self._settings_save_timer = QTimer(self)
         self._settings_save_timer.setSingleShot(True)
         self._settings_save_timer.timeout.connect(self._save_settings)
-        self._serial = None
-        self._serial_port_name = ""
-        self._preferred_port_name = ""
-        self._serial_buffer = ""
-        self._serial_buffer_limit = 4096
-        self._serial_reconnect_delay_ms = SERIAL_RECONNECT_MS
+        self._connection_settings = {}
         self._current_profile_id = "1"
         self._spotify_volume = None
         self._keyboard = None
         self._keyboard_capture_hook = None
-        self._list_ports_module = None
         self._pycaw_interfaces = None
         self._psutil = None
-        self._serial_poll_timer = QTimer(self)
-        self._serial_poll_timer.timeout.connect(self._poll_serial)
-        self._serial_reconnect_timer = QTimer(self)
-        self._serial_reconnect_timer.timeout.connect(self._ensure_serial_connection)
         self.global_shortcut_captured.connect(self._apply_global_shortcut_capture)
 
         self._profile_name_inputs = self._build_profile_name_inputs()
@@ -166,7 +152,7 @@ class MainWindow(QMainWindow):
         self._setup_clock()
         self._load_settings()
         self._ensure_profile_slots_ready(self._current_profile_id)
-        self._start_serial_bridge()
+        self._start_connections()
         if self._start_minimized:
             self.start_in_tray()
 
@@ -606,12 +592,13 @@ class MainWindow(QMainWindow):
         self._apply_settings_ui_state()
         if self._loading_settings:
             return
-        self._disconnect_serial()
-        self._ensure_serial_connection()
+        if hasattr(self, "connections"):
+            self.connections.worker.commands.put(("serial", self._serial_settings()))
         self._schedule_save_settings()
 
     def _load_settings(self):
         data = load_settings(settings_path())
+        self._connection_settings = data.get("connection", {}) if data else {}
         if not data:
             self.ui.cbAutodetect.setChecked(True)
             self._apply_settings_ui_state()
@@ -655,6 +642,7 @@ class MainWindow(QMainWindow):
             "autostart": self.ui.cbAutostartup.isChecked(),
             "active_profile": "1",
             "serial": self._serial_settings(),
+            "connection": dict(self.connections.settings) if hasattr(self, "connections") else self._connection_settings,
             "spotify": self._spotify_settings(),
             "profiles": collect_profile_mappings(self._profile_slots),
         }
@@ -740,114 +728,57 @@ class MainWindow(QMainWindow):
             self.show_normal_from_tray()
 
     def closeEvent(self, event):
-        self._disconnect_serial()
         super().closeEvent(event)
 
-    def _start_serial_bridge(self):
-        self._serial_reconnect_timer.stop()
-        self._serial_reconnect_delay_ms = SERIAL_RECONNECT_MS
-        self._ensure_serial_connection()
+    def _start_connections(self):
+        self.connections = ConnectionManager(self._connection_settings, self._serial_settings(), self)
+        self.connection_dialog = ConnectionDialog(self.connections, self)
+        self.connections.event.connect(self._handle_device_event)
+        self.connections.changed.connect(self._save_settings)
+        self.connections.status.connect(lambda text: self.tray.setToolTip(f"{APP_NAME}: {text}"[:127]))
+        self.connection_button = QPushButton("USB / Bluetooth Connection…", self)
+        self.connection_button.setObjectName("connectionButton")
+        self.connection_button.setCursor(Qt.PointingHandCursor)
+        self.connection_button.setToolTip("Manage USB, Bluetooth devices, and power settings")
+        self.connection_button.setStyleSheet("""
+            QPushButton#connectionButton {
+                background-color: #65518F;
+                color: #FFFFFF;
+                border: 2px solid #554278;
+                border-radius: 8px;
+                font: bold 10pt "Segoe UI";
+                padding: 4px 10px;
+            }
+            QPushButton#connectionButton:hover {
+                background-color: #7660A3;
+                border-color: #65518F;
+            }
+            QPushButton#connectionButton:pressed {
+                background-color: #4F3D73;
+                border-color: #423260;
+            }
+            QPushButton#connectionButton:focus {
+                border-color: #D9C9FF;
+            }
+            QPushButton#connectionButton:disabled {
+                background-color: #DDD6E8;
+                color: #62596F;
+                border-color: #BEB3CE;
+            }
+        """)
+        self.connection_button.clicked.connect(self.connection_dialog.show)
+        self.ui.pageSettings.layout().addWidget(self.connection_button, 0, Qt.AlignHCenter)
+        action = QAction("Connection…", self)
+        action.triggered.connect(self.connection_dialog.show)
+        self.tray.contextMenu().insertAction(self.tray.contextMenu().actions()[0], action)
+        QApplication.instance().aboutToQuit.connect(self._stop_connections)
+        self.connections.worker.start()
 
-    def _ensure_serial_connection(self):
-        desired_port = self._resolve_serial_port()
-        if not desired_port:
-            self._disconnect_serial()
-            self._schedule_serial_retry()
-            return
+    def _stop_connections(self):
+        self.connections.stop()
+        self._save_settings()
 
-        if self._serial and self._serial.is_open and self._serial_port_name == desired_port:
-            return
-
-        if self._serial and self._serial_port_name != desired_port:
-            self._disconnect_serial()
-
-        try:
-            # A small timeout is more stable across reconnects than a pure
-            # non-blocking port and still keeps polling responsive.
-            self._serial = serial.Serial(desired_port, SERIAL_BAUDRATE, timeout=0.05)
-        except serial.SerialException as error:
-            print(f"[SERIAL] Failed to open {desired_port}: {error}")
-            self._disconnect_serial()
-            return
-
-        self._serial_port_name = desired_port
-        self._preferred_port_name = desired_port
-        self._serial_buffer = ""
-        self._serial_poll_timer.start(SERIAL_POLL_MS)
-        self._serial_reconnect_timer.stop()
-        self._serial_reconnect_delay_ms = SERIAL_RECONNECT_MS
-
-    def _disconnect_serial(self):
-        self._serial_poll_timer.stop()
-        serial_device = self._serial
-        self._serial = None
-        self._serial_port_name = ""
-        self._serial_buffer = ""
-        if serial_device is not None:
-            try:
-                if serial_device.is_open:
-                    serial_device.close()
-            except serial.SerialException:
-                pass
-        if self._should_keep_reconnecting():
-            self._schedule_serial_retry()
-
-    def _schedule_serial_retry(self):
-        self._serial_reconnect_timer.start(self._serial_reconnect_delay_ms)
-        self._serial_reconnect_delay_ms = min(
-            self._serial_reconnect_delay_ms * 2,
-            SERIAL_RECONNECT_MAX_MS,
-        )
-
-    def _should_keep_reconnecting(self):
-        serial_settings = self._serial_settings()
-        return serial_settings["auto_detect"] or bool(serial_settings["port"])
-
-    def _detect_esp32_port(self):
-        list_ports_module = self._get_list_ports_module()
-        if list_ports_module is None:
-            return ""
-        return detect_best_port(
-            list_ports_module,
-            preferred_port=self._preferred_port_name,
-            expected_vid=ESP32_VID,
-        )
-
-    def _resolve_serial_port(self):
-        serial_settings = self._serial_settings()
-        if not serial_settings["auto_detect"]:
-            return serial_settings["port"]
-        return self._detect_esp32_port()
-
-    def _poll_serial(self):
-        if not self._serial:
-            return
-
-        try:
-            waiting = self._serial.in_waiting
-            if waiting <= 0:
-                return
-            chunk = self._serial.read(waiting)
-        except (serial.SerialException, OSError) as error:
-            print(f"[SERIAL] Read failed: {error}")
-            self._disconnect_serial()
-            return
-
-        if not chunk:
-            return
-
-        # A bounded text buffer prevents malformed serial traffic from growing
-        # memory usage indefinitely.
-        self._serial_buffer += chunk.decode(errors="ignore")
-        if len(self._serial_buffer) > self._serial_buffer_limit:
-            self._serial_buffer = self._serial_buffer[-self._serial_buffer_limit :]
-        while "\n" in self._serial_buffer:
-            line, self._serial_buffer = self._serial_buffer.split("\n", 1)
-            event = line.strip()
-            if event:
-                self._handle_serial_event(event)
-
-    def _handle_serial_event(self, event_text: str):
+    def _handle_device_event(self, event_text: str):
         # The firmware sends simple text commands; this is the translation layer
         # from hardware events into desktop actions.
         if event_text == "START":
@@ -987,15 +918,6 @@ class MainWindow(QMainWindow):
                 print(f"[SHORTCUT] Keyboard module unavailable: {error}")
                 return None
         return self._keyboard
-
-    def _get_list_ports_module(self):
-        if self._list_ports_module is None:
-            try:
-                self._list_ports_module = import_module("serial.tools.list_ports")
-            except ImportError as error:
-                print(f"[SERIAL] list_ports module unavailable: {error}")
-                return None
-        return self._list_ports_module
 
     def _get_pycaw_interfaces(self):
         if self._pycaw_interfaces is None:
