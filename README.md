@@ -138,7 +138,25 @@ Open **Settings → USB / Bluetooth Connection…**, or **Connection…** in the
 The board needs battery/another power source to keep running when USB is removed.
 The prototype BLE client must be closed before connecting the desktop app.
 
-### Power and wake-up
+### Custom button and rotary actions
+
+- On any profile page, click **Edit button & rotary actions…** or click a button
+  preview and choose **Edit Action…**.
+- Each profile has 12 mappings: six buttons and left/right/click for each rotary.
+- Available actions: keyboard shortcut, media (play/pause, next, previous, stop),
+  system audio, Spotify volume, open app/file/folder, URL, text, switch profile,
+  and None. Spotify volume steps can be set from 1% to 100%.
+- Text preserves whitespace and is typed into the focused application. Media
+  controls use the Windows media session; they are not Spotify-specific.
+- **Copy/Paste** copies one mapping. The profile selector copies all 12 mappings
+  from another profile. **Export/Import profile** uses a portable JSON file.
+  Imported/copied changes take effect only after **Save**; Cancel discards them.
+- Mappings are saved in the application's settings and restored on restart.
+  Existing button mappings and the original rotary defaults are retained.
+- Firmware currently repeats held buttons; briefly press toggle actions such
+  as Play/Pause and profile switching. Long/double press are not available yet.
+
+### Power and wake-up behavior
 
 - Default: after **60 seconds** of physical inactivity, request longer BLE connection
   intervals/slave latency and slower advertising when disconnected. The central
