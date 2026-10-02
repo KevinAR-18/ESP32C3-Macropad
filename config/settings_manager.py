@@ -89,11 +89,13 @@ def normalize_profile_entry(entry):
     if isinstance(entry, dict):
         mode = entry.get("mode", SHORTCUT_MODE)
         value = str(entry.get("value", ""))
-        if mode not in {SHORTCUT_MODE, APPLICATION_MODE}:
+        from input.actions import ACTION_TYPES
+        if mode not in ACTION_TYPES:
             mode = SHORTCUT_MODE
         if mode == SHORTCUT_MODE:
             value = _normalize_loaded_shortcut(value)
-        return {"mode": mode, "value": value}
+        from input.actions import normalize_action
+        return normalize_action({**entry, "mode": mode, "value": value})
 
     return {"mode": SHORTCUT_MODE, "value": _normalize_loaded_shortcut(str(entry or ""))}
 
@@ -128,9 +130,11 @@ def collect_profile_mappings(profile_slots):
         mappings[profile] = [
             {
                 "mode": slot.get("mode", SHORTCUT_MODE),
+                "label": slot.get("label", ""),
+                "step": slot.get("step", 3),
                 "value": (
-                    slot.get("stored_value", "").strip()
-                    if slot.get("mode") == APPLICATION_MODE
+                    slot.get("stored_value", "")
+                    if slot.get("mode") != SHORTCUT_MODE
                     else slot["line_edit"].text().strip()
                 ),
             }
@@ -147,6 +151,8 @@ def apply_profile_mappings(profile_slots, mappings):
                 entry = normalize_profile_entry(values[idx])
                 slot["mode"] = entry["mode"]
                 slot["stored_value"] = entry["value"]
+                slot["label"] = entry.get("label", "")
+                slot["step"] = entry.get("step", 3)
                 display_value = entry["value"]
                 if entry["mode"] == SHORTCUT_MODE:
                     display_value = _format_loaded_display(entry["value"])
