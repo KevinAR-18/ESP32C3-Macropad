@@ -6,14 +6,16 @@ from importlib import import_module
 from functools import partial
 from pathlib import Path
 
-from PySide6.QtCore import QEvent, QObject, Qt, QTimer, Signal
-from PySide6.QtGui import QAction, QCursor, QFontMetrics, QIcon
+from PySide6.QtCore import QEvent, QObject, Qt, QTimer, Signal, QUrl
+from PySide6.QtGui import QAction, QCursor, QFontMetrics, QIcon, QDesktopServices
 from PySide6.QtWidgets import (
     QApplication,
     QFileDialog,
     QFrame,
     QMainWindow,
     QMenu,
+    QDialog,
+    QComboBox,
     QPushButton,
     QSystemTrayIcon,
     QVBoxLayout,
@@ -21,6 +23,8 @@ from PySide6.QtWidgets import (
 )
 from connection.manager import ConnectionManager
 from connection.dialog import ConnectionDialog
+from input.actions import default_rotary, normalize_action, ROTARY_EVENTS, ACTION_TYPES
+from ui.action_editor import ActionEditor
 
 from utils.date_utils import Date
 from input.key_capture import KeyCaptureFilter
@@ -64,6 +68,20 @@ PREVIEW_TOOLTIP = {
     APPLICATION_MODE: "Klik preview untuk pilih atau ganti aplikasi.",
 }
 CAPTURE_WINDOW_MS = 5000
+ACTION_BUTTON_STYLE = """
+    QPushButton {
+        background-color: #65518F;
+        color: #FFFFFF;
+        border: 2px solid #554278;
+        border-radius: 8px;
+        font: bold 10pt "Segoe UI";
+        padding: 6px 14px;
+    }
+    QPushButton:hover { background-color: #7660A3; border-color: #65518F; }
+    QPushButton:pressed { background-color: #4F3D73; border-color: #423260; }
+    QPushButton:focus { border-color: #D9C9FF; }
+    QPushButton:disabled { background-color: #DDD6E8; color: #62596F; border-color: #BEB3CE; }
+"""
 SHORTCUT_PRESETS = [
     ("Alt+Tab", "Alt+Tab"),
     ("Win+Left", "Win+Left"),
@@ -110,6 +128,9 @@ class MainWindow(QMainWindow):
             self.setAttribute(Qt.WA_DontShowOnScreen, True)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        # Override designer size constraints together so the inner frames grow too.
+        for widget in (self, self.ui.styleSheet, self.ui.bgApp):
+            widget.setFixedSize(800, 420)
         self.setWindowTitle(APP_NAME)
         self.setWindowIcon(app_icon())
         self.ui.version.setText(f"v{APP_VERSION}")
@@ -128,6 +149,7 @@ class MainWindow(QMainWindow):
         self._settings_save_timer.timeout.connect(self._save_settings)
         self._connection_settings = {}
         self._current_profile_id = "1"
+        self._rotary_mappings = {pid: default_rotary() for pid in PROFILE_IDS}
         self._spotify_volume = None
         self._keyboard = None
         self._keyboard_capture_hook = None
@@ -141,6 +163,14 @@ class MainWindow(QMainWindow):
         self._profile_buttons = self._build_profile_buttons()
         self._save_buttons = self._build_save_buttons()
         self._profile_slots = self._build_profile_slots()
+        for pid in PROFILE_IDS:
+            button = QPushButton("Edit button & rotary actions…", self._profile_pages[pid])
+            button.setObjectName(f"editActionsButton{pid}")
+            button.setCursor(Qt.PointingHandCursor)
+            button.setStyleSheet(ACTION_BUTTON_STYLE)
+            button.setToolTip("Customize all six buttons and both rotary encoders for this profile")
+            button.clicked.connect(lambda checked=False, profile=pid: self._edit_actions(profile))
+            self._profile_pages[pid].layout().addWidget(button, 0, Qt.AlignHCenter)
 
         # Keep startup cheap, then lazily prepare profile widgets when the user
         # opens a page that actually needs them.
@@ -336,6 +366,7 @@ class MainWindow(QMainWindow):
 
     def _show_slot_menu(self, slot):
         menu = QMenu(self)
+        edit_action = menu.addAction("Edit Action… (media, text, URL, profile)")
         keyboard_action = menu.addAction("Shortcut Keyboard")
         app_action = menu.addAction("Shortcut App")
         preset_menu = menu.addMenu("Preset Shortcut")
@@ -347,7 +378,9 @@ class MainWindow(QMainWindow):
 
         preview = slot["preview_widget"]
         chosen_action = menu.exec(preview.mapToGlobal(preview.rect().center()))
-        if chosen_action is keyboard_action:
+        if chosen_action is edit_action:
+            self._edit_actions(self._current_profile_id, self._profile_slots[self._current_profile_id].index(slot))
+        elif chosen_action is keyboard_action:
             self._set_slot_mode(slot, SHORTCUT_MODE, arm_capture=True)
         elif chosen_action is app_action:
             self._set_slot_mode(slot, APPLICATION_MODE)
@@ -379,6 +412,7 @@ class MainWindow(QMainWindow):
             self._stop_shortcut_capture()
         slot["mode"] = SHORTCUT_MODE
         slot["stored_value"] = ""
+        slot["label"] = ""
         slot["line_edit"].clear()
         self._apply_slot_mode(slot)
         self._schedule_save_settings()
@@ -389,6 +423,20 @@ class MainWindow(QMainWindow):
         preview = slot.get("preview_widget")
 
         is_shortcut_mode = mode == SHORTCUT_MODE
+        if mode not in (SHORTCUT_MODE, APPLICATION_MODE):
+            line.setReadOnly(True)
+            line.setProperty("capture_shortcut", False)
+            line.setPlaceholderText("Click preview to edit action")
+            line.setToolTip("Click preview → Edit Action")
+            if preview is not None:
+                preview.setToolTip("Click to edit action")
+            line.blockSignals(True)
+            line.setText(slot.get("label") or slot.get("stored_value", "") or ACTION_TYPES[mode])
+            line.blockSignals(False)
+            if preview is not None:
+                preview.set_mode(KEYBOARD_MODE if mode != "none" else UNSET_MODE)
+            self._fit_line_edit_text(slot)
+            return
         is_capture_active = is_shortcut_mode and self._active_capture_slot is slot
         line.setProperty("capture_shortcut", is_capture_active)
         line.setPlaceholderText(
@@ -416,6 +464,8 @@ class MainWindow(QMainWindow):
             line.setReadOnly(True)
         else:
             self._apply_application_display(slot)
+        if slot.get("label"):
+            line.setToolTip(f"{slot['label']} — {slot.get('stored_value', '')}")
 
     def _apply_application_display(self, slot):
         stored_value = slot.get("stored_value", "").strip()
@@ -599,6 +649,12 @@ class MainWindow(QMainWindow):
     def _load_settings(self):
         data = load_settings(settings_path())
         self._connection_settings = data.get("connection", {}) if data else {}
+        if data:
+            rotary = data.get("rotary_profiles", {})
+            for pid in PROFILE_IDS:
+                entries = rotary.get(pid)
+                if isinstance(entries, list) and len(entries) == 6:
+                    self._rotary_mappings[pid] = [normalize_action(a) for a in entries]
         if not data:
             self.ui.cbAutodetect.setChecked(True)
             self._apply_settings_ui_state()
@@ -645,6 +701,7 @@ class MainWindow(QMainWindow):
             "connection": dict(self.connections.settings) if hasattr(self, "connections") else self._connection_settings,
             "spotify": self._spotify_settings(),
             "profiles": collect_profile_mappings(self._profile_slots),
+            "rotary_profiles": self._rotary_mappings,
         }
         # Persist into AppData so the packaged executable does not need write
         # permission inside its install directory.
@@ -740,32 +797,7 @@ class MainWindow(QMainWindow):
         self.connection_button.setObjectName("connectionButton")
         self.connection_button.setCursor(Qt.PointingHandCursor)
         self.connection_button.setToolTip("Manage USB, Bluetooth devices, and power settings")
-        self.connection_button.setStyleSheet("""
-            QPushButton#connectionButton {
-                background-color: #65518F;
-                color: #FFFFFF;
-                border: 2px solid #554278;
-                border-radius: 8px;
-                font: bold 10pt "Segoe UI";
-                padding: 4px 10px;
-            }
-            QPushButton#connectionButton:hover {
-                background-color: #7660A3;
-                border-color: #65518F;
-            }
-            QPushButton#connectionButton:pressed {
-                background-color: #4F3D73;
-                border-color: #423260;
-            }
-            QPushButton#connectionButton:focus {
-                border-color: #D9C9FF;
-            }
-            QPushButton#connectionButton:disabled {
-                background-color: #DDD6E8;
-                color: #62596F;
-                border-color: #BEB3CE;
-            }
-        """)
+        self.connection_button.setStyleSheet(ACTION_BUTTON_STYLE)
         self.connection_button.clicked.connect(self.connection_dialog.show)
         self.ui.pageSettings.layout().addWidget(self.connection_button, 0, Qt.AlignHCenter)
         action = QAction("Connection…", self)
@@ -789,24 +821,8 @@ class MainWindow(QMainWindow):
             self._execute_profile_slot(int(button_match.group(1)))
             return
 
-        if event_text == "ENC1 RIGHT":
-            self._send_media_key("volume up")
-            return
-        if event_text == "ENC1 LEFT":
-            self._send_media_key("volume down")
-            return
-        if event_text == "ENC1 BUTTON PRESSED":
-            self._send_media_key("volume mute")
-            return
-
-        if event_text == "ENC2 RIGHT":
-            self._adjust_spotify_volume(SPOTIFY_WEB_STEP_PERCENT / 100)
-            return
-        if event_text == "ENC2 LEFT":
-            self._adjust_spotify_volume(-(SPOTIFY_WEB_STEP_PERCENT / 100))
-            return
-        if event_text == "ENC2 BUTTON PRESSED":
-            self._send_media_key("play/pause media")
+        if event_text in ROTARY_EVENTS:
+            self._execute_action(self._rotary_mappings[self._current_profile_id][ROTARY_EVENTS.index(event_text)])
 
     def _execute_profile_slot(self, slot_number: int):
         slots = self._profile_slots.get(self._current_profile_id, [])
@@ -815,11 +831,60 @@ class MainWindow(QMainWindow):
             return
 
         slot = slots[slot_index]
-        value = slot.get("stored_value", "").strip()
-        if slot.get("mode") == APPLICATION_MODE:
-            self._launch_application(value)
-        else:
+        self._execute_action({**slot, "value": slot.get("stored_value", "")})
+
+    def _execute_action(self, action):
+        action = normalize_action(action)
+        mode, value = action["mode"], action["value"]
+        if mode == "none" or not value:
+            return
+        if mode == APPLICATION_MODE:
+            self._launch_application(value.strip())
+        elif mode == "url":
+            QDesktopServices.openUrl(QUrl.fromUserInput(value.strip()))
+        elif mode == "text":
+            keyboard_module = self._get_keyboard_module()
+            if keyboard_module is not None:
+                try:
+                    keyboard_module.write(value)
+                except Exception as error:
+                    print(f"[TEXT] Unable to type text: {error}")
+        elif mode == "profile":
+            pid = str(int(self._current_profile_id) % len(PROFILE_IDS) + 1) if value == "next" else value
+            if pid in self._profile_pages:
+                self._show_page(self._profile_pages[pid], profile_id=pid)
+        elif mode == "audio" and value in ("spotify_up", "spotify_down"):
+            self._adjust_spotify_volume(action["step"] / 100 * (1 if value == "spotify_up" else -1))
+        elif mode in ("media", "audio"):
+            self._send_media_key(value)
+        elif mode == SHORTCUT_MODE:
             self._send_shortcut(value)
+
+    def _edit_actions(self, pid, selected=0):
+        self._stop_shortcut_capture()
+        actions = collect_profile_mappings(self._profile_slots)[pid] + self._rotary_mappings[pid]
+        editor = ActionEditor(actions, collect_profile_names(self._profile_name_inputs), self)
+        copy_source = QComboBox(editor)
+        copy_source.addItem("Copy mappings from another profile…", None)
+        names = collect_profile_names(self._profile_name_inputs)
+        for other in PROFILE_IDS:
+            if other != pid:
+                copy_source.addItem(f"{other}: {names[int(other) - 1]}", other)
+        def copy_profile(index):
+            source = copy_source.itemData(index)
+            if source:
+                entries = collect_profile_mappings(self._profile_slots)[source] + self._rotary_mappings[source]
+                editor.actions = [normalize_action(a) for a in entries]
+                editor.load()
+        copy_source.activated.connect(copy_profile)
+        editor.layout().insertWidget(0, copy_source)
+        editor.inputs.setCurrentRow(selected)
+        if editor.exec() != QDialog.Accepted:
+            return
+        apply_profile_mappings(self._profile_slots, {pid: editor.actions[:6]})
+        self._rotary_mappings[pid] = editor.actions[6:]
+        self._refresh_slot_modes()
+        self._save_settings()
 
     def _launch_application(self, target_path: str):
         if not target_path:
