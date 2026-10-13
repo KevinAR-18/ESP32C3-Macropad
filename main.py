@@ -164,11 +164,11 @@ class MainWindow(QMainWindow):
         self._save_buttons = self._build_save_buttons()
         self._profile_slots = self._build_profile_slots()
         for pid in PROFILE_IDS:
-            button = QPushButton("Edit button & rotary actions…", self._profile_pages[pid])
+            button = QPushButton("Edit Rotary Actions…", self._profile_pages[pid])
             button.setObjectName(f"editActionsButton{pid}")
             button.setCursor(Qt.PointingHandCursor)
             button.setStyleSheet(ACTION_BUTTON_STYLE)
-            button.setToolTip("Customize all six buttons and both rotary encoders for this profile")
+            button.setToolTip("Customize both rotary encoders for this profile")
             button.clicked.connect(lambda checked=False, profile=pid: self._edit_actions(profile))
             self._profile_pages[pid].layout().addWidget(button, 0, Qt.AlignHCenter)
 
@@ -379,7 +379,7 @@ class MainWindow(QMainWindow):
         preview = slot["preview_widget"]
         chosen_action = menu.exec(preview.mapToGlobal(preview.rect().center()))
         if chosen_action is edit_action:
-            self._edit_actions(self._current_profile_id, self._profile_slots[self._current_profile_id].index(slot))
+            self._edit_actions(self._current_profile_id, self._profile_slots[self._current_profile_id].index(slot), rotary_only=False)
         elif chosen_action is keyboard_action:
             self._set_slot_mode(slot, SHORTCUT_MODE, arm_capture=True)
         elif chosen_action is app_action:
@@ -860,29 +860,32 @@ class MainWindow(QMainWindow):
         elif mode == SHORTCUT_MODE:
             self._send_shortcut(value)
 
-    def _edit_actions(self, pid, selected=0):
+    def _edit_actions(self, pid, selected=0, rotary_only=True):
         self._stop_shortcut_capture()
-        actions = collect_profile_mappings(self._profile_slots)[pid] + self._rotary_mappings[pid]
-        editor = ActionEditor(actions, collect_profile_names(self._profile_name_inputs), self)
+        actions = self._rotary_mappings[pid] if rotary_only else collect_profile_mappings(self._profile_slots)[pid]
+        editor = ActionEditor(actions, collect_profile_names(self._profile_name_inputs), self, rotary_only=rotary_only)
         copy_source = QComboBox(editor)
         copy_source.addItem("Copy mappings from another profile…", None)
         names = collect_profile_names(self._profile_name_inputs)
+        editor.profile_caption.setText(f"Profile {pid} · {names[int(pid) - 1]}")
         for other in PROFILE_IDS:
             if other != pid:
                 copy_source.addItem(f"{other}: {names[int(other) - 1]}", other)
         def copy_profile(index):
             source = copy_source.itemData(index)
             if source:
-                entries = collect_profile_mappings(self._profile_slots)[source] + self._rotary_mappings[source]
+                entries = self._rotary_mappings[source] if rotary_only else collect_profile_mappings(self._profile_slots)[source]
                 editor.actions = [normalize_action(a) for a in entries]
                 editor.load()
         copy_source.activated.connect(copy_profile)
-        editor.layout().insertWidget(0, copy_source)
+        editor.profile_tools.insertWidget(0, copy_source, 1)
         editor.inputs.setCurrentRow(selected)
         if editor.exec() != QDialog.Accepted:
             return
-        apply_profile_mappings(self._profile_slots, {pid: editor.actions[:6]})
-        self._rotary_mappings[pid] = editor.actions[6:]
+        if rotary_only:
+            self._rotary_mappings[pid] = editor.actions
+        else:
+            apply_profile_mappings(self._profile_slots, {pid: editor.actions})
         self._refresh_slot_modes()
         self._save_settings()
 
