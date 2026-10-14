@@ -2,7 +2,7 @@
 setlocal
 
 set "APP_NAME=KeyBloom"
-set "APP_VERSION=1.1.0"
+set "APP_VERSION=1.2.0"
 if exist "main.py" (
     for /f "tokens=*" %%a in ('findstr /r /c:"^APP_VERSION" main.py') do (
         for /f "tokens=3 delims= " %%v in ("%%a") do (
