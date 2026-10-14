@@ -50,7 +50,7 @@ from ui.ui_keybloom import Ui_MainWindow
 from ui.preview_button import APP_MODE, KEYBOARD_MODE, UNSET_MODE, TransparentKeycapPreview
 
 APP_NAME = "KeyBloom"
-APP_VERSION = "1.1.0"
+APP_VERSION = "1.2.0"
 APP_ICON_FILE = "icon.ico"
 START_MINIMIZED_ARG = "--start-minimized"
 PROFILE_IDS = tuple(str(index) for index in range(1, 6))
@@ -197,13 +197,16 @@ class MainWindow(QMainWindow):
 
         tray_menu = QMenu(self)
         show_action = QAction("Show", self)
-        tray_menu.addSeparator()
+        version_action = QAction(f"{APP_NAME} v{APP_VERSION}", self)
+        version_action.setEnabled(False)
         exit_action = QAction("Exit", self)
 
         show_action.triggered.connect(self.show_normal_from_tray)
         exit_action.triggered.connect(QApplication.quit)
 
         tray_menu.addAction(show_action)
+        tray_menu.addSeparator()
+        tray_menu.addAction(version_action)
         tray_menu.addAction(exit_action)
         self.tray.setContextMenu(tray_menu)
         self.tray.activated.connect(self._on_tray_activated)
@@ -792,6 +795,7 @@ class MainWindow(QMainWindow):
         self.connection_dialog = ConnectionDialog(self.connections, self)
         self.connections.event.connect(self._handle_device_event)
         self.connections.changed.connect(self._save_settings)
+        self.connections.connected.connect(self._show_connection_notification)
         self.connections.status.connect(lambda text: self.tray.setToolTip(f"{APP_NAME}: {text}"[:127]))
         self.connection_button = QPushButton("USB / Bluetooth Connection…", self)
         self.connection_button.setObjectName("connectionButton")
@@ -802,9 +806,22 @@ class MainWindow(QMainWindow):
         self.ui.pageSettings.layout().addWidget(self.connection_button, 0, Qt.AlignHCenter)
         action = QAction("Connection…", self)
         action.triggered.connect(self.connection_dialog.show)
-        self.tray.contextMenu().insertAction(self.tray.contextMenu().actions()[0], action)
+        self.tray.contextMenu().insertAction(self.tray.contextMenu().actions()[1], action)
         QApplication.instance().aboutToQuit.connect(self._stop_connections)
         self.connections.worker.start()
+
+    def _show_connection_notification(self, transport, device, kind):
+        connection = "Bluetooth" if transport == "BLE" else "USB"
+        if kind == "reconnect":
+            title = f"{APP_NAME} — Reconnected"
+            message = f"Successfully reconnected via {connection} to {device}."
+        elif kind == "auto":
+            title = f"{APP_NAME} — Connected"
+            message = f"Automatically connected via {connection} to {device}."
+        else:
+            title = f"{APP_NAME} — Connected"
+            message = f"Successfully connected via {connection} to {device}."
+        self.tray.showMessage(title, message, QSystemTrayIcon.Information, 3000)
 
     def _stop_connections(self):
         self.connections.stop()

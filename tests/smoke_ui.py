@@ -14,6 +14,10 @@ app = QApplication([])
 with patch("main.load_settings", return_value={}), patch("main.save_settings") as save, \
      patch("connection.manager.list_ports.comports", return_value=[]):
     window = main.MainWindow()
+    actions = window.tray.contextMenu().actions()
+    assert [action.text() for action in actions] == ["Show", "Connection…", "", "KeyBloom v1.2.0", "Exit"]
+    assert actions[2].isSeparator()
+    assert not actions[3].isEnabled()
     window.connection_dialog.show()
     QTimer.singleShot(250, app.quit)
     app.exec()
