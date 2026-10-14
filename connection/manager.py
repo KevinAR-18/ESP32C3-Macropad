@@ -35,6 +35,7 @@ def normalize_settings(value):
 
 class ConnectionWorker(QThread):
     event = Signal(str, str, int)  # transport, payload, user selection generation
+    connected = Signal(str, str, bool, int)
     status = Signal(str)
     devices = Signal(object)
     remembered = Signal(str, str, int)
@@ -60,6 +61,13 @@ class ConnectionWorker(QThread):
         self.sleeping = False
         self.last_status = ""
         self.generation = 0
+        self.successful_connections = set()
+
+    def report_connected(self, transport, identity, label):
+        key = (transport, identity)
+        reconnected = key in self.successful_connections
+        self.successful_connections.add(key)
+        self.connected.emit(transport, label, reconnected, self.generation)
 
     def report(self, text):
         if text != self.last_status:
@@ -142,6 +150,7 @@ class ConnectionWorker(QThread):
                 self.sleeping = False
                 self.retry = 2
                 name = device.name or self.settings["name"]
+                self.report_connected("BLE", address, name)
                 self.remembered.emit(address, name, self.generation)
                 self.report(f"BLE Connected — {name}")
                 await disconnected.wait()
@@ -207,6 +216,7 @@ class ConnectionWorker(QThread):
                     self.write_serial(self.power_command())
                     await self.cancel_ble()
                     self.report(f"USB Connected — {self.port.port}")
+                    self.report_connected("USB", self.port.port, self.port.port)
                 elif text == "KB PONG " + self.session:
                     self.pong = now
                 elif self.usb_ready and not text.startswith("KB "):
@@ -277,6 +287,7 @@ class ConnectionWorker(QThread):
 
 class ConnectionManager(QObject):
     event = Signal(str)
+    connected = Signal(str, str, str)  # transport, device label, connection kind
     status = Signal(str)
     devices = Signal(object)
     changed = Signal()
@@ -288,6 +299,7 @@ class ConnectionManager(QObject):
         self.generation = 0
         self.worker = ConnectionWorker(self.settings, serial_settings, self)
         self.worker.event.connect(self._event)
+        self.worker.connected.connect(self._connected)
         self.worker.status.connect(self.status)
         self.worker.devices.connect(self.devices)
         self.worker.remembered.connect(self._remember)
@@ -304,6 +316,15 @@ class ConnectionManager(QObject):
         self.settings.update(address=address, name=name, reconnect=True)
         self.pending_address = ""
         self.changed.emit()
+
+    def _connected(self, transport, label, reconnected, generation):
+        if transport == "BLE":
+            if generation != self.generation or not (self.settings["reconnect"] or self.pending_address):
+                return
+            if self.pending_address:
+                self.connected.emit(transport, label, "manual")
+                return
+        self.connected.emit(transport, label, "reconnect" if reconnected else "auto")
 
     def send_settings(self):
         settings = dict(self.settings)

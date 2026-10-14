@@ -54,10 +54,13 @@ class SerialTests(unittest.IsolatedAsyncioTestCase):
         worker.ble_task = asyncio.create_task(asyncio.sleep(100))
         task = worker.ble_task
         events = []
+        connections = []
+        worker.connected.connect(lambda *event: connections.append(event))
         worker.event.connect(lambda *event: events.append(event))
         await worker.check_serial()
         self.assertTrue(worker.usb_ready)
         self.assertTrue(task.cancelled())
+        self.assertEqual(connections, [("USB", "COM_TEST", False, 0)])
         self.assertIn(b"KB POWER 1 60 600\n", port.writes)
         port.received = b"BUTTON 1 PRES"
         await worker.check_serial()
@@ -65,6 +68,7 @@ class SerialTests(unittest.IsolatedAsyncioTestCase):
         port.received = b"SED\nBUTTON 1 PRESSED\n"
         await worker.check_serial()
         self.assertEqual(len(events), 2)  # legitimate hold repeats are preserved
+        self.assertEqual(len(connections), 1)
         worker.close_serial()
         self.assertIn(b"KB BYE test-session\n", port.writes)
 
@@ -76,11 +80,14 @@ class SerialTests(unittest.IsolatedAsyncioTestCase):
         worker.opened = time.monotonic() - 5
         port.received = b"KB READY wrong\nBUTTON 1 PRESSED\n"
         events = []
+        connections = []
+        worker.connected.connect(lambda *event: connections.append(event))
         worker.event.connect(lambda *event: events.append(event))
         await worker.check_serial()
         self.assertFalse(worker.usb_ready)
         self.assertTrue(port.closed)
         self.assertEqual(events, [])
+        self.assertEqual(connections, [])
 
     async def test_missing_heartbeat_releases_usb_for_ble(self):
         worker = self.worker()
@@ -105,6 +112,35 @@ class SerialTests(unittest.IsolatedAsyncioTestCase):
 
 
 class PersistenceTests(unittest.TestCase):
+    def test_connection_history_is_per_device_and_transport(self):
+        worker = ConnectionWorker(normalize_settings({}), {"auto_detect": True})
+        received = []
+        worker.connected.connect(lambda *event: received.append(event))
+        worker.report_connected("USB", "COM3", "COM3")
+        worker.report_connected("USB", "COM3", "COM3")
+        worker.report_connected("USB", "COM4", "COM4")
+        worker.report_connected("BLE", "aa:bb", "KeyBloom-C3")
+        worker.report_connected("BLE", "aa:bb", "KeyBloom-C3")
+        self.assertEqual([event[2] for event in received], [False, True, False, False, True])
+
+    def test_notifications_filter_stale_ble_and_classify_manual(self):
+        manager = ConnectionManager({}, {"auto_detect": True})
+        received = []
+        manager.connected.connect(lambda *event: received.append(event))
+        manager._connected("USB", "COM3", False, 0)
+        manager._connected("USB", "COM3", True, 0)
+        manager._connected("BLE", "KeyBloom-C3", False, 0)
+        self.assertEqual(len(received), 2)
+        manager.connect_device("aa:bb")
+        manager._connected("BLE", "KeyBloom-C3", False, 0)
+        self.assertEqual(len(received), 2)
+        manager._connected("BLE", "KeyBloom-C3", False, manager.generation)
+        manager._remember("aa:bb", "KeyBloom-C3", manager.generation)
+        manager._connected("BLE", "KeyBloom-C3", True, manager.generation)
+        manager.disconnect_device()
+        manager._connected("BLE", "KeyBloom-C3", True, manager.generation - 1)
+        self.assertEqual([event[2] for event in received], ["auto", "reconnect", "manual", "reconnect"])
+
     def test_only_successful_connection_is_saved(self):
         manager = ConnectionManager({}, {})
         manager.connect_device("AA")
@@ -159,6 +195,8 @@ class BleTests(unittest.IsolatedAsyncioTestCase):
         async def find(*args, **kwargs):
             return SimpleNamespace(name="KeyBloom-C3", address="AA")
         saved, events = [], []
+        connections = []
+        worker.connected.connect(lambda *args: connections.append(args))
         worker.remembered.connect(lambda *args: saved.append(args))
         worker.event.connect(lambda *args: events.append(args))
         with patch("bleak.BleakScanner.find_device_by_address", side_effect=find), patch("bleak.BleakClient", Client):
@@ -166,6 +204,7 @@ class BleTests(unittest.IsolatedAsyncioTestCase):
             await ready.wait()
             client = worker.client
             self.assertEqual(saved[0][0], "AA")
+            self.assertEqual(connections, [("BLE", "KeyBloom-C3", False, 0)])
             self.assertEqual(client.power, b"KB POWER 1 60 600")
             client.notify(None, b"BUTTON 2 PRESSED")
             client.notify(None, b"KB SLEEP")
@@ -192,10 +231,13 @@ class BleTests(unittest.IsolatedAsyncioTestCase):
         async def find(*args, **kwargs):
             return SimpleNamespace(name="KeyBloom-C3", address="AA")
         saved = []
+        connections = []
+        worker.connected.connect(lambda *args: connections.append(args))
         worker.remembered.connect(lambda *args: saved.append(args))
         with patch("bleak.BleakScanner.find_device_by_address", side_effect=find), patch("bleak.BleakClient", Client):
             await worker.connect_ble("AA", worker.ble_epoch)
         self.assertEqual(saved, [])
+        self.assertEqual(connections, [])
         self.assertIsNone(worker.client)
         self.assertGreater(worker.next_ble, time.monotonic())
 
